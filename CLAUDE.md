@@ -235,6 +235,6 @@ Avant toute décision importante non prévue ici, pose la question au lieu de ch
   code généré par `flutter gen-l10n` (`generate: true`). Langue du téléphone, sinon français.
 - Polices incluses dans `assets/google_fonts/` (Cormorant Garamond, Nunito Sans ; licences OFL jointes).
 - Identifiant de l'app : `com.nousdeuxavecdieu.app` (iOS et Android). Projet Firebase `nous-deux-avec-dieu`
-  (config dans `lib/core/firebase/firebase_options.dart`, même clé API pour iOS et Android).
+  (config dans `lib/core/firebase/firebase_options.dart`, une clé API par plateforme).
 - Navigation : `StatefulShellRoute` à 5 onglets ; onglet Coach si `estCoachProvider` (branché à l'étape 2).
 - Vérifier avant chaque commit : `flutter analyze` et `flutter test` (CI : `.github/workflows/ci.yml`).

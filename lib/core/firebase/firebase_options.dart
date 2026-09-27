@@ -12,11 +12,10 @@ abstract final class DefaultFirebaseOptions {
   };
 
   static const _projet = 'nous-deux-avec-dieu';
-  static const _cle = 'AIzaSyBsVNFiP9zgmDWMqKbW2hNsj5XZedRw2s0';
   static const _expediteur = '585281365575';
 
   static const android = FirebaseOptions(
-    apiKey: _cle,
+    apiKey: 'AIzaSyBsVNFiP9zgmDWMqKbW2hNsj5XZedRw2s0',
     appId: '1:585281365575:android:70cb6077ee297e938bf362',
     messagingSenderId: _expediteur,
     projectId: _projet,
@@ -24,7 +23,7 @@ abstract final class DefaultFirebaseOptions {
   );
 
   static const ios = FirebaseOptions(
-    apiKey: _cle,
+    apiKey: 'AIzaSyBf6P2Se0AsfibW8VSohbzYsNy35N_WnCA',
     appId: '1:585281365575:ios:bc9785f217bfa0c18bf362',
     messagingSenderId: _expediteur,
     projectId: _projet,
