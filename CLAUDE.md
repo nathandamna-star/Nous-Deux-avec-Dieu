@@ -99,6 +99,18 @@ paiements/{id}
 
 parametres/coach
   nomAffiche, bio: {…}, photoUrl, titulaire, iban, bic, messageDon: {…}
+
+livres/{id}
+  titre: {…}, sousTitre: {…}, description: {…}, couvertureUrl, langues: ["fr", …],
+  formats: [{ type: "papier" | "numerique" | "audio", prix, devise }],
+  liensAchat: [{ libelle (ex. « Amazon », « Fnac », « Mon site »), url }],
+  commandeDirecte: bool (livre papier commandé au coach, payé par virement),
+  extraitUrl | null, publie, ordre, createdAt
+
+commandesLivres/{id}
+  uid, livreId, quantite, montant (prix + frais d'envoi), devise,
+  adresse: { nom, rue, codePostal, ville, pays }, communication (structurée),
+  statut: "en_attente" | "payee" | "envoyee" | "annulee", createdAt
 ```
 
 Les textes des contenus existent en plusieurs langues ; si une langue manque, l'app affiche le
@@ -146,23 +158,29 @@ Foi, vie de couple, intimité, conflits, santé : ce sont des **données sensibl
    photos et messages vocaux ; notifications.
 5. **Séances** : prochains rendez-vous, historique, séances restantes ; **acheter un forfait**
    (IBAN, montant, communication structurée, QR code de virement, bouton copier) ; état du paiement.
-6. **Profil** : langue, relier son conjoint (code d'invitation), **Faire un don**, notifications,
+6. **Mes livres** (accessible depuis l'Accueil et les Contenus) : tous les livres publiés par le coach,
+   avec couverture, présentation, extrait éventuel, formats et prix ; boutons **« Acheter sur … »**
+   (liens vers Amazon, Fnac, le site du coach…) et, pour le livre papier, **« Commander au coach »**
+   (adresse de livraison, paiement par virement avec QR code, suivi : payée, envoyée).
+7. **Profil** : langue, relier son conjoint (code d'invitation), **Faire un don**, notifications,
    export et suppression du compte, CGU et confidentialité.
 
 **Coach** (onglet Coach)
-7. **Tableau de bord** : demandes d'accompagnement, paiements à confirmer, exercices rendus,
+8. **Tableau de bord** : demandes d'accompagnement, paiements à confirmer, exercices rendus,
    rendez-vous du jour, messages non lus.
-8. **Accompagnements** : liste (couples / individuels, statut), fiche : membres, séances restantes,
+9. **Accompagnements** : liste (couples / individuels, statut), fiche : membres, séances restantes,
    exercices (envoyer depuis la bibliothèque ou créer, lire les réponses), rendez-vous, messages,
    **notes privées**.
-9. **Agenda** : créer / modifier / annuler un rendez-vous avec lien Zoom ; rappels automatiques
+10. **Agenda** : créer / modifier / annuler un rendez-vous avec lien Zoom ; rappels automatiques
    (veille et 1 h avant).
-10. **Éditeur de contenus** : créer et modifier méditations, questions, exercices, articles, parcours,
+11. **Éditeur de contenus** : créer et modifier méditations, questions, exercices, articles, parcours,
     **audios et vidéos** (enregistrer, ou choisir un fichier), une version par langue, visibilité,
     publication ; notification « nouveau contenu » optionnelle.
-11. **Paiements et dons** : liste, confirmer « Paiement reçu » (crédite les séances), annuler ;
+12. **Paiements et dons** : liste, confirmer « Paiement reçu » (crédite les séances), annuler ;
     totaux par mois ; forfaits (nom, nombre de séances, prix).
-12. **Paramètres coach** : nom affiché, photo, présentation, coordonnées bancaires (IBAN, BIC,
+13. **Livres** : ajouter / modifier un livre (couverture, textes par langue, formats, prix, liens
+    d'achat, commande directe, frais d'envoi) ; commandes de livres à confirmer puis marquer « envoyée ».
+14. **Paramètres coach** : nom affiché, photo, présentation, coordonnées bancaires (IBAN, BIC,
     titulaire), message de remerciement des dons.
 
 ## 8. Paiements par virement et dons (règles des stores)
@@ -171,6 +189,9 @@ Foi, vie de couple, intimité, conflits, santé : ce sont des **données sensibl
   (virement) est autorisé.
 - Le **don** est entièrement libre et **ne débloque rien** (sinon Apple exigerait son propre système
   de paiement). Aucun contenu n'est réservé aux donateurs.
+- **Livres** : un livre papier est un bien physique, il peut être payé par virement ou acheté via
+  un lien externe. Un livre numérique n'est **jamais lu ni téléchargé dans l'app** : on renvoie vers
+  la boutique qui le vend (Amazon, Fnac, site du coach), sinon Apple exigerait son système de paiement.
 - Communication structurée belge générée par paiement (modulo 97), QR code EPC (norme SEPA) lisible
   par les applications bancaires.
 - Le coach confirme la réception manuellement ; une Cloud Function crédite alors les séances et
@@ -201,6 +222,7 @@ coach doit vérifier sur son téléphone.
 7. Messagerie et notifications.
 8. Rendez-vous, lien Zoom, rappels.
 9. Forfaits, paiements par virement (QR code, communication structurée), dons, confirmation.
+9 bis. Rubrique « Mes livres » (catalogue, liens d'achat, commande directe par virement, suivi).
 10. Profil, export et suppression du compte, pages légales.
 11. Contenus de départ (5 langues), tests sur appareils, fiches App Store / Google Play.
 
