@@ -1,0 +1,18 @@
+{
+  "@@locale": "fr",
+  "appTitle": "Nous deux avec Dieu",
+  "slogan": "Grandir à deux, avec Dieu au centre.",
+  "navAccueil": "Accueil",
+  "navContenus": "Contenus",
+  "navMessages": "Messages",
+  "navSeances": "Séances",
+  "navProfil": "Profil",
+  "navCoach": "Coach",
+  "bientot": "Bientôt disponible",
+  "accueilAVenir": "Ici : la méditation du jour, votre prochain rendez-vous et vos exercices.",
+  "contenusAVenir": "Ici : méditations, questions à deux, parcours, audios et vidéos.",
+  "messagesAVenir": "Ici : votre conversation avec votre coach.",
+  "seancesAVenir": "Ici : vos rendez-vous, vos séances restantes et les forfaits.",
+  "profilAVenir": "Ici : votre langue, votre conjoint, les dons et vos données.",
+  "coachAVenir": "Ici : vos accompagnements, votre agenda, vos contenus et les paiements."
+}

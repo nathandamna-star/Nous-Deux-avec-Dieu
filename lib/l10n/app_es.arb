@@ -1,0 +1,18 @@
+{
+  "@@locale": "es",
+  "appTitle": "Nous deux avec Dieu",
+  "slogan": "Crecer juntos, con Dios en el centro.",
+  "navAccueil": "Inicio",
+  "navContenus": "Contenidos",
+  "navMessages": "Mensajes",
+  "navSeances": "Sesiones",
+  "navProfil": "Perfil",
+  "navCoach": "Coach",
+  "bientot": "Próximamente",
+  "accueilAVenir": "Aquí: la meditación del día, tu próxima cita y tus ejercicios.",
+  "contenusAVenir": "Aquí: meditaciones, preguntas para dos, itinerarios, audios y vídeos.",
+  "messagesAVenir": "Aquí: tu conversación con tu coach.",
+  "seancesAVenir": "Aquí: tus citas, las sesiones restantes y los paquetes.",
+  "profilAVenir": "Aquí: tu idioma, tu cónyuge, los donativos y tus datos.",
+  "coachAVenir": "Aquí: tus acompañamientos, tu agenda, tus contenidos y los pagos."
+}
