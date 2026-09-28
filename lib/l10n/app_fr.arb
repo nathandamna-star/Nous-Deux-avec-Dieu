@@ -521,5 +521,16 @@
   "presentationCoach": "Ma présentation",
   "presentationCoachAide": "Visible par tous sur l'accueil, avec votre nom affiché et la photo de votre profil.",
   "champBio": "Présentation",
-  "informationsLegales": "Informations"
+  "informationsLegales": "Informations",
+  "contenusDepart": "Contenus de départ",
+  "contenusDepartAide": "Ajoute 30 méditations, 60 questions pour discuter à deux et 4 parcours, dans les 5 langues, déjà publiés. Vous pourrez tout modifier, dépublier ou supprimer. Vos contenus existants ne sont jamais remplacés.",
+  "charger": "Charger",
+  "contenusDepartAjoutes": "{n, plural, =0{Tout était déjà là : rien à ajouter.} =1{1 contenu ajouté.} other{{n} contenus ajoutés.}}",
+  "@contenusDepartAjoutes": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  }
 }

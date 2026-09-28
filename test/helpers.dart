@@ -115,6 +115,14 @@ class FaussesFonctionsCoach implements FonctionsCoach {
     appels++;
     if (refuser) throw Exception('refusé');
   }
+
+  var chargements = 0;
+
+  @override
+  Future<int> chargerContenusDeDepart() async {
+    chargements++;
+    return 114;
+  }
 }
 
 /// Utilisateur connecté avec son profil déjà créé.

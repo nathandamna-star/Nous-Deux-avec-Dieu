@@ -1,0 +1,102 @@
+[
+ {
+  "id": "depart-parcours-communiquer",
+  "ordre": 1,
+  "titre": {
+   "fr": "Mieux communiquer",
+   "en": "Communicating better",
+   "pt": "Comunicar melhor",
+   "es": "Comunicarse mejor",
+   "nl": "Beter communiceren"
+  },
+  "description": {
+   "fr": "Cinq étapes pour apprendre à vous écouter, à exprimer vos besoins sans blesser et à traverser les désaccords sans vous perdre.",
+   "en": "Five steps to learn to listen to each other, express your needs without hurting, and go through disagreements without losing each other.",
+   "pt": "Cinco etapas para aprenderem a ouvir-se, a exprimir as vossas necessidades sem ferir e a atravessar os desacordos sem se perderem.",
+   "es": "Cinco etapas para aprender a escucharos, a expresar vuestras necesidades sin herir y a atravesar los desacuerdos sin perderos.",
+   "nl": "Vijf stappen om naar elkaar te leren luisteren, je behoeften uit te drukken zonder te kwetsen en meningsverschillen te doorstaan zonder elkaar te verliezen."
+  },
+  "etapes": [
+   "depart-communiquer-1",
+   "depart-communiquer-2",
+   "depart-communiquer-3",
+   "depart-communiquer-4",
+   "depart-communiquer-5"
+  ]
+ },
+ {
+  "id": "depart-parcours-pardon",
+  "ordre": 2,
+  "titre": {
+   "fr": "Le chemin du pardon",
+   "en": "The path of forgiveness",
+   "pt": "O caminho do perdão",
+   "es": "El camino del perdón",
+   "nl": "De weg van vergeving"
+  },
+  "description": {
+   "fr": "Cinq étapes pour comprendre ce qu'est le pardon, nommer les blessures, demander pardon en vérité et reconstruire la confiance.",
+   "en": "Five steps to understand what forgiveness is, name the hurts, ask for forgiveness truthfully and rebuild trust.",
+   "pt": "Cinco etapas para compreender o que é o perdão, nomear as feridas, pedir perdão com verdade e reconstruir a confiança.",
+   "es": "Cinco etapas para comprender qué es el perdón, nombrar las heridas, pedir perdón de verdad y reconstruir la confianza.",
+   "nl": "Vijf stappen om te begrijpen wat vergeving is, de wonden te benoemen, oprecht om vergeving te vragen en het vertrouwen te herstellen."
+  },
+  "etapes": [
+   "depart-pardon-1",
+   "depart-pardon-2",
+   "depart-pardon-3",
+   "depart-pardon-4",
+   "depart-pardon-5"
+  ]
+ },
+ {
+  "id": "depart-parcours-finances",
+  "ordre": 3,
+  "titre": {
+   "fr": "Nos finances",
+   "en": "Our finances",
+   "pt": "As nossas finanças",
+   "es": "Nuestras finanzas",
+   "nl": "Onze financiën"
+  },
+  "description": {
+   "fr": "Cinq étapes pour parler d'argent sans vous disputer, bâtir un budget commun, faire face aux imprévus et donner avec joie.",
+   "en": "Five steps to talk about money without arguing, build a shared budget, face the unexpected and give joyfully.",
+   "pt": "Cinco etapas para falar de dinheiro sem discutir, construir um orçamento comum, enfrentar os imprevistos e dar com alegria.",
+   "es": "Cinco etapas para hablar de dinero sin discutir, construir un presupuesto común, afrontar los imprevistos y dar con alegría.",
+   "nl": "Vijf stappen om over geld te praten zonder ruzie, een gezamenlijk budget op te bouwen, het onverwachte het hoofd te bieden en met vreugde te geven."
+  },
+  "etapes": [
+   "depart-finances-1",
+   "depart-finances-2",
+   "depart-finances-3",
+   "depart-finances-4",
+   "depart-finances-5"
+  ]
+ },
+ {
+  "id": "depart-parcours-mariage",
+  "ordre": 4,
+  "titre": {
+   "fr": "Se préparer au mariage",
+   "en": "Preparing for marriage",
+   "pt": "Preparar-se para o casamento",
+   "es": "Prepararse para el matrimonio",
+   "nl": "Je voorbereiden op het huwelijk"
+  },
+  "description": {
+   "fr": "Cinq étapes pour les fiancés : le sens du mariage, vos familles, vos attentes, la tendresse et l'alliance que vous allez conclure devant Dieu.",
+   "en": "Five steps for engaged couples: the meaning of marriage, your families, your expectations, tenderness and the covenant you will make before God.",
+   "pt": "Cinco etapas para noivos: o sentido do casamento, as vossas famílias, as vossas expectativas, a ternura e a aliança que vão celebrar diante de Deus.",
+   "es": "Cinco etapas para prometidos: el sentido del matrimonio, vuestras familias, vuestras expectativas, la ternura y la alianza que vais a sellar ante Dios.",
+   "nl": "Vijf stappen voor verloofden: de zin van het huwelijk, jullie families, jullie verwachtingen, tederheid en het verbond dat jullie voor God zullen sluiten."
+  },
+  "etapes": [
+   "depart-mariage-1",
+   "depart-mariage-2",
+   "depart-mariage-3",
+   "depart-mariage-4",
+   "depart-mariage-5"
+  ]
+ }
+]

@@ -19,6 +19,7 @@ import {
   ANONYME, commandeEnCours, departMembre, profilExporte, versJson,
 } from './compte.js';
 import { versHtml } from './legal.js';
+import { documentsDepart } from './depart.js';
 import {
   destinatairesMessage, jetonsInvalides, notificationExercice, notificationMessage,
 } from './notifications.js';
@@ -391,4 +392,30 @@ export const legal = onRequest((requete, reponse) => {
   reponse.set('Cache-Control', 'public, max-age=3600')
     .set('Content-Type', 'text/html; charset=utf-8')
     .send(versHtml(texte, titre));
+});
+
+/**
+ * Coach : charge les contenus de départ (30 méditations, 60 questions,
+ * 4 parcours) dans les 5 langues. Ne remplace jamais un contenu existant :
+ * ce que le coach a modifié reste intact. Un contenu de départ supprimé par
+ * le coach revient seulement si la fonction est relancée.
+ */
+export const chargerContenusDeDepart = onCall({ timeoutSeconds: 120 }, async (requete) => {
+  if (requete.auth?.token.coach !== true) {
+    throw new HttpsError('permission-denied', 'Réservé au coach.');
+  }
+  const lire = (f) => JSON.parse(readFileSync(new URL(`./depart/${f}`, import.meta.url), 'utf8'));
+  const db = getFirestore();
+  const docs = documentsDepart(lire('contenus.json'), lire('parcours.json'), FieldValue.serverTimestamp());
+  const existants = await db.getAll(...docs.map((d) => db.doc(d.chemin)));
+  const lot = db.batch();
+  let ajoutes = 0;
+  docs.forEach((d, i) => {
+    if (existants[i].exists) return;
+    lot.create(db.doc(d.chemin), d.donnees);
+    ajoutes++;
+  });
+  if (ajoutes > 0) await lot.commit();
+  logger.info('Contenus de départ chargés', { ajoutes });
+  return { ajoutes, dejaPresents: docs.length - ajoutes };
 });

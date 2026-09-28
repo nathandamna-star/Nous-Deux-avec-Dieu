@@ -1264,4 +1264,26 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get informationsLegales => 'Informatie';
+
+  @override
+  String get contenusDepart => 'Startinhoud';
+
+  @override
+  String get contenusDepartAide =>
+      'Voegt 30 meditaties, 60 vragen om samen te bespreken en 4 trajecten toe, in de 5 talen, al gepubliceerd. Je kunt alles wijzigen, depubliceren of verwijderen. Je bestaande inhoud wordt nooit vervangen.';
+
+  @override
+  String get charger => 'Laden';
+
+  @override
+  String contenusDepartAjoutes(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n items toegevoegd.',
+      one: '1 item toegevoegd.',
+      zero: 'Alles was er al: niets toe te voegen.',
+    );
+    return '$_temp0';
+  }
 }

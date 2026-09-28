@@ -1262,4 +1262,26 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get informationsLegales => 'Informações';
+
+  @override
+  String get contenusDepart => 'Conteúdos iniciais';
+
+  @override
+  String get contenusDepartAide =>
+      'Adiciona 30 meditações, 60 perguntas para conversar a dois e 4 percursos, nas 5 línguas, já publicados. Poderá alterar, despublicar ou eliminar tudo. Os seus conteúdos existentes nunca são substituídos.';
+
+  @override
+  String get charger => 'Carregar';
+
+  @override
+  String contenusDepartAjoutes(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n conteúdos adicionados.',
+      one: '1 conteúdo adicionado.',
+      zero: 'Já estava tudo lá: nada a adicionar.',
+    );
+    return '$_temp0';
+  }
 }

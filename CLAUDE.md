@@ -339,3 +339,10 @@ Avant toute décision importante non prévue ici, pose la question au lieu de ch
   Dans l'app : `/legal/:page` (toujours accessible).
 - Présentation du coach : `parametres/presentation` (nomAffiche, bio par langue, photoUrl = photo du profil du
   coach), lisible par tous ; saisie dans Paramètres du coach ; carte « Votre coach » à l'accueil → `/accueil/coach`.
+- Contenus de départ (étape 11) : `functions/depart/contenus.json` (30 méditations `depart-meditation-NN` avec
+  référence biblique et invitation « À deux », 60 questions `depart-question-NN`, 20 étapes de parcours
+  `depart-<parcours>-N`) et `parcours.json` (communiquer, pardon, finances, mariage), 5 langues. Chargés par la
+  fonction `chargerContenusDeDepart` (coach seulement ; ne remplace jamais un document existant ; tout est publié
+  et public), déclenchée depuis Coach → Mes contenus (menu ⋮ ou bouton quand la liste est vide).
+- Publication : textes des stores dans `docs/fiches-stores.md` (5 langues, limites vérifiées), démarche et points
+  d'attention (dons, liens d'achat de livres numériques) dans `docs/publication.md`.

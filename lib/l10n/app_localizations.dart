@@ -2359,6 +2359,30 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Informations'**
   String get informationsLegales;
+
+  /// No description provided for @contenusDepart.
+  ///
+  /// In fr, this message translates to:
+  /// **'Contenus de départ'**
+  String get contenusDepart;
+
+  /// No description provided for @contenusDepartAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajoute 30 méditations, 60 questions pour discuter à deux et 4 parcours, dans les 5 langues, déjà publiés. Vous pourrez tout modifier, dépublier ou supprimer. Vos contenus existants ne sont jamais remplacés.'**
+  String get contenusDepartAide;
+
+  /// No description provided for @charger.
+  ///
+  /// In fr, this message translates to:
+  /// **'Charger'**
+  String get charger;
+
+  /// No description provided for @contenusDepartAjoutes.
+  ///
+  /// In fr, this message translates to:
+  /// **'{n, plural, =0{Tout était déjà là : rien à ajouter.} =1{1 contenu ajouté.} other{{n} contenus ajoutés.}}'**
+  String contenusDepartAjoutes(int n);
 }
 
 class _AppLocalizationsDelegate

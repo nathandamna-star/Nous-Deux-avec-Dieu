@@ -1261,4 +1261,26 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get informationsLegales => 'Information';
+
+  @override
+  String get contenusDepart => 'Starter content';
+
+  @override
+  String get contenusDepartAide =>
+      'Adds 30 meditations, 60 questions to discuss as a couple and 4 paths, in all 5 languages, already published. You can edit, unpublish or delete everything. Your existing content is never replaced.';
+
+  @override
+  String get charger => 'Load';
+
+  @override
+  String contenusDepartAjoutes(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n items added.',
+      one: '1 item added.',
+      zero: 'Everything was already there: nothing to add.',
+    );
+    return '$_temp0';
+  }
 }

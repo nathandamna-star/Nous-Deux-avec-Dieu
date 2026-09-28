@@ -1261,4 +1261,26 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get informationsLegales => 'Información';
+
+  @override
+  String get contenusDepart => 'Contenidos iniciales';
+
+  @override
+  String get contenusDepartAide =>
+      'Añade 30 meditaciones, 60 preguntas para hablar en pareja y 4 itinerarios, en los 5 idiomas, ya publicados. Podrás modificarlo, despublicarlo o eliminarlo todo. Tus contenidos existentes nunca se reemplazan.';
+
+  @override
+  String get charger => 'Cargar';
+
+  @override
+  String contenusDepartAjoutes(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n contenidos añadidos.',
+      one: '1 contenido añadido.',
+      zero: 'Ya estaba todo: nada que añadir.',
+    );
+    return '$_temp0';
+  }
 }

@@ -375,5 +375,9 @@
   "presentationCoach": "Mijn voorstelling",
   "presentationCoachAide": "Voor iedereen zichtbaar op het startscherm, met je naam en profielfoto.",
   "champBio": "Voorstelling",
-  "informationsLegales": "Informatie"
+  "informationsLegales": "Informatie",
+  "contenusDepart": "Startinhoud",
+  "contenusDepartAide": "Voegt 30 meditaties, 60 vragen om samen te bespreken en 4 trajecten toe, in de 5 talen, al gepubliceerd. Je kunt alles wijzigen, depubliceren of verwijderen. Je bestaande inhoud wordt nooit vervangen.",
+  "charger": "Laden",
+  "contenusDepartAjoutes": "{n, plural, =0{Alles was er al: niets toe te voegen.} =1{1 item toegevoegd.} other{{n} items toegevoegd.}}"
 }

@@ -375,5 +375,9 @@
   "presentationCoach": "Mi presentación",
   "presentationCoachAide": "Visible para todos en el inicio, con tu nombre y la foto de tu perfil.",
   "champBio": "Presentación",
-  "informationsLegales": "Información"
+  "informationsLegales": "Información",
+  "contenusDepart": "Contenidos iniciales",
+  "contenusDepartAide": "Añade 30 meditaciones, 60 preguntas para hablar en pareja y 4 itinerarios, en los 5 idiomas, ya publicados. Podrás modificarlo, despublicarlo o eliminarlo todo. Tus contenidos existentes nunca se reemplazan.",
+  "charger": "Cargar",
+  "contenusDepartAjoutes": "{n, plural, =0{Ya estaba todo: nada que añadir.} =1{1 contenido añadido.} other{{n} contenidos añadidos.}}"
 }
