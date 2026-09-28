@@ -364,5 +364,76 @@
   "rappelsAutomatiques": "Rappel automatique la veille et 1 heure avant.",
   "rendezVousEnregistre": "Rendez-vous enregistré",
   "dateDansLePasse": "Choisissez une date à venir.",
-  "nonMerci": "Non"
+  "nonMerci": "Non",
+  "forfaits": "Forfaits de séances",
+  "forfaitsAide": "Payez par virement bancaire : les séances sont ajoutées dès que votre coach a reçu le paiement.",
+  "nbSeancesForfait": "{n, plural, =1{1 séance} other{{n} séances}}",
+  "@nbSeancesForfait": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "choisir": "Choisir",
+  "mesPaiements": "Mes paiements",
+  "paiementEnAttente": "En attente",
+  "paiementRecu": "Reçu",
+  "paiementAnnule": "Annulé",
+  "virementTitre": "Paiement par virement",
+  "virementAide": "Scannez le QR code avec votre application bancaire, ou recopiez les informations ci-dessous. N'oubliez pas la communication : elle permet d'identifier votre paiement.",
+  "montant": "Montant",
+  "beneficiaire": "Bénéficiaire",
+  "iban": "IBAN",
+  "bic": "BIC",
+  "communicationStructuree": "Communication structurée",
+  "coordonneesIndisponibles": "Les coordonnées bancaires ne sont pas encore disponibles. Écrivez à votre coach ou réessayez plus tard.",
+  "paiementRecuMerci": "Paiement reçu. Merci !",
+  "paiementAttenteAide": "Votre coach confirmera la réception du virement (en général 1 à 2 jours ouvrables).",
+  "renoncerPaiement": "Je ne paie pas finalement",
+  "faireUnDon": "Faire un don",
+  "donAide": "Votre don est libre et soutient ce ministère. Il ne donne accès à rien de plus : tous les contenus restent gratuits pour tous.",
+  "autreMontant": "Autre montant (€)",
+  "montantInvalide": "Entre 1 et 10 000 €",
+  "continuer": "Continuer",
+  "don": "Don",
+  "paiementsCoach": "Paiements et dons",
+  "aucunPaiement": "Aucun paiement.",
+  "confirmerReception": "Paiement reçu",
+  "confirmerReceptionTexte": "Confirmez-vous avoir reçu {montant} avec la communication {communication} ? Les séances du forfait seront ajoutées automatiquement.",
+  "@confirmerReceptionTexte": {
+    "placeholders": {
+      "montant": {
+        "type": "String"
+      },
+      "communication": {
+        "type": "String"
+      }
+    }
+  },
+  "totalRecuMois": "Reçu ce mois-ci : {montant}",
+  "@totalRecuMois": {
+    "placeholders": {
+      "montant": {
+        "type": "String"
+      }
+    }
+  },
+  "nouveauForfait": "Nouveau forfait",
+  "modifierForfait": "Modifier le forfait",
+  "aucunForfait": "Aucun forfait. Créez-en un pour que vos clients puissent payer leurs séances.",
+  "champNomForfait": "Nom",
+  "champNbSeances": "Nombre de séances",
+  "champPrix": "Prix (€)",
+  "forfaitActif": "Proposé aux clients",
+  "nombreInvalide": "Nombre invalide",
+  "parametresCoach": "Paramètres du coach",
+  "parametresCoachAide": "Ces coordonnées sont affichées aux personnes qui paient un forfait ou font un don.",
+  "champNomAffiche": "Nom affiché",
+  "champTitulaire": "Titulaire du compte",
+  "champBicAide": "Facultatif",
+  "ibanInvalide": "IBAN invalide : vérifiez les chiffres",
+  "bicInvalide": "BIC invalide (8 ou 11 caractères)",
+  "champMessageDon": "Message de remerciement des dons",
+  "plus": "Plus"
 }

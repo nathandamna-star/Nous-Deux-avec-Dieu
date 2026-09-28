@@ -879,4 +879,164 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get nonMerci => 'Non';
+
+  @override
+  String get forfaits => 'Forfaits de séances';
+
+  @override
+  String get forfaitsAide =>
+      'Payez par virement bancaire : les séances sont ajoutées dès que votre coach a reçu le paiement.';
+
+  @override
+  String nbSeancesForfait(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n séances',
+      one: '1 séance',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get choisir => 'Choisir';
+
+  @override
+  String get mesPaiements => 'Mes paiements';
+
+  @override
+  String get paiementEnAttente => 'En attente';
+
+  @override
+  String get paiementRecu => 'Reçu';
+
+  @override
+  String get paiementAnnule => 'Annulé';
+
+  @override
+  String get virementTitre => 'Paiement par virement';
+
+  @override
+  String get virementAide =>
+      'Scannez le QR code avec votre application bancaire, ou recopiez les informations ci-dessous. N\'oubliez pas la communication : elle permet d\'identifier votre paiement.';
+
+  @override
+  String get montant => 'Montant';
+
+  @override
+  String get beneficiaire => 'Bénéficiaire';
+
+  @override
+  String get iban => 'IBAN';
+
+  @override
+  String get bic => 'BIC';
+
+  @override
+  String get communicationStructuree => 'Communication structurée';
+
+  @override
+  String get coordonneesIndisponibles =>
+      'Les coordonnées bancaires ne sont pas encore disponibles. Écrivez à votre coach ou réessayez plus tard.';
+
+  @override
+  String get paiementRecuMerci => 'Paiement reçu. Merci !';
+
+  @override
+  String get paiementAttenteAide =>
+      'Votre coach confirmera la réception du virement (en général 1 à 2 jours ouvrables).';
+
+  @override
+  String get renoncerPaiement => 'Je ne paie pas finalement';
+
+  @override
+  String get faireUnDon => 'Faire un don';
+
+  @override
+  String get donAide =>
+      'Votre don est libre et soutient ce ministère. Il ne donne accès à rien de plus : tous les contenus restent gratuits pour tous.';
+
+  @override
+  String get autreMontant => 'Autre montant (€)';
+
+  @override
+  String get montantInvalide => 'Entre 1 et 10 000 €';
+
+  @override
+  String get continuer => 'Continuer';
+
+  @override
+  String get don => 'Don';
+
+  @override
+  String get paiementsCoach => 'Paiements et dons';
+
+  @override
+  String get aucunPaiement => 'Aucun paiement.';
+
+  @override
+  String get confirmerReception => 'Paiement reçu';
+
+  @override
+  String confirmerReceptionTexte(String montant, String communication) {
+    return 'Confirmez-vous avoir reçu $montant avec la communication $communication ? Les séances du forfait seront ajoutées automatiquement.';
+  }
+
+  @override
+  String totalRecuMois(String montant) {
+    return 'Reçu ce mois-ci : $montant';
+  }
+
+  @override
+  String get nouveauForfait => 'Nouveau forfait';
+
+  @override
+  String get modifierForfait => 'Modifier le forfait';
+
+  @override
+  String get aucunForfait =>
+      'Aucun forfait. Créez-en un pour que vos clients puissent payer leurs séances.';
+
+  @override
+  String get champNomForfait => 'Nom';
+
+  @override
+  String get champNbSeances => 'Nombre de séances';
+
+  @override
+  String get champPrix => 'Prix (€)';
+
+  @override
+  String get forfaitActif => 'Proposé aux clients';
+
+  @override
+  String get nombreInvalide => 'Nombre invalide';
+
+  @override
+  String get parametresCoach => 'Paramètres du coach';
+
+  @override
+  String get parametresCoachAide =>
+      'Ces coordonnées sont affichées aux personnes qui paient un forfait ou font un don.';
+
+  @override
+  String get champNomAffiche => 'Nom affiché';
+
+  @override
+  String get champTitulaire => 'Titulaire du compte';
+
+  @override
+  String get champBicAide => 'Facultatif';
+
+  @override
+  String get ibanInvalide => 'IBAN invalide : vérifiez les chiffres';
+
+  @override
+  String get bicInvalide => 'BIC invalide (8 ou 11 caractères)';
+
+  @override
+  String get champMessageDon => 'Message de remerciement des dons';
+
+  @override
+  String get plus => 'Plus';
 }

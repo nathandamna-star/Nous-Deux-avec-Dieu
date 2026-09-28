@@ -25,6 +25,12 @@ import '../../features/coach/coach_screen.dart';
 import '../../features/contenus/contenus_screen.dart';
 import '../../features/messages/messages_screen.dart';
 import '../../features/profil/profil_screen.dart';
+import '../../features/paiements/presentation/don_screen.dart';
+import '../../features/paiements/presentation/editeur_forfait_screen.dart';
+import '../../features/paiements/presentation/forfaits_coach_screen.dart';
+import '../../features/paiements/presentation/paiements_coach_screen.dart';
+import '../../features/paiements/presentation/parametres_coach_screen.dart';
+import '../../features/paiements/presentation/virement_screen.dart';
 import '../../features/rendezvous/presentation/agenda_screen.dart';
 import '../../features/rendezvous/presentation/editeur_rendez_vous_screen.dart';
 import '../../features/seances/seances_screen.dart';
@@ -146,7 +152,20 @@ final _sousRoutes = <String, List<RouteBase>>{
           ContenuScreen(id: state.pathParameters['id']!),
     ),
   ],
+  Routes.seances: [
+    GoRoute(
+      path: 'paiement/:id',
+      builder: (context, state) =>
+          VirementScreen(id: state.pathParameters['id']!),
+    ),
+  ],
   Routes.profil: [
+    GoRoute(path: 'don', builder: (context, state) => const DonScreen()),
+    GoRoute(
+      path: 'paiement/:id',
+      builder: (context, state) =>
+          VirementScreen(id: state.pathParameters['id']!),
+    ),
     GoRoute(
       path: 'demande',
       builder: (context, state) => const DemandeScreen(),
@@ -224,6 +243,29 @@ final _sousRoutes = <String, List<RouteBase>>{
       ],
     ),
     GoRoute(path: 'agenda', builder: (context, state) => const AgendaScreen()),
+    GoRoute(
+      path: 'paiements',
+      builder: (context, state) => const PaiementsCoachScreen(),
+    ),
+    GoRoute(
+      path: 'forfaits',
+      builder: (context, state) => const ForfaitsCoachScreen(),
+      routes: [
+        GoRoute(
+          path: 'nouveau',
+          builder: (context, state) => const EditeurForfaitScreen(),
+        ),
+        GoRoute(
+          path: ':id',
+          builder: (context, state) =>
+              EditeurForfaitScreen(id: state.pathParameters['id']),
+        ),
+      ],
+    ),
+    GoRoute(
+      path: 'parametres',
+      builder: (context, state) => const ParametresCoachScreen(),
+    ),
   ],
 };
 

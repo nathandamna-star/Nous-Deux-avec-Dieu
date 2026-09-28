@@ -7,6 +7,7 @@ import '../../l10n/app_localizations.dart';
 import '../accompagnement/accompagnement_providers.dart';
 import '../accompagnement/domain/accompagnement.dart';
 import '../accompagnement/presentation/libelles.dart';
+import '../paiements/paiements_providers.dart';
 
 enum _Filtre { demandes, actifs, termines }
 
@@ -44,6 +45,15 @@ class _CoachScreenState extends ConsumerState<CoachScreen> {
         title: Text(l10n.navCoach),
         actions: [
           IconButton(
+            tooltip: l10n.paiementsCoach,
+            icon: Badge(
+              isLabelVisible: ref.watch(nbPaiementsEnAttenteProvider) > 0,
+              label: Text('${ref.watch(nbPaiementsEnAttenteProvider)}'),
+              child: const Icon(Icons.account_balance_outlined),
+            ),
+            onPressed: () => context.push(Routes.paiementsCoach),
+          ),
+          IconButton(
             tooltip: l10n.agenda,
             icon: const Icon(Icons.calendar_month_outlined),
             onPressed: () => context.push(Routes.agenda),
@@ -52,6 +62,20 @@ class _CoachScreenState extends ConsumerState<CoachScreen> {
             onPressed: () => context.push(Routes.contenusCoach),
             icon: const Icon(Icons.edit_note),
             label: Text(l10n.mesContenus),
+          ),
+          PopupMenuButton<String>(
+            tooltip: l10n.plus,
+            onSelected: context.push,
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                value: Routes.forfaitsCoach,
+                child: Text(l10n.forfaits),
+              ),
+              PopupMenuItem(
+                value: Routes.parametresCoach,
+                child: Text(l10n.parametresCoach),
+              ),
+            ],
           ),
         ],
       ),

@@ -874,4 +874,164 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get nonMerci => 'Nee';
+
+  @override
+  String get forfaits => 'Sessiepakketten';
+
+  @override
+  String get forfaitsAide =>
+      'Betaal via overschrijving: de sessies worden toegevoegd zodra je coach de betaling heeft ontvangen.';
+
+  @override
+  String nbSeancesForfait(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n sessies',
+      one: '1 sessie',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get choisir => 'Kiezen';
+
+  @override
+  String get mesPaiements => 'Mijn betalingen';
+
+  @override
+  String get paiementEnAttente => 'In afwachting';
+
+  @override
+  String get paiementRecu => 'Ontvangen';
+
+  @override
+  String get paiementAnnule => 'Geannuleerd';
+
+  @override
+  String get virementTitre => 'Betaling via overschrijving';
+
+  @override
+  String get virementAide =>
+      'Scan de QR-code met je bankapp of neem de gegevens hieronder over. Vergeet de mededeling niet: daarmee wordt je betaling herkend.';
+
+  @override
+  String get montant => 'Bedrag';
+
+  @override
+  String get beneficiaire => 'Begunstigde';
+
+  @override
+  String get iban => 'IBAN';
+
+  @override
+  String get bic => 'BIC';
+
+  @override
+  String get communicationStructuree => 'Gestructureerde mededeling';
+
+  @override
+  String get coordonneesIndisponibles =>
+      'De bankgegevens zijn nog niet beschikbaar. Schrijf je coach of probeer het later opnieuw.';
+
+  @override
+  String get paiementRecuMerci => 'Betaling ontvangen. Bedankt!';
+
+  @override
+  String get paiementAttenteAide =>
+      'Je coach bevestigt de ontvangst van de overschrijving (meestal 1 à 2 werkdagen).';
+
+  @override
+  String get renoncerPaiement => 'Toch niet betalen';
+
+  @override
+  String get faireUnDon => 'Een gift doen';
+
+  @override
+  String get donAide =>
+      'Je gift is vrij en steunt deze bediening. Er wordt niets mee ontgrendeld: alle inhoud blijft gratis voor iedereen.';
+
+  @override
+  String get autreMontant => 'Ander bedrag (€)';
+
+  @override
+  String get montantInvalide => 'Tussen 1 en 10 000 €';
+
+  @override
+  String get continuer => 'Doorgaan';
+
+  @override
+  String get don => 'Gift';
+
+  @override
+  String get paiementsCoach => 'Betalingen en giften';
+
+  @override
+  String get aucunPaiement => 'Geen betalingen.';
+
+  @override
+  String get confirmerReception => 'Betaling ontvangen';
+
+  @override
+  String confirmerReceptionTexte(String montant, String communication) {
+    return 'Bevestig je dat je $montant hebt ontvangen met mededeling $communication? De sessies van het pakket worden automatisch toegevoegd.';
+  }
+
+  @override
+  String totalRecuMois(String montant) {
+    return 'Ontvangen deze maand: $montant';
+  }
+
+  @override
+  String get nouveauForfait => 'Nieuw pakket';
+
+  @override
+  String get modifierForfait => 'Pakket wijzigen';
+
+  @override
+  String get aucunForfait =>
+      'Geen pakketten. Maak er een aan zodat je cliënten hun sessies kunnen betalen.';
+
+  @override
+  String get champNomForfait => 'Naam';
+
+  @override
+  String get champNbSeances => 'Aantal sessies';
+
+  @override
+  String get champPrix => 'Prijs (€)';
+
+  @override
+  String get forfaitActif => 'Aangeboden aan cliënten';
+
+  @override
+  String get nombreInvalide => 'Ongeldig getal';
+
+  @override
+  String get parametresCoach => 'Coachinstellingen';
+
+  @override
+  String get parametresCoachAide =>
+      'Deze gegevens worden getoond aan wie een pakket betaalt of een gift doet.';
+
+  @override
+  String get champNomAffiche => 'Weergavenaam';
+
+  @override
+  String get champTitulaire => 'Rekeninghouder';
+
+  @override
+  String get champBicAide => 'Optioneel';
+
+  @override
+  String get ibanInvalide => 'Ongeldig IBAN: controleer de cijfers';
+
+  @override
+  String get bicInvalide => 'Ongeldige BIC (8 of 11 tekens)';
+
+  @override
+  String get champMessageDon => 'Bedankbericht voor giften';
+
+  @override
+  String get plus => 'Meer';
 }

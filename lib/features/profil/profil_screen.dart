@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../core/router/routes.dart';
 import '../../l10n/app_localizations.dart';
 import '../../shared/widgets/avatar.dart';
 import '../../shared/widgets/connexion_requise.dart';
@@ -101,6 +103,15 @@ class ProfilScreen extends ConsumerWidget {
           if (!ref.watch(estCoachProvider)) ...[
             const SizedBox(height: 12),
             const CarteMonAccompagnement(),
+            const SizedBox(height: 12),
+            Card(
+              child: ListTile(
+                leading: const Icon(Icons.volunteer_activism_outlined),
+                title: Text(l10n.faireUnDon),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () => context.push(Routes.don),
+              ),
+            ),
           ],
           const SizedBox(height: 24),
           OutlinedButton.icon(

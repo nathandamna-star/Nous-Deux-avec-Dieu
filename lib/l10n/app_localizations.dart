@@ -1645,6 +1645,288 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Non'**
   String get nonMerci;
+
+  /// No description provided for @forfaits.
+  ///
+  /// In fr, this message translates to:
+  /// **'Forfaits de séances'**
+  String get forfaits;
+
+  /// No description provided for @forfaitsAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Payez par virement bancaire : les séances sont ajoutées dès que votre coach a reçu le paiement.'**
+  String get forfaitsAide;
+
+  /// No description provided for @nbSeancesForfait.
+  ///
+  /// In fr, this message translates to:
+  /// **'{n, plural, =1{1 séance} other{{n} séances}}'**
+  String nbSeancesForfait(int n);
+
+  /// No description provided for @choisir.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisir'**
+  String get choisir;
+
+  /// No description provided for @mesPaiements.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes paiements'**
+  String get mesPaiements;
+
+  /// No description provided for @paiementEnAttente.
+  ///
+  /// In fr, this message translates to:
+  /// **'En attente'**
+  String get paiementEnAttente;
+
+  /// No description provided for @paiementRecu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Reçu'**
+  String get paiementRecu;
+
+  /// No description provided for @paiementAnnule.
+  ///
+  /// In fr, this message translates to:
+  /// **'Annulé'**
+  String get paiementAnnule;
+
+  /// No description provided for @virementTitre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Paiement par virement'**
+  String get virementTitre;
+
+  /// No description provided for @virementAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Scannez le QR code avec votre application bancaire, ou recopiez les informations ci-dessous. N\'oubliez pas la communication : elle permet d\'identifier votre paiement.'**
+  String get virementAide;
+
+  /// No description provided for @montant.
+  ///
+  /// In fr, this message translates to:
+  /// **'Montant'**
+  String get montant;
+
+  /// No description provided for @beneficiaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'Bénéficiaire'**
+  String get beneficiaire;
+
+  /// No description provided for @iban.
+  ///
+  /// In fr, this message translates to:
+  /// **'IBAN'**
+  String get iban;
+
+  /// No description provided for @bic.
+  ///
+  /// In fr, this message translates to:
+  /// **'BIC'**
+  String get bic;
+
+  /// No description provided for @communicationStructuree.
+  ///
+  /// In fr, this message translates to:
+  /// **'Communication structurée'**
+  String get communicationStructuree;
+
+  /// No description provided for @coordonneesIndisponibles.
+  ///
+  /// In fr, this message translates to:
+  /// **'Les coordonnées bancaires ne sont pas encore disponibles. Écrivez à votre coach ou réessayez plus tard.'**
+  String get coordonneesIndisponibles;
+
+  /// No description provided for @paiementRecuMerci.
+  ///
+  /// In fr, this message translates to:
+  /// **'Paiement reçu. Merci !'**
+  String get paiementRecuMerci;
+
+  /// No description provided for @paiementAttenteAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre coach confirmera la réception du virement (en général 1 à 2 jours ouvrables).'**
+  String get paiementAttenteAide;
+
+  /// No description provided for @renoncerPaiement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Je ne paie pas finalement'**
+  String get renoncerPaiement;
+
+  /// No description provided for @faireUnDon.
+  ///
+  /// In fr, this message translates to:
+  /// **'Faire un don'**
+  String get faireUnDon;
+
+  /// No description provided for @donAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre don est libre et soutient ce ministère. Il ne donne accès à rien de plus : tous les contenus restent gratuits pour tous.'**
+  String get donAide;
+
+  /// No description provided for @autreMontant.
+  ///
+  /// In fr, this message translates to:
+  /// **'Autre montant (€)'**
+  String get autreMontant;
+
+  /// No description provided for @montantInvalide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Entre 1 et 10 000 €'**
+  String get montantInvalide;
+
+  /// No description provided for @continuer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Continuer'**
+  String get continuer;
+
+  /// No description provided for @don.
+  ///
+  /// In fr, this message translates to:
+  /// **'Don'**
+  String get don;
+
+  /// No description provided for @paiementsCoach.
+  ///
+  /// In fr, this message translates to:
+  /// **'Paiements et dons'**
+  String get paiementsCoach;
+
+  /// No description provided for @aucunPaiement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun paiement.'**
+  String get aucunPaiement;
+
+  /// No description provided for @confirmerReception.
+  ///
+  /// In fr, this message translates to:
+  /// **'Paiement reçu'**
+  String get confirmerReception;
+
+  /// No description provided for @confirmerReceptionTexte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Confirmez-vous avoir reçu {montant} avec la communication {communication} ? Les séances du forfait seront ajoutées automatiquement.'**
+  String confirmerReceptionTexte(String montant, String communication);
+
+  /// No description provided for @totalRecuMois.
+  ///
+  /// In fr, this message translates to:
+  /// **'Reçu ce mois-ci : {montant}'**
+  String totalRecuMois(String montant);
+
+  /// No description provided for @nouveauForfait.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouveau forfait'**
+  String get nouveauForfait;
+
+  /// No description provided for @modifierForfait.
+  ///
+  /// In fr, this message translates to:
+  /// **'Modifier le forfait'**
+  String get modifierForfait;
+
+  /// No description provided for @aucunForfait.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun forfait. Créez-en un pour que vos clients puissent payer leurs séances.'**
+  String get aucunForfait;
+
+  /// No description provided for @champNomForfait.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nom'**
+  String get champNomForfait;
+
+  /// No description provided for @champNbSeances.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nombre de séances'**
+  String get champNbSeances;
+
+  /// No description provided for @champPrix.
+  ///
+  /// In fr, this message translates to:
+  /// **'Prix (€)'**
+  String get champPrix;
+
+  /// No description provided for @forfaitActif.
+  ///
+  /// In fr, this message translates to:
+  /// **'Proposé aux clients'**
+  String get forfaitActif;
+
+  /// No description provided for @nombreInvalide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nombre invalide'**
+  String get nombreInvalide;
+
+  /// No description provided for @parametresCoach.
+  ///
+  /// In fr, this message translates to:
+  /// **'Paramètres du coach'**
+  String get parametresCoach;
+
+  /// No description provided for @parametresCoachAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ces coordonnées sont affichées aux personnes qui paient un forfait ou font un don.'**
+  String get parametresCoachAide;
+
+  /// No description provided for @champNomAffiche.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nom affiché'**
+  String get champNomAffiche;
+
+  /// No description provided for @champTitulaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'Titulaire du compte'**
+  String get champTitulaire;
+
+  /// No description provided for @champBicAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Facultatif'**
+  String get champBicAide;
+
+  /// No description provided for @ibanInvalide.
+  ///
+  /// In fr, this message translates to:
+  /// **'IBAN invalide : vérifiez les chiffres'**
+  String get ibanInvalide;
+
+  /// No description provided for @bicInvalide.
+  ///
+  /// In fr, this message translates to:
+  /// **'BIC invalide (8 ou 11 caractères)'**
+  String get bicInvalide;
+
+  /// No description provided for @champMessageDon.
+  ///
+  /// In fr, this message translates to:
+  /// **'Message de remerciement des dons'**
+  String get champMessageDon;
+
+  /// No description provided for @plus.
+  ///
+  /// In fr, this message translates to:
+  /// **'Plus'**
+  String get plus;
 }
 
 class _AppLocalizationsDelegate

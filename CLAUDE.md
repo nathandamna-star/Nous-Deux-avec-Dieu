@@ -305,3 +305,14 @@ Avant toute décision importante non prévue ici, pose la question au lieu de ch
 - Fonctions : `notifierRendezVous` (nouveau, déplacé, annulé) et `rappelsRendezVous` (Cloud Scheduler toutes
   les 15 min : veille = entre 24 h et 3 h avant, puis 1 h avant). Heure locale via `users.decalageMin`
   (enregistré avec le jeton de notification ; absent = Europe/Brussels). Logique pure : `functions/rendezvous.js`.
+- Forfaits et virements (étape 8, `lib/features/paiements/`) : `forfaits/{id}` (nom par langue, nbSeances, prix
+  EUR, actif, ordre) ; `paiements/{communication}` : l'identifiant EST la communication structurée belge
+  (12 chiffres, contrôle modulo 97, vérifié aussi par les règles) ; pour un forfait, les règles imposent le prix
+  et les séances du forfait actif et l'appartenance à l'accompagnement. Le client peut renoncer tant que c'est
+  en attente ; le coach confirme (`recu`) ou annule. Cloud Function `paiementRecu` : crédite `seancesRestantes`
+  (transaction, `seancesCreditees` évite un double crédit) et remercie ; `notifierPaiementAnnonce` prévient le
+  coach. `parametres/coach` (nomAffiche, titulaire, iban, bic, messageDon par langue), saisi par le coach dans
+  l'app (IBAN vérifié par clé modulo 97). QR code EPC (`codeEpc` dans `domain/virement.dart`, `qr_flutter`) :
+  communication `+++…+++` placée dans la communication libre — à vérifier avec une vraie app bancaire.
+  Don : écran `DonScreen` (Profil), libre, ne débloque rien. Coach : icône Paiements (pastille), menu ⋮ Forfaits /
+  Paramètres du coach. Les +/− manuels de séances sur la fiche restent possibles pour le coach.

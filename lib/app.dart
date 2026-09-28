@@ -24,7 +24,13 @@ class _NousDeuxAvecDieuAppState extends ConsumerState<NousDeuxAvecDieuApp> {
     // l'exercice concerné.
     ref.read(notificationsServiceProvider).notificationsTouchees.listen((d) {
       final router = ref.read(routerProvider);
-      if (d['rendezVousId'] is String) {
+      if (d['paiementId'] is String) {
+        router.go(
+          ref.read(estCoachProvider)
+              ? Routes.paiementsCoach
+              : Routes.paiementSeances(d['paiementId'] as String),
+        );
+      } else if (d['rendezVousId'] is String) {
         router.go(
           ref.read(estCoachProvider) && d['accompagnementId'] is String
               ? Routes.ficheAccompagnement(d['accompagnementId'] as String)

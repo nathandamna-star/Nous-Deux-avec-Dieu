@@ -5,6 +5,7 @@ import '../../l10n/app_localizations.dart';
 import '../../shared/widgets/connexion_requise.dart';
 import '../accompagnement/accompagnement_providers.dart';
 import '../auth/auth_providers.dart';
+import '../paiements/presentation/section_forfaits.dart';
 import '../rendezvous/presentation/carte_rendez_vous.dart';
 import '../rendezvous/rendez_vous_providers.dart';
 
@@ -76,6 +77,7 @@ class SeancesScreen extends ConsumerWidget {
             const SizedBox(height: 8),
             for (final r in passes) CarteRendezVous(rdv: r),
           ],
+          ...sectionForfaits(context, ref, acc),
         ],
       ),
     );

@@ -33,4 +33,12 @@ abstract final class Routes {
       '/coach/accompagnement/$acc/rendezvous';
   static String modifierRendezVous(String acc, String id) =>
       '/coach/accompagnement/$acc/rendezvous/$id';
+  static String paiementSeances(String id) => '/seances/paiement/$id';
+  static const don = '/profil/don';
+  static String paiementProfil(String id) => '/profil/paiement/$id';
+  static const paiementsCoach = '/coach/paiements';
+  static const forfaitsCoach = '/coach/forfaits';
+  static const nouveauForfait = '/coach/forfaits/nouveau';
+  static String modifierForfait(String id) => '/coach/forfaits/$id';
+  static const parametresCoach = '/coach/parametres';
 }

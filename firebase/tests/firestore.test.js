@@ -360,3 +360,84 @@ describe('rendez-vous', () => {
     await assertFails(getDocs(collectionGroup(marie(), 'rendezVous')));
   });
 });
+
+describe('forfaits et paiements', () => {
+  // 1000000000 % 97 = 34 → communication 100000000034.
+  const COMM = '100000000034';
+  const donnees = async () => env.withSecurityRulesDisabled(async (ctx) => {
+    const db = ctx.firestore();
+    await setDoc(doc(db, 'accompagnements/a1'), {
+      type: 'couple', nom: 'Paul & Marie', membres: ['marie', 'paul'], statut: 'actif', seancesRestantes: 0,
+    });
+    await setDoc(doc(db, 'forfaits/f5'), { nom: { fr: '5 séances' }, nbSeances: 5, prix: 250, devise: 'EUR', actif: true, ordre: 0 });
+    await setDoc(doc(db, 'forfaits/vieux'), { nom: { fr: 'Ancien' }, nbSeances: 10, prix: 100, devise: 'EUR', actif: false, ordre: 1 });
+  });
+  const achat = (extra = {}) => ({
+    type: 'forfait', uid: 'marie', nom: 'Marie', accompagnementId: 'a1', forfaitId: 'f5',
+    forfaitNom: '5 séances', nbSeances: 5, montant: 250, devise: 'EUR', statut: 'en_attente',
+    createdAt: serverTimestamp(), ...extra,
+  });
+  const don = (extra = {}) => ({
+    type: 'don', uid: 'marie', nom: 'Marie', montant: 20, devise: 'EUR', statut: 'en_attente',
+    createdAt: serverTimestamp(), ...extra,
+  });
+
+  it('forfaits : actifs visibles par tous, écrits par le coach', async () => {
+    await donnees();
+    await assertSucceeds(getDoc(doc(visiteur(), 'forfaits/f5')));
+    await assertFails(getDoc(doc(marie(), 'forfaits/vieux')));
+    await assertSucceeds(getDocs(query(collection(visiteur(), 'forfaits'), where('actif', '==', true))));
+    await assertSucceeds(setDoc(doc(coach(), 'forfaits/f10'),
+      { nom: { fr: '10 séances', en: '10 sessions' }, nbSeances: 10, prix: 450, devise: 'EUR', actif: true, ordre: 2 }));
+    await assertFails(setDoc(doc(marie(), 'forfaits/f11'),
+      { nom: { fr: 'Gratuit' }, nbSeances: 10, prix: 1, devise: 'EUR', actif: true, ordre: 2 }));
+    await assertFails(setDoc(doc(coach(), 'forfaits/f12'),
+      { nom: { fr: 'X' }, nbSeances: 0, prix: 10, devise: 'EUR', actif: true, ordre: 2 }));
+  });
+
+  it('achat : communication valide, prix et séances du forfait, son accompagnement', async () => {
+    await donnees();
+    await assertSucceeds(setDoc(doc(marie(), `paiements/${COMM}`), achat()));
+    await assertFails(setDoc(doc(marie(), 'paiements/100000000035'), achat()));
+    await assertFails(setDoc(doc(marie(), 'paiements/200000000068'), achat({ montant: 1 })));
+    await assertFails(setDoc(doc(marie(), 'paiements/200000000068'), achat({ nbSeances: 50 })));
+    await assertFails(setDoc(doc(marie(), 'paiements/200000000068'), achat({ forfaitId: 'vieux', montant: 100, nbSeances: 10 })));
+    await assertFails(setDoc(doc(marie(), 'paiements/200000000068'), achat({ statut: 'recu' })));
+    await assertFails(setDoc(doc(marie(), 'paiements/200000000068'), achat({ uid: 'paul' })));
+    const lucie = env.authenticatedContext('lucie').firestore();
+    await assertFails(setDoc(doc(lucie, 'paiements/200000000068'), achat({ uid: 'lucie' })));
+  });
+
+  it('don libre, lecture de ses paiements seulement', async () => {
+    await donnees();
+    await assertSucceeds(setDoc(doc(marie(), `paiements/${COMM}`), don()));
+    await assertFails(setDoc(doc(marie(), 'paiements/200000000068'), don({ montant: 0 })));
+    await assertFails(setDoc(doc(marie(), 'paiements/200000000068'), don({ nbSeances: 5 })));
+    await assertSucceeds(getDoc(doc(marie(), `paiements/${COMM}`)));
+    await assertFails(getDoc(doc(paul(), `paiements/${COMM}`)));
+    await assertSucceeds(getDocs(query(collection(marie(), 'paiements'), where('uid', '==', 'marie'))));
+    await assertSucceeds(getDocs(collection(coach(), 'paiements')));
+  });
+
+  it('seul le coach confirme ; le client peut renoncer tant que c\'est en attente', async () => {
+    await donnees();
+    await assertSucceeds(setDoc(doc(marie(), `paiements/${COMM}`), achat()));
+    const ref = (db) => doc(db, `paiements/${COMM}`);
+    await assertFails(updateDoc(ref(marie()), { statut: 'recu' }));
+    await assertFails(updateDoc(ref(marie()), { montant: 1 }));
+    await assertSucceeds(updateDoc(ref(coach()), { statut: 'recu', confirmeLe: serverTimestamp() }));
+    await assertFails(updateDoc(ref(marie()), { statut: 'annule' }));
+    await assertFails(updateDoc(ref(coach()), { statut: 'annule' }));
+    // Les séances ne sont jamais créditées par un membre.
+    await assertFails(updateDoc(doc(marie(), 'accompagnements/a1'), { seancesRestantes: 5 }));
+  });
+
+  it('paramètres du coach : lus par les connectés, IBAN vérifié', async () => {
+    const p = { nomAffiche: 'Nathan', titulaire: 'Nathan Damna', iban: 'BE71096123456769', bic: 'GKCCBEBB', messageDon: { fr: 'Merci !' } };
+    await assertSucceeds(setDoc(doc(coach(), 'parametres/coach'), p));
+    await assertFails(setDoc(doc(coach(), 'parametres/coach'), { ...p, iban: 'BE71 0961' }));
+    await assertFails(setDoc(doc(marie(), 'parametres/coach'), p));
+    await assertSucceeds(getDoc(doc(marie(), 'parametres/coach')));
+    await assertFails(getDoc(doc(visiteur(), 'parametres/coach')));
+  });
+});

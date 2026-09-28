@@ -872,4 +872,164 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get nonMerci => 'No';
+
+  @override
+  String get forfaits => 'Paquetes de sesiones';
+
+  @override
+  String get forfaitsAide =>
+      'Paga por transferencia bancaria: las sesiones se añaden en cuanto tu coach recibe el pago.';
+
+  @override
+  String nbSeancesForfait(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n sesiones',
+      one: '1 sesión',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get choisir => 'Elegir';
+
+  @override
+  String get mesPaiements => 'Mis pagos';
+
+  @override
+  String get paiementEnAttente => 'Pendiente';
+
+  @override
+  String get paiementRecu => 'Recibido';
+
+  @override
+  String get paiementAnnule => 'Cancelado';
+
+  @override
+  String get virementTitre => 'Pago por transferencia';
+
+  @override
+  String get virementAide =>
+      'Escanea el código QR con tu aplicación bancaria o copia los datos de abajo. No olvides la referencia: identifica tu pago.';
+
+  @override
+  String get montant => 'Importe';
+
+  @override
+  String get beneficiaire => 'Beneficiario';
+
+  @override
+  String get iban => 'IBAN';
+
+  @override
+  String get bic => 'BIC';
+
+  @override
+  String get communicationStructuree => 'Referencia estructurada';
+
+  @override
+  String get coordonneesIndisponibles =>
+      'Los datos bancarios aún no están disponibles. Escribe a tu coach o inténtalo más tarde.';
+
+  @override
+  String get paiementRecuMerci => 'Pago recibido. ¡Gracias!';
+
+  @override
+  String get paiementAttenteAide =>
+      'Tu coach confirmará la recepción de la transferencia (normalmente de 1 a 2 días hábiles).';
+
+  @override
+  String get renoncerPaiement => 'Al final no voy a pagar';
+
+  @override
+  String get faireUnDon => 'Hacer un donativo';
+
+  @override
+  String get donAide =>
+      'Tu donativo es libre y apoya este ministerio. No desbloquea nada: todos los contenidos siguen siendo gratuitos para todos.';
+
+  @override
+  String get autreMontant => 'Otro importe (€)';
+
+  @override
+  String get montantInvalide => 'Entre 1 y 10 000 €';
+
+  @override
+  String get continuer => 'Continuar';
+
+  @override
+  String get don => 'Donativo';
+
+  @override
+  String get paiementsCoach => 'Pagos y donativos';
+
+  @override
+  String get aucunPaiement => 'Ningún pago.';
+
+  @override
+  String get confirmerReception => 'Pago recibido';
+
+  @override
+  String confirmerReceptionTexte(String montant, String communication) {
+    return '¿Confirmas que has recibido $montant con la referencia $communication? Las sesiones del paquete se añadirán automáticamente.';
+  }
+
+  @override
+  String totalRecuMois(String montant) {
+    return 'Recibido este mes: $montant';
+  }
+
+  @override
+  String get nouveauForfait => 'Nuevo paquete';
+
+  @override
+  String get modifierForfait => 'Modificar el paquete';
+
+  @override
+  String get aucunForfait =>
+      'Ningún paquete. Crea uno para que tus clientes puedan pagar sus sesiones.';
+
+  @override
+  String get champNomForfait => 'Nombre';
+
+  @override
+  String get champNbSeances => 'Número de sesiones';
+
+  @override
+  String get champPrix => 'Precio (€)';
+
+  @override
+  String get forfaitActif => 'Ofrecido a los clientes';
+
+  @override
+  String get nombreInvalide => 'Número no válido';
+
+  @override
+  String get parametresCoach => 'Ajustes del coach';
+
+  @override
+  String get parametresCoachAide =>
+      'Estos datos se muestran a quienes pagan un paquete o hacen un donativo.';
+
+  @override
+  String get champNomAffiche => 'Nombre visible';
+
+  @override
+  String get champTitulaire => 'Titular de la cuenta';
+
+  @override
+  String get champBicAide => 'Opcional';
+
+  @override
+  String get ibanInvalide => 'IBAN no válido: revisa los dígitos';
+
+  @override
+  String get bicInvalide => 'BIC no válido (8 u 11 caracteres)';
+
+  @override
+  String get champMessageDon => 'Mensaje de agradecimiento por los donativos';
+
+  @override
+  String get plus => 'Más';
 }

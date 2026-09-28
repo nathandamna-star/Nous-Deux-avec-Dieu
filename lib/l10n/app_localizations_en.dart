@@ -872,4 +872,164 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get nonMerci => 'No';
+
+  @override
+  String get forfaits => 'Session packages';
+
+  @override
+  String get forfaitsAide =>
+      'Pay by bank transfer: sessions are added as soon as your coach has received the payment.';
+
+  @override
+  String nbSeancesForfait(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n sessions',
+      one: '1 session',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get choisir => 'Choose';
+
+  @override
+  String get mesPaiements => 'My payments';
+
+  @override
+  String get paiementEnAttente => 'Pending';
+
+  @override
+  String get paiementRecu => 'Received';
+
+  @override
+  String get paiementAnnule => 'Cancelled';
+
+  @override
+  String get virementTitre => 'Bank transfer';
+
+  @override
+  String get virementAide =>
+      'Scan the QR code with your banking app, or copy the details below. Don\'t forget the reference: it identifies your payment.';
+
+  @override
+  String get montant => 'Amount';
+
+  @override
+  String get beneficiaire => 'Beneficiary';
+
+  @override
+  String get iban => 'IBAN';
+
+  @override
+  String get bic => 'BIC';
+
+  @override
+  String get communicationStructuree => 'Structured reference';
+
+  @override
+  String get coordonneesIndisponibles =>
+      'Bank details are not available yet. Write to your coach or try again later.';
+
+  @override
+  String get paiementRecuMerci => 'Payment received. Thank you!';
+
+  @override
+  String get paiementAttenteAide =>
+      'Your coach will confirm receipt of the transfer (usually 1 to 2 working days).';
+
+  @override
+  String get renoncerPaiement => 'Cancel this payment';
+
+  @override
+  String get faireUnDon => 'Make a gift';
+
+  @override
+  String get donAide =>
+      'Your gift is free and supports this ministry. It does not unlock anything: all content stays free for everyone.';
+
+  @override
+  String get autreMontant => 'Other amount (€)';
+
+  @override
+  String get montantInvalide => 'Between €1 and €10,000';
+
+  @override
+  String get continuer => 'Continue';
+
+  @override
+  String get don => 'Gift';
+
+  @override
+  String get paiementsCoach => 'Payments and gifts';
+
+  @override
+  String get aucunPaiement => 'No payments.';
+
+  @override
+  String get confirmerReception => 'Payment received';
+
+  @override
+  String confirmerReceptionTexte(String montant, String communication) {
+    return 'Do you confirm you received $montant with reference $communication? The package sessions will be added automatically.';
+  }
+
+  @override
+  String totalRecuMois(String montant) {
+    return 'Received this month: $montant';
+  }
+
+  @override
+  String get nouveauForfait => 'New package';
+
+  @override
+  String get modifierForfait => 'Edit package';
+
+  @override
+  String get aucunForfait =>
+      'No packages. Create one so your clients can pay for their sessions.';
+
+  @override
+  String get champNomForfait => 'Name';
+
+  @override
+  String get champNbSeances => 'Number of sessions';
+
+  @override
+  String get champPrix => 'Price (€)';
+
+  @override
+  String get forfaitActif => 'Offered to clients';
+
+  @override
+  String get nombreInvalide => 'Invalid number';
+
+  @override
+  String get parametresCoach => 'Coach settings';
+
+  @override
+  String get parametresCoachAide =>
+      'These details are shown to people who pay for a package or make a gift.';
+
+  @override
+  String get champNomAffiche => 'Display name';
+
+  @override
+  String get champTitulaire => 'Account holder';
+
+  @override
+  String get champBicAide => 'Optional';
+
+  @override
+  String get ibanInvalide => 'Invalid IBAN: check the digits';
+
+  @override
+  String get bicInvalide => 'Invalid BIC (8 or 11 characters)';
+
+  @override
+  String get champMessageDon => 'Thank-you message for gifts';
+
+  @override
+  String get plus => 'More';
 }

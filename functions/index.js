@@ -8,12 +8,17 @@ import { FieldValue, getFirestore } from 'firebase-admin/firestore';
 import { setGlobalOptions } from 'firebase-functions/v2';
 import { defineString } from 'firebase-functions/params';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
-import { onDocumentCreated, onDocumentWritten } from 'firebase-functions/v2/firestore';
+import {
+  onDocumentCreated, onDocumentUpdated, onDocumentWritten,
+} from 'firebase-functions/v2/firestore';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
 import { logger } from 'firebase-functions';
 import {
   destinatairesMessage, jetonsInvalides, notificationExercice, notificationMessage,
 } from './notifications.js';
+import {
+  notificationPaiementAnnonce, notificationPaiementRecu, seancesACrediter, vientDEtreRecu,
+} from './paiements.js';
 import { changementRendezVous, notificationRendezVous, rappelsDus } from './rendezvous.js';
 
 initializeApp();
@@ -157,4 +162,42 @@ export const rappelsRendezVous = onSchedule('every 15 minutes', async () => {
       }
     }
   }
+});
+
+/** Virement annoncé (forfait ou don) : le coach est prévenu. */
+export const notifierPaiementAnnonce = onDocumentCreated('paiements/{paiementId}', async (evenement) => {
+  const paiement = evenement.data?.data();
+  if (!paiement) return;
+  const coachUid = (await getFirestore().doc('systeme/coach').get()).data()?.uid;
+  if (!coachUid) return;
+  await envoyerNotification(coachUid, (langue) => notificationPaiementAnnonce({
+    paiementId: evenement.params.paiementId, paiement, langue,
+  }));
+});
+
+/**
+ * Le coach confirme « Paiement reçu » : les séances du forfait sont créditées
+ * (une seule fois) et la personne est remerciée.
+ */
+export const paiementRecu = onDocumentUpdated('paiements/{paiementId}', async (evenement) => {
+  const avant = evenement.data?.before?.data();
+  const apres = evenement.data?.after?.data();
+  if (!vientDEtreRecu(avant, apres)) return;
+  const db = getFirestore();
+  const ref = evenement.data.after.ref;
+  let destinataires = [apres.uid];
+  await db.runTransaction(async (t) => {
+    const paiement = (await t.get(ref)).data();
+    const n = seancesACrediter(paiement);
+    if (n === 0) return;
+    const refAcc = db.doc(`accompagnements/${paiement.accompagnementId}`);
+    const acc = await t.get(refAcc);
+    if (!acc.exists) return;
+    destinataires = acc.data().membres ?? destinataires;
+    t.update(refAcc, { seancesRestantes: FieldValue.increment(n), updatedAt: FieldValue.serverTimestamp() });
+    t.update(ref, { seancesCreditees: true });
+  });
+  const { paiementId } = evenement.params;
+  await Promise.all([...new Set(destinataires)].map((uid) => envoyerNotification(uid,
+    (langue) => notificationPaiementRecu({ paiementId, paiement: apres, langue }))));
 });
