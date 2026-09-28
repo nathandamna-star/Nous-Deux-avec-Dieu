@@ -7,6 +7,7 @@ import '../../l10n/app_localizations.dart';
 import 'contenus_providers.dart';
 import 'domain/contenu.dart';
 import 'presentation/libelles.dart';
+import '../parcours/presentation/liste_parcours.dart';
 
 /// Bibliothèque : tous les contenus publiés, filtrables par type.
 class ContenusScreen extends ConsumerStatefulWidget {
@@ -18,6 +19,7 @@ class ContenusScreen extends ConsumerStatefulWidget {
 
 class _ContenusScreenState extends ConsumerState<ContenusScreen> {
   TypeContenu? _type;
+  var _parcours = false;
 
   @override
   Widget build(BuildContext context) {
@@ -39,20 +41,34 @@ class _ContenusScreenState extends ConsumerState<ContenusScreen> {
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 8),
+                  child: ChoiceChip(
+                    avatar: const Icon(Icons.route_outlined),
+                    label: Text(l10n.parcours),
+                    selected: _parcours,
+                    onSelected: (_) => setState(() => _parcours = true),
+                  ),
+                ),
                 for (final t in [null, ...TypeContenu.values])
                   Padding(
                     padding: const EdgeInsets.only(right: 8),
                     child: ChoiceChip(
                       label: Text(t == null ? l10n.tous : l10n.typeContenu(t)),
-                      selected: _type == t,
-                      onSelected: (_) => setState(() => _type = t),
+                      selected: !_parcours && _type == t,
+                      onSelected: (_) => setState(() {
+                        _parcours = false;
+                        _type = t;
+                      }),
                     ),
                   ),
               ],
             ),
           ),
           Expanded(
-            child: asynchrone.isLoading && asynchrone.value == null
+            child: _parcours
+                ? const ListeParcours()
+                : asynchrone.isLoading && asynchrone.value == null
                 ? const Center(child: CircularProgressIndicator())
                 : liste.isEmpty
                 ? Center(

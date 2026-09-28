@@ -651,4 +651,76 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get supprimerExerciceTitre => '¿Eliminar este ejercicio?';
+
+  @override
+  String get parcours => 'Itinerarios';
+
+  @override
+  String get aucunParcours => 'Aún no hay itinerarios.';
+
+  @override
+  String etapesFaites(int faits, int total) {
+    return '$faits / $total etapas';
+  }
+
+  @override
+  String etapeNumero(int n) {
+    return 'Etapa $n';
+  }
+
+  @override
+  String get continuerParcours => 'Continuar';
+
+  @override
+  String get commencerParcours => 'Empezar';
+
+  @override
+  String get parcoursTermine => 'Itinerario terminado. ¡Enhorabuena!';
+
+  @override
+  String get marquerFait => 'Marcar como hecho';
+
+  @override
+  String get etapeFaite => 'Etapa hecha';
+
+  @override
+  String get connexionPourSuivre => 'Inicia sesión para seguir tu progreso.';
+
+  @override
+  String get mesParcours => 'Mis itinerarios';
+
+  @override
+  String get nouveauParcours => 'Nuevo itinerario';
+
+  @override
+  String get modifierParcours => 'Editar itinerario';
+
+  @override
+  String get etapes => 'Etapas';
+
+  @override
+  String get ajouterEtape => 'Añadir una etapa';
+
+  @override
+  String get retirerEtape => 'Quitar la etapa';
+
+  @override
+  String get etapesRequises => 'Añade al menos una etapa.';
+
+  @override
+  String get choisirContenuEtape => 'Elegir un contenido';
+
+  @override
+  String get supprimerParcoursTitre => '¿Eliminar este itinerario?';
+
+  @override
+  String nbEtapes(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n etapas',
+      one: '1 etapa',
+    );
+    return '$_temp0';
+  }
 }

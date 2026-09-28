@@ -249,3 +249,28 @@ describe('exercices', () => {
     await assertFails(reponse(paul(), 'couple', 'marie'));
   });
 });
+
+describe('parcours', () => {
+  const parcours = (extra = {}) => ({
+    titre: { fr: 'Mieux communiquer' }, description: { fr: '30 jours' }, etapes: ['c1', 'c2'],
+    visibilite: 'public', publie: true, ordre: 0, createdAt: serverTimestamp(), ...extra,
+  });
+
+  it('le coach crée un parcours ; tout le monde lit les publics publiés', async () => {
+    await assertSucceeds(setDoc(doc(coach(), 'parcours/p1'), parcours()));
+    await assertSucceeds(setDoc(doc(coach(), 'parcours/p2'), parcours({ publie: false })));
+    await assertFails(setDoc(doc(marie(), 'parcours/p3'), parcours()));
+    await assertFails(setDoc(doc(coach(), 'parcours/p4'), parcours({ titre: { en: 'x' } })));
+    await assertSucceeds(getDoc(doc(visiteur(), 'parcours/p1')));
+    await assertFails(getDoc(doc(marie(), 'parcours/p2')));
+  });
+
+  it('progression : chacun la sienne, le coach la lit', async () => {
+    const ref = (db, uid) => doc(db, `users/${uid}/progression/p1`);
+    await assertSucceeds(setDoc(ref(marie(), 'marie'), { faits: ['c1'], updatedAt: serverTimestamp() }));
+    await assertFails(setDoc(ref(paul(), 'marie'), { faits: ['c1'] }));
+    await assertFails(getDoc(ref(paul(), 'marie')));
+    await assertSucceeds(getDoc(ref(coach(), 'marie')));
+    await assertFails(setDoc(ref(marie(), 'marie'), { faits: ['c1'], note: 'x' }));
+  });
+});

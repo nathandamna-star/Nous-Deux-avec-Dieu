@@ -279,3 +279,9 @@ Avant toute décision importante non prévue ici, pose la question au lieu de ch
   `repondu` (lui seul) et `statut` (`Exercice.estFait`). Coach : fiche d'accompagnement → Envoyer un exercice
   (éventuellement à partir d'une question ou d'un exercice de la bibliothèque, texte français pré-rempli) ;
   lecture des réponses. Client : carte « Mes exercices » sur l'Accueil.
+- Parcours (étape 5b, `lib/features/parcours/`) : `parcours/{id}` (titre et description par langue, `etapes` =
+  identifiants de contenus dans l'ordre, visibilité, publication, ordre). Progression : `users/{uid}/progression/
+  {parcoursId}.faits` (chacun la sienne, le coach la lit). Contenus → puce « Parcours » → fiche du parcours
+  (barre de progression, Commencer / Continuer) → étape (`ContenuScreen` avec `parcoursId` : « Marquer comme
+  fait »). Coach : Mes contenus → Mes parcours → éditeur (étapes choisies dans la bibliothèque, glisser pour
+  réordonner).

@@ -11,6 +11,12 @@ abstract final class Routes {
   static const rejoindre = '/profil/rejoindre';
   static String ficheAccompagnement(String id) => '/coach/accompagnement/$id';
   static String contenu(String id) => '/contenus/$id';
+  static String parcours(String id) => '/contenus/parcours/$id';
+  static String etapeParcours(String parcours, String contenu) =>
+      '/contenus/parcours/$parcours/etape/$contenu';
+  static const parcoursCoach = '/coach/parcours';
+  static const nouveauParcours = '/coach/parcours/nouveau';
+  static String modifierParcours(String id) => '/coach/parcours/$id';
   static String contenuAccueil(String id) => '/accueil/contenu/$id';
   static const exercices = '/accueil/exercices';
   static String exercice(String id) => '/accueil/exercices/$id';

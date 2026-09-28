@@ -652,4 +652,76 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get supprimerExerciceTitre => 'Delete this exercise?';
+
+  @override
+  String get parcours => 'Programmes';
+
+  @override
+  String get aucunParcours => 'No programmes yet.';
+
+  @override
+  String etapesFaites(int faits, int total) {
+    return '$faits / $total steps';
+  }
+
+  @override
+  String etapeNumero(int n) {
+    return 'Step $n';
+  }
+
+  @override
+  String get continuerParcours => 'Continue';
+
+  @override
+  String get commencerParcours => 'Start';
+
+  @override
+  String get parcoursTermine => 'Programme completed. Well done!';
+
+  @override
+  String get marquerFait => 'Mark as done';
+
+  @override
+  String get etapeFaite => 'Step done';
+
+  @override
+  String get connexionPourSuivre => 'Sign in to track your progress.';
+
+  @override
+  String get mesParcours => 'My programmes';
+
+  @override
+  String get nouveauParcours => 'New programme';
+
+  @override
+  String get modifierParcours => 'Edit programme';
+
+  @override
+  String get etapes => 'Steps';
+
+  @override
+  String get ajouterEtape => 'Add a step';
+
+  @override
+  String get retirerEtape => 'Remove step';
+
+  @override
+  String get etapesRequises => 'Add at least one step.';
+
+  @override
+  String get choisirContenuEtape => 'Choose a content item';
+
+  @override
+  String get supprimerParcoursTitre => 'Delete this programme?';
+
+  @override
+  String nbEtapes(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n steps',
+      one: '1 step',
+    );
+    return '$_temp0';
+  }
 }

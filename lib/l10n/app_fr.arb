@@ -256,5 +256,49 @@
   },
   "pasEncoreRepondu": "Pas encore répondu.",
   "reponseCommune": "Réponse commune",
-  "supprimerExerciceTitre": "Supprimer cet exercice ?"
+  "supprimerExerciceTitre": "Supprimer cet exercice ?",
+  "parcours": "Parcours",
+  "aucunParcours": "Aucun parcours pour l'instant.",
+  "etapesFaites": "{faits} / {total} étapes",
+  "@etapesFaites": {
+    "placeholders": {
+      "faits": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "etapeNumero": "Étape {n}",
+  "@etapeNumero": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "continuerParcours": "Continuer",
+  "commencerParcours": "Commencer",
+  "parcoursTermine": "Parcours terminé. Bravo à vous !",
+  "marquerFait": "Marquer comme fait",
+  "etapeFaite": "Étape faite",
+  "connexionPourSuivre": "Connectez-vous pour suivre votre progression.",
+  "mesParcours": "Mes parcours",
+  "nouveauParcours": "Nouveau parcours",
+  "modifierParcours": "Modifier le parcours",
+  "etapes": "Étapes",
+  "ajouterEtape": "Ajouter une étape",
+  "retirerEtape": "Retirer l'étape",
+  "etapesRequises": "Ajoutez au moins une étape.",
+  "choisirContenuEtape": "Choisir un contenu",
+  "supprimerParcoursTitre": "Supprimer ce parcours ?",
+  "nbEtapes": "{n, plural, =1{1 étape} other{{n} étapes}}",
+  "@nbEtapes": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  }
 }

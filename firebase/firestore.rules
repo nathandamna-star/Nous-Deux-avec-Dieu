@@ -48,6 +48,15 @@ service cloud.firestore {
         && request.resource.data.parcours in ['couple', 'seul', 'decouverte'];
 
       allow delete: if connecte() && uid == moi();
+
+      // Progression dans les parcours : chacun la sienne (le coach la lit).
+      match /progression/{parcoursId} {
+        allow read: if (connecte() && uid == moi()) || estCoach();
+        allow write: if connecte() && uid == moi()
+          && request.resource.data.keys().hasOnly(['faits', 'updatedAt'])
+          && request.resource.data.faits is list
+          && request.resource.data.faits.size() <= 500;
+      }
     }
 
     // ----- Accompagnements -----
@@ -178,6 +187,27 @@ service cloud.firestore {
         && langues(request.resource.data.titre)
         && langues(request.resource.data.texte)
         && texte(request.resource.data.titre.fr, 150);
+
+      allow delete: if estCoach();
+    }
+
+    // ----- Parcours -----
+    match /parcours/{id} {
+      allow read: if estCoach()
+        || (resource.data.publie == true
+          && (resource.data.visibilite == 'public' || connecte()));
+
+      allow create, update: if estCoach()
+        && request.resource.data.keys().hasOnly([
+          'titre', 'description', 'etapes', 'visibilite', 'publie', 'ordre',
+          'createdAt', 'updatedAt'])
+        && langues(request.resource.data.titre)
+        && langues(request.resource.data.description)
+        && texte(request.resource.data.titre.fr, 150)
+        && request.resource.data.etapes is list
+        && request.resource.data.etapes.size() <= 200
+        && request.resource.data.visibilite in ['public', 'connectes']
+        && request.resource.data.publie is bool;
 
       allow delete: if estCoach();
     }

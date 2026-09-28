@@ -653,4 +653,76 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get supprimerExerciceTitre => 'Deze oefening verwijderen?';
+
+  @override
+  String get parcours => 'Trajecten';
+
+  @override
+  String get aucunParcours => 'Nog geen trajecten.';
+
+  @override
+  String etapesFaites(int faits, int total) {
+    return '$faits / $total stappen';
+  }
+
+  @override
+  String etapeNumero(int n) {
+    return 'Stap $n';
+  }
+
+  @override
+  String get continuerParcours => 'Verdergaan';
+
+  @override
+  String get commencerParcours => 'Beginnen';
+
+  @override
+  String get parcoursTermine => 'Traject afgerond. Proficiat!';
+
+  @override
+  String get marquerFait => 'Markeren als klaar';
+
+  @override
+  String get etapeFaite => 'Stap klaar';
+
+  @override
+  String get connexionPourSuivre => 'Log in om je voortgang te volgen.';
+
+  @override
+  String get mesParcours => 'Mijn trajecten';
+
+  @override
+  String get nouveauParcours => 'Nieuw traject';
+
+  @override
+  String get modifierParcours => 'Traject bewerken';
+
+  @override
+  String get etapes => 'Stappen';
+
+  @override
+  String get ajouterEtape => 'Stap toevoegen';
+
+  @override
+  String get retirerEtape => 'Stap verwijderen';
+
+  @override
+  String get etapesRequises => 'Voeg minstens één stap toe.';
+
+  @override
+  String get choisirContenuEtape => 'Inhoud kiezen';
+
+  @override
+  String get supprimerParcoursTitre => 'Dit traject verwijderen?';
+
+  @override
+  String nbEtapes(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n stappen',
+      one: '1 stap',
+    );
+    return '$_temp0';
+  }
 }

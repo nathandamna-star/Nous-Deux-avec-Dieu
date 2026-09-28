@@ -17,7 +17,16 @@ class ContenusCoachScreen extends ConsumerWidget {
     final theme = Theme.of(context);
     final contenus = ref.watch(tousContenusProvider).value ?? const [];
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.mesContenus)),
+      appBar: AppBar(
+        title: Text(l10n.mesContenus),
+        actions: [
+          TextButton.icon(
+            onPressed: () => context.push(Routes.parcoursCoach),
+            icon: const Icon(Icons.route_outlined),
+            label: Text(l10n.mesParcours),
+          ),
+        ],
+      ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => context.push(Routes.nouveauContenu),
         icon: const Icon(Icons.add),

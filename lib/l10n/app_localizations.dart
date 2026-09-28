@@ -1267,6 +1267,126 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Supprimer cet exercice ?'**
   String get supprimerExerciceTitre;
+
+  /// No description provided for @parcours.
+  ///
+  /// In fr, this message translates to:
+  /// **'Parcours'**
+  String get parcours;
+
+  /// No description provided for @aucunParcours.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun parcours pour l\'instant.'**
+  String get aucunParcours;
+
+  /// No description provided for @etapesFaites.
+  ///
+  /// In fr, this message translates to:
+  /// **'{faits} / {total} étapes'**
+  String etapesFaites(int faits, int total);
+
+  /// No description provided for @etapeNumero.
+  ///
+  /// In fr, this message translates to:
+  /// **'Étape {n}'**
+  String etapeNumero(int n);
+
+  /// No description provided for @continuerParcours.
+  ///
+  /// In fr, this message translates to:
+  /// **'Continuer'**
+  String get continuerParcours;
+
+  /// No description provided for @commencerParcours.
+  ///
+  /// In fr, this message translates to:
+  /// **'Commencer'**
+  String get commencerParcours;
+
+  /// No description provided for @parcoursTermine.
+  ///
+  /// In fr, this message translates to:
+  /// **'Parcours terminé. Bravo à vous !'**
+  String get parcoursTermine;
+
+  /// No description provided for @marquerFait.
+  ///
+  /// In fr, this message translates to:
+  /// **'Marquer comme fait'**
+  String get marquerFait;
+
+  /// No description provided for @etapeFaite.
+  ///
+  /// In fr, this message translates to:
+  /// **'Étape faite'**
+  String get etapeFaite;
+
+  /// No description provided for @connexionPourSuivre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Connectez-vous pour suivre votre progression.'**
+  String get connexionPourSuivre;
+
+  /// No description provided for @mesParcours.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes parcours'**
+  String get mesParcours;
+
+  /// No description provided for @nouveauParcours.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouveau parcours'**
+  String get nouveauParcours;
+
+  /// No description provided for @modifierParcours.
+  ///
+  /// In fr, this message translates to:
+  /// **'Modifier le parcours'**
+  String get modifierParcours;
+
+  /// No description provided for @etapes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Étapes'**
+  String get etapes;
+
+  /// No description provided for @ajouterEtape.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter une étape'**
+  String get ajouterEtape;
+
+  /// No description provided for @retirerEtape.
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer l\'étape'**
+  String get retirerEtape;
+
+  /// No description provided for @etapesRequises.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajoutez au moins une étape.'**
+  String get etapesRequises;
+
+  /// No description provided for @choisirContenuEtape.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisir un contenu'**
+  String get choisirContenuEtape;
+
+  /// No description provided for @supprimerParcoursTitre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer ce parcours ?'**
+  String get supprimerParcoursTitre;
+
+  /// No description provided for @nbEtapes.
+  ///
+  /// In fr, this message translates to:
+  /// **'{n, plural, =1{1 étape} other{{n} étapes}}'**
+  String nbEtapes(int n);
 }
 
 class _AppLocalizationsDelegate

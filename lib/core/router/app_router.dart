@@ -6,6 +6,9 @@ import '../../features/accompagnement/presentation/demande_screen.dart';
 import '../../features/accompagnement/presentation/rejoindre_screen.dart';
 import '../../features/accueil/accueil_screen.dart';
 import '../../features/coach/contenus_coach_screen.dart';
+import '../../features/coach/editeur_parcours_screen.dart';
+import '../../features/coach/parcours_coach_screen.dart';
+import '../../features/parcours/presentation/parcours_screen.dart';
 import '../../features/coach/envoi_exercice_screen.dart';
 import '../../features/coach/exercice_coach_screen.dart';
 import '../../features/exercices/presentation/exercice_screen.dart';
@@ -113,6 +116,20 @@ final _sousRoutes = <String, List<RouteBase>>{
   ],
   Routes.contenus: [
     GoRoute(
+      path: 'parcours/:pid',
+      builder: (context, state) =>
+          ParcoursScreen(id: state.pathParameters['pid']!),
+      routes: [
+        GoRoute(
+          path: 'etape/:id',
+          builder: (context, state) => ContenuScreen(
+            id: state.pathParameters['id']!,
+            parcoursId: state.pathParameters['pid'],
+          ),
+        ),
+      ],
+    ),
+    GoRoute(
       path: ':id',
       builder: (context, state) =>
           ContenuScreen(id: state.pathParameters['id']!),
@@ -129,6 +146,21 @@ final _sousRoutes = <String, List<RouteBase>>{
     ),
   ],
   Routes.coach: [
+    GoRoute(
+      path: 'parcours',
+      builder: (context, state) => const ParcoursCoachScreen(),
+      routes: [
+        GoRoute(
+          path: 'nouveau',
+          builder: (context, state) => const EditeurParcoursScreen(),
+        ),
+        GoRoute(
+          path: ':id',
+          builder: (context, state) =>
+              EditeurParcoursScreen(id: state.pathParameters['id']),
+        ),
+      ],
+    ),
     GoRoute(
       path: 'contenus',
       builder: (context, state) => const ContenusCoachScreen(),
