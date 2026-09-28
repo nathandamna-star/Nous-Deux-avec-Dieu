@@ -37,14 +37,6 @@ class AppLocalizationsNl extends AppLocalizations {
   String get bientot => 'Binnenkort beschikbaar';
 
   @override
-  String get accueilAVenir =>
-      'Hier: de overdenking van de dag, je volgende afspraak en je oefeningen.';
-
-  @override
-  String get contenusAVenir =>
-      'Hier: overdenkingen, vragen voor jullie twee, trajecten, audio en video\'s.';
-
-  @override
   String get messagesAVenir => 'Hier: je gesprek met je coach.';
 
   @override
@@ -351,4 +343,132 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get valider => 'Bevestigen';
+
+  @override
+  String get typeMeditation => 'Overdenking';
+
+  @override
+  String get typeQuestion => 'Vraag voor twee';
+
+  @override
+  String get typeExercice => 'Oefening';
+
+  @override
+  String get typeArticle => 'Artikel';
+
+  @override
+  String get tous => 'Alle';
+
+  @override
+  String get themeCommunication => 'Communicatie';
+
+  @override
+  String get themePardon => 'Vergeving';
+
+  @override
+  String get themeFinances => 'Financiën';
+
+  @override
+  String get themeIntimite => 'Intimiteit';
+
+  @override
+  String get themePriere => 'Gebed';
+
+  @override
+  String get themeEnfants => 'Kinderen';
+
+  @override
+  String get themeFiancailles => 'Verloving';
+
+  @override
+  String get themeGratitude => 'Dankbaarheid';
+
+  @override
+  String get meditationDuJour => 'Overdenking van de dag';
+
+  @override
+  String get lire => 'Lezen';
+
+  @override
+  String get decouvrirContenus => 'Alle inhoud ontdekken';
+
+  @override
+  String get aucunContenu => 'Nog geen inhoud. Kom snel terug!';
+
+  @override
+  String get autreLangue => 'Nog niet vertaald in jouw taal.';
+
+  @override
+  String get accueilBienvenue => 'Moge de vrede van God jullie harten bewaren.';
+
+  @override
+  String get mesContenus => 'Mijn inhoud';
+
+  @override
+  String get nouveauContenu => 'Nieuwe inhoud';
+
+  @override
+  String get modifierContenu => 'Inhoud bewerken';
+
+  @override
+  String get brouillon => 'Concept';
+
+  @override
+  String get publie => 'Gepubliceerd';
+
+  @override
+  String get champType => 'Type';
+
+  @override
+  String get champTheme => 'Thema';
+
+  @override
+  String get champTitre => 'Titel';
+
+  @override
+  String get champTexte => 'Tekst';
+
+  @override
+  String get champReference => 'Bijbelverwijzing (optioneel)';
+
+  @override
+  String get champReferenceAide => 'Bv. Efeziërs 4:2';
+
+  @override
+  String get langueVersion => 'Versie';
+
+  @override
+  String get titreFrancaisRequis => 'De Franse titel is verplicht.';
+
+  @override
+  String get visiblePourTous => 'Zichtbaar zonder account';
+
+  @override
+  String get visiblePourTousAide => 'Anders alleen voor ingelogde gebruikers.';
+
+  @override
+  String get publier => 'Publiceren';
+
+  @override
+  String get publierAide => 'Uit: concept, alleen voor jou zichtbaar.';
+
+  @override
+  String get champOrdre => 'Volgorde';
+
+  @override
+  String get champOrdreAide =>
+      'De dagelijkse overdenkingen volgen deze volgorde (1, 2, 3…).';
+
+  @override
+  String get enregistrer => 'Opslaan';
+
+  @override
+  String get enregistre => 'Opgeslagen';
+
+  @override
+  String get supprimerContenuTitre => 'Deze inhoud verwijderen?';
+
+  @override
+  String get supprimerContenuTexte =>
+      'Het verdwijnt voor iedereen. Dit is definitief.';
 }

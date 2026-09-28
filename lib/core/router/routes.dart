@@ -10,4 +10,9 @@ abstract final class Routes {
   static const demande = '/profil/demande';
   static const rejoindre = '/profil/rejoindre';
   static String ficheAccompagnement(String id) => '/coach/accompagnement/$id';
+  static String contenu(String id) => '/contenus/$id';
+  static String contenuAccueil(String id) => '/accueil/contenu/$id';
+  static const contenusCoach = '/coach/contenus';
+  static const nouveauContenu = '/coach/contenus/nouveau';
+  static String modifierContenu(String id) => '/coach/contenus/$id';
 }

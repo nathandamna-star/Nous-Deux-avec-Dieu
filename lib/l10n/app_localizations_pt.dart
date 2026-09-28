@@ -37,14 +37,6 @@ class AppLocalizationsPt extends AppLocalizations {
   String get bientot => 'Em breve';
 
   @override
-  String get accueilAVenir =>
-      'Aqui: a meditação do dia, o seu próximo encontro e os seus exercícios.';
-
-  @override
-  String get contenusAVenir =>
-      'Aqui: meditações, perguntas a dois, percursos, áudios e vídeos.';
-
-  @override
   String get messagesAVenir => 'Aqui: a sua conversa com o seu coach.';
 
   @override
@@ -351,4 +343,132 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get valider => 'Confirmar';
+
+  @override
+  String get typeMeditation => 'Meditação';
+
+  @override
+  String get typeQuestion => 'Pergunta a dois';
+
+  @override
+  String get typeExercice => 'Exercício';
+
+  @override
+  String get typeArticle => 'Artigo';
+
+  @override
+  String get tous => 'Todos';
+
+  @override
+  String get themeCommunication => 'Comunicação';
+
+  @override
+  String get themePardon => 'Perdão';
+
+  @override
+  String get themeFinances => 'Finanças';
+
+  @override
+  String get themeIntimite => 'Intimidade';
+
+  @override
+  String get themePriere => 'Oração';
+
+  @override
+  String get themeEnfants => 'Filhos';
+
+  @override
+  String get themeFiancailles => 'Noivado';
+
+  @override
+  String get themeGratitude => 'Gratidão';
+
+  @override
+  String get meditationDuJour => 'Meditação do dia';
+
+  @override
+  String get lire => 'Ler';
+
+  @override
+  String get decouvrirContenus => 'Descobrir todos os conteúdos';
+
+  @override
+  String get aucunContenu => 'Ainda sem conteúdos. Volte em breve!';
+
+  @override
+  String get autreLangue => 'Ainda não traduzido para o seu idioma.';
+
+  @override
+  String get accueilBienvenue => 'Que a paz de Deus guarde os vossos corações.';
+
+  @override
+  String get mesContenus => 'Os meus conteúdos';
+
+  @override
+  String get nouveauContenu => 'Novo conteúdo';
+
+  @override
+  String get modifierContenu => 'Editar conteúdo';
+
+  @override
+  String get brouillon => 'Rascunho';
+
+  @override
+  String get publie => 'Publicado';
+
+  @override
+  String get champType => 'Tipo';
+
+  @override
+  String get champTheme => 'Tema';
+
+  @override
+  String get champTitre => 'Título';
+
+  @override
+  String get champTexte => 'Texto';
+
+  @override
+  String get champReference => 'Referência bíblica (opcional)';
+
+  @override
+  String get champReferenceAide => 'Ex. Efésios 4:2';
+
+  @override
+  String get langueVersion => 'Versão';
+
+  @override
+  String get titreFrancaisRequis => 'O título em francês é obrigatório.';
+
+  @override
+  String get visiblePourTous => 'Visível sem conta';
+
+  @override
+  String get visiblePourTousAide =>
+      'Caso contrário, apenas para quem tem sessão iniciada.';
+
+  @override
+  String get publier => 'Publicar';
+
+  @override
+  String get publierAide => 'Desativado: rascunho, visível só para si.';
+
+  @override
+  String get champOrdre => 'Ordem de apresentação';
+
+  @override
+  String get champOrdreAide =>
+      'As meditações do dia seguem esta ordem (1, 2, 3…).';
+
+  @override
+  String get enregistrer => 'Guardar';
+
+  @override
+  String get enregistre => 'Guardado';
+
+  @override
+  String get supprimerContenuTitre => 'Apagar este conteúdo?';
+
+  @override
+  String get supprimerContenuTexte => 'Desaparecerá para todos. É definitivo.';
 }

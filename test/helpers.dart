@@ -22,8 +22,9 @@ class Banc {
     WidgetTester tester, {
     bool bienvenueVue = true,
     Locale locale = const Locale('fr'),
+    bool grand = false,
   }) async {
-    tester.view.physicalSize = const Size(1080, 2400);
+    tester.view.physicalSize = Size(1080, grand ? 6000 : 2400);
     tester.view.devicePixelRatio = 2.5;
     addTearDown(tester.view.reset);
     tester.platformDispatcher.localesTestValue = [locale];

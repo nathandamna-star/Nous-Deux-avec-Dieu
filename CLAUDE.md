@@ -254,3 +254,10 @@ Avant toute décision importante non prévue ici, pose la question au lieu de ch
 - Cloud Functions (`functions/`, Node 22, europe-west1) : `revendiquerCoach` (compte dont l'e-mail est le
   paramètre `EMAIL_COACH`, une seule fois ; dans l'app : appui long sur la carte « Bonjour … » du Profil).
   Tests : `cd functions && npm install && npm test`. Déploiement : forfait Blaze requis.
+- Contenus (étape 4a, `lib/features/contenus/`) : `contenus/{id}` avec `titre`/`texte` = carte langue → texte
+  (le français est obligatoire et sert de secours, `Contenu.traduire`), `type` (meditation, question,
+  exercice, article), `theme`, `reference` biblique, `visibilite` (`public` = sans compte, `connectes` = personnes
+  connectées ; la visibilité « accompagnés seulement » demanderait un marqueur par utilisateur, à voir),
+  `publie`, `ordre`. Méditation du jour sur l'Accueil (`meditationDuJour` : ordre du coach, un par jour, en
+  boucle). Éditeur du coach : Coach → Mes contenus (brouillons, une version par langue, suppression).
+  Audios et vidéos : étape 4b (Storage, forfait Blaze).

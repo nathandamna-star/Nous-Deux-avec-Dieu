@@ -14,7 +14,7 @@ void main() {
     await banc.lancer(tester, bienvenueVue: false);
     expect(find.text('Qu\'est-ce qui vous amène ?'), findsOneWidget);
     await toucher(tester, find.text('Découvrir sans compte'));
-    expect(find.textContaining('méditation du jour'), findsOneWidget);
+    expect(find.text('Découvrir tous les contenus'), findsOneWidget);
 
     // Les espaces personnels demandent une connexion.
     await tester.tap(find.text('Messages'));
@@ -60,7 +60,7 @@ void main() {
     expect(profil['langue'], 'fr');
     expect(profil['consentementLe'], isNotNull);
     // Connecté : retour à l'accueil, profil accessible.
-    expect(find.textContaining('méditation du jour'), findsOneWidget);
+    expect(find.text('Découvrir tous les contenus'), findsOneWidget);
     await tester.tap(find.text('Profil'));
     await tester.pumpAndSettle();
     expect(find.text('Bonjour Paul Mbala'), findsOneWidget);

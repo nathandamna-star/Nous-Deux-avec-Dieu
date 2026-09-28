@@ -40,7 +40,16 @@ class _CoachScreenState extends ConsumerState<CoachScreen> {
         .length;
 
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.navCoach)),
+      appBar: AppBar(
+        title: Text(l10n.navCoach),
+        actions: [
+          TextButton.icon(
+            onPressed: () => context.push(Routes.contenusCoach),
+            icon: const Icon(Icons.edit_note),
+            label: Text(l10n.mesContenus),
+          ),
+        ],
+      ),
       body: Column(
         children: [
           Padding(

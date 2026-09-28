@@ -150,3 +150,46 @@ describe('accompagnements', () => {
     await assertFails(addDoc(collection(marie(), 'accompagnements/a1/notes'), { texte: 'x' }));
   });
 });
+
+const contenu = (extra = {}) => ({
+  type: 'meditation', theme: 'priere', titre: { fr: 'Prier à deux', nl: 'Samen bidden' },
+  texte: { fr: 'Texte' }, reference: 'Matthieu 18:20', visibilite: 'public', publie: true, ordre: 1,
+  createdAt: serverTimestamp(), updatedAt: serverTimestamp(), ...extra,
+});
+
+describe('contenus', () => {
+  const avecContenus = () => env.withSecurityRulesDisabled(async (ctx) => {
+    const db = ctx.firestore();
+    await setDoc(doc(db, 'contenus/public'), contenu());
+    await setDoc(doc(db, 'contenus/membres'), contenu({ visibilite: 'connectes' }));
+    await setDoc(doc(db, 'contenus/brouillon'), contenu({ publie: false }));
+  });
+
+  it('sans compte : seulement les contenus publics publiés', async () => {
+    await avecContenus();
+    await assertSucceeds(getDoc(doc(visiteur(), 'contenus/public')));
+    await assertFails(getDoc(doc(visiteur(), 'contenus/membres')));
+    await assertFails(getDoc(doc(visiteur(), 'contenus/brouillon')));
+    await assertSucceeds(getDocs(query(collection(visiteur(), 'contenus'),
+      where('publie', '==', true), where('visibilite', '==', 'public'))));
+    await assertFails(getDocs(query(collection(visiteur(), 'contenus'), where('publie', '==', true))));
+  });
+
+  it('connecté : tous les publiés, pas les brouillons', async () => {
+    await avecContenus();
+    await assertSucceeds(getDoc(doc(marie(), 'contenus/membres')));
+    await assertFails(getDoc(doc(marie(), 'contenus/brouillon')));
+    await assertSucceeds(getDocs(query(collection(marie(), 'contenus'), where('publie', '==', true))));
+    await assertFails(getDocs(collection(marie(), 'contenus')));
+  });
+
+  it('le coach écrit, lit ses brouillons, supprime ; personne d\'autre', async () => {
+    await assertSucceeds(setDoc(doc(coach(), 'contenus/c1'), contenu({ publie: false })));
+    await assertSucceeds(getDoc(doc(coach(), 'contenus/c1')));
+    await assertFails(setDoc(doc(marie(), 'contenus/c2'), contenu()));
+    await assertFails(setDoc(doc(coach(), 'contenus/c3'), contenu({ titre: { en: 'Only English' } })));
+    await assertFails(setDoc(doc(coach(), 'contenus/c4'), contenu({ titre: { fr: 'x', de: 'y' } })));
+    await assertFails(setDoc(doc(coach(), 'contenus/c5'), contenu({ type: 'video' })));
+    await assertSucceeds(deleteDoc(doc(coach(), 'contenus/c1')));
+  });
+});

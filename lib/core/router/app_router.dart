@@ -5,7 +5,10 @@ import 'package:go_router/go_router.dart';
 import '../../features/accompagnement/presentation/demande_screen.dart';
 import '../../features/accompagnement/presentation/rejoindre_screen.dart';
 import '../../features/accueil/accueil_screen.dart';
+import '../../features/coach/contenus_coach_screen.dart';
+import '../../features/coach/editeur_contenu_screen.dart';
 import '../../features/coach/fiche_accompagnement_screen.dart';
+import '../../features/contenus/presentation/contenu_screen.dart';
 import '../../features/auth/auth_providers.dart';
 import '../../features/auth/presentation/bienvenue_screen.dart';
 import '../../features/auth/presentation/connexion_email_screen.dart';
@@ -86,6 +89,20 @@ final routerProvider = Provider<GoRouter>((ref) {
 });
 
 final _sousRoutes = <String, List<RouteBase>>{
+  Routes.accueil: [
+    GoRoute(
+      path: 'contenu/:id',
+      builder: (context, state) =>
+          ContenuScreen(id: state.pathParameters['id']!),
+    ),
+  ],
+  Routes.contenus: [
+    GoRoute(
+      path: ':id',
+      builder: (context, state) =>
+          ContenuScreen(id: state.pathParameters['id']!),
+    ),
+  ],
   Routes.profil: [
     GoRoute(
       path: 'demande',
@@ -97,6 +114,21 @@ final _sousRoutes = <String, List<RouteBase>>{
     ),
   ],
   Routes.coach: [
+    GoRoute(
+      path: 'contenus',
+      builder: (context, state) => const ContenusCoachScreen(),
+      routes: [
+        GoRoute(
+          path: 'nouveau',
+          builder: (context, state) => const EditeurContenuScreen(),
+        ),
+        GoRoute(
+          path: ':id',
+          builder: (context, state) =>
+              EditeurContenuScreen(id: state.pathParameters['id']),
+        ),
+      ],
+    ),
     GoRoute(
       path: 'accompagnement/:id',
       builder: (context, state) =>

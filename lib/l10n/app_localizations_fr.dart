@@ -37,14 +37,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get bientot => 'Bientôt disponible';
 
   @override
-  String get accueilAVenir =>
-      'Ici : la méditation du jour, votre prochain rendez-vous et vos exercices.';
-
-  @override
-  String get contenusAVenir =>
-      'Ici : méditations, questions à deux, parcours, audios et vidéos.';
-
-  @override
   String get messagesAVenir => 'Ici : votre conversation avec votre coach.';
 
   @override
@@ -351,4 +343,133 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get valider => 'Valider';
+
+  @override
+  String get typeMeditation => 'Méditation';
+
+  @override
+  String get typeQuestion => 'Question à deux';
+
+  @override
+  String get typeExercice => 'Exercice';
+
+  @override
+  String get typeArticle => 'Article';
+
+  @override
+  String get tous => 'Tous';
+
+  @override
+  String get themeCommunication => 'Communication';
+
+  @override
+  String get themePardon => 'Pardon';
+
+  @override
+  String get themeFinances => 'Finances';
+
+  @override
+  String get themeIntimite => 'Intimité';
+
+  @override
+  String get themePriere => 'Prière';
+
+  @override
+  String get themeEnfants => 'Enfants';
+
+  @override
+  String get themeFiancailles => 'Fiançailles';
+
+  @override
+  String get themeGratitude => 'Gratitude';
+
+  @override
+  String get meditationDuJour => 'Méditation du jour';
+
+  @override
+  String get lire => 'Lire';
+
+  @override
+  String get decouvrirContenus => 'Découvrir tous les contenus';
+
+  @override
+  String get aucunContenu => 'Aucun contenu pour l\'instant. Revenez bientôt !';
+
+  @override
+  String get autreLangue => 'Pas encore traduit dans votre langue.';
+
+  @override
+  String get accueilBienvenue => 'Que la paix de Dieu garde vos cœurs.';
+
+  @override
+  String get mesContenus => 'Mes contenus';
+
+  @override
+  String get nouveauContenu => 'Nouveau contenu';
+
+  @override
+  String get modifierContenu => 'Modifier le contenu';
+
+  @override
+  String get brouillon => 'Brouillon';
+
+  @override
+  String get publie => 'Publié';
+
+  @override
+  String get champType => 'Type';
+
+  @override
+  String get champTheme => 'Thème';
+
+  @override
+  String get champTitre => 'Titre';
+
+  @override
+  String get champTexte => 'Texte';
+
+  @override
+  String get champReference => 'Référence biblique (facultatif)';
+
+  @override
+  String get champReferenceAide => 'Ex. Éphésiens 4:2';
+
+  @override
+  String get langueVersion => 'Version';
+
+  @override
+  String get titreFrancaisRequis => 'Le titre en français est obligatoire.';
+
+  @override
+  String get visiblePourTous => 'Visible sans compte';
+
+  @override
+  String get visiblePourTousAide =>
+      'Sinon, seulement pour les personnes connectées.';
+
+  @override
+  String get publier => 'Publier';
+
+  @override
+  String get publierAide => 'Désactivé : brouillon, visible par vous seul.';
+
+  @override
+  String get champOrdre => 'Ordre d\'affichage';
+
+  @override
+  String get champOrdreAide =>
+      'Les méditations du jour suivent cet ordre (1, 2, 3…).';
+
+  @override
+  String get enregistrer => 'Enregistrer';
+
+  @override
+  String get enregistre => 'Enregistré';
+
+  @override
+  String get supprimerContenuTitre => 'Supprimer ce contenu ?';
+
+  @override
+  String get supprimerContenuTexte =>
+      'Il disparaîtra pour tout le monde. C\'est définitif.';
 }

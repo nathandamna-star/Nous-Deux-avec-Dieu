@@ -11,7 +11,7 @@ void main() {
     await bancConnecte().lancer(tester);
     expect(find.byType(NavigationDestination), findsNWidgets(5));
     expect(find.text('Coach'), findsNothing);
-    expect(find.textContaining('méditation du jour'), findsOneWidget);
+    expect(find.text('Découvrir tous les contenus'), findsOneWidget);
 
     await tester.tap(find.text('Séances'));
     await tester.pumpAndSettle();
@@ -19,7 +19,7 @@ void main() {
 
     await tester.tap(find.text('Contenus'));
     await tester.pumpAndSettle();
-    expect(find.textContaining('audios et vidéos'), findsOneWidget);
+    expect(find.textContaining('Aucun contenu'), findsOneWidget);
   });
 
   testWidgets('onglet Coach pour le coach seulement', (tester) async {
@@ -31,10 +31,10 @@ void main() {
   });
 
   for (final (langue, accueil, bientot) in [
-    ('en', 'Home', 'Coming soon'),
-    ('pt', 'Início', 'Em breve'),
-    ('es', 'Inicio', 'Próximamente'),
-    ('nl', 'Start', 'Binnenkort beschikbaar'),
+    ('en', 'Home', 'Explore all content'),
+    ('pt', 'Início', 'Descobrir todos os conteúdos'),
+    ('es', 'Inicio', 'Descubrir todos los contenidos'),
+    ('nl', 'Start', 'Alle inhoud ontdekken'),
   ]) {
     testWidgets('interface traduite : $langue', (tester) async {
       await bancConnecte().lancer(tester, locale: Locale(langue));

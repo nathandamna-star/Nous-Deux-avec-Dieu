@@ -103,6 +103,32 @@ service cloud.firestore {
       }
     }
 
+    // ----- Contenus du coach -----
+    // Publiés : publics pour tous, les autres pour les personnes connectées.
+    // Brouillons : le coach seulement. Écriture : le coach seulement.
+    function langues(m) {
+      return m is map && m.keys().hasOnly(['fr', 'en', 'pt', 'es', 'nl']);
+    }
+
+    match /contenus/{id} {
+      allow read: if estCoach()
+        || (resource.data.publie == true
+          && (resource.data.visibilite == 'public' || connecte()));
+
+      allow create, update: if estCoach()
+        && request.resource.data.keys().hasOnly([
+          'type', 'theme', 'titre', 'texte', 'reference', 'visibilite',
+          'publie', 'ordre', 'createdAt', 'updatedAt'])
+        && request.resource.data.type in ['meditation', 'question', 'exercice', 'article']
+        && request.resource.data.visibilite in ['public', 'connectes']
+        && request.resource.data.publie is bool
+        && langues(request.resource.data.titre)
+        && langues(request.resource.data.texte)
+        && texte(request.resource.data.titre.fr, 150);
+
+      allow delete: if estCoach();
+    }
+
     // Codes d'invitation : lisibles un par un (jamais listés) par qui connaît
     // le code ; créés avec leur accompagnement.
     match /invitations/{code} {

@@ -158,18 +158,6 @@ abstract class AppLocalizations {
   /// **'Bientôt disponible'**
   String get bientot;
 
-  /// No description provided for @accueilAVenir.
-  ///
-  /// In fr, this message translates to:
-  /// **'Ici : la méditation du jour, votre prochain rendez-vous et vos exercices.'**
-  String get accueilAVenir;
-
-  /// No description provided for @contenusAVenir.
-  ///
-  /// In fr, this message translates to:
-  /// **'Ici : méditations, questions à deux, parcours, audios et vidéos.'**
-  String get contenusAVenir;
-
   /// No description provided for @messagesAVenir.
   ///
   /// In fr, this message translates to:
@@ -721,6 +709,258 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Valider'**
   String get valider;
+
+  /// No description provided for @typeMeditation.
+  ///
+  /// In fr, this message translates to:
+  /// **'Méditation'**
+  String get typeMeditation;
+
+  /// No description provided for @typeQuestion.
+  ///
+  /// In fr, this message translates to:
+  /// **'Question à deux'**
+  String get typeQuestion;
+
+  /// No description provided for @typeExercice.
+  ///
+  /// In fr, this message translates to:
+  /// **'Exercice'**
+  String get typeExercice;
+
+  /// No description provided for @typeArticle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Article'**
+  String get typeArticle;
+
+  /// No description provided for @tous.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tous'**
+  String get tous;
+
+  /// No description provided for @themeCommunication.
+  ///
+  /// In fr, this message translates to:
+  /// **'Communication'**
+  String get themeCommunication;
+
+  /// No description provided for @themePardon.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pardon'**
+  String get themePardon;
+
+  /// No description provided for @themeFinances.
+  ///
+  /// In fr, this message translates to:
+  /// **'Finances'**
+  String get themeFinances;
+
+  /// No description provided for @themeIntimite.
+  ///
+  /// In fr, this message translates to:
+  /// **'Intimité'**
+  String get themeIntimite;
+
+  /// No description provided for @themePriere.
+  ///
+  /// In fr, this message translates to:
+  /// **'Prière'**
+  String get themePriere;
+
+  /// No description provided for @themeEnfants.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enfants'**
+  String get themeEnfants;
+
+  /// No description provided for @themeFiancailles.
+  ///
+  /// In fr, this message translates to:
+  /// **'Fiançailles'**
+  String get themeFiancailles;
+
+  /// No description provided for @themeGratitude.
+  ///
+  /// In fr, this message translates to:
+  /// **'Gratitude'**
+  String get themeGratitude;
+
+  /// No description provided for @meditationDuJour.
+  ///
+  /// In fr, this message translates to:
+  /// **'Méditation du jour'**
+  String get meditationDuJour;
+
+  /// No description provided for @lire.
+  ///
+  /// In fr, this message translates to:
+  /// **'Lire'**
+  String get lire;
+
+  /// No description provided for @decouvrirContenus.
+  ///
+  /// In fr, this message translates to:
+  /// **'Découvrir tous les contenus'**
+  String get decouvrirContenus;
+
+  /// No description provided for @aucunContenu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun contenu pour l\'instant. Revenez bientôt !'**
+  String get aucunContenu;
+
+  /// No description provided for @autreLangue.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pas encore traduit dans votre langue.'**
+  String get autreLangue;
+
+  /// No description provided for @accueilBienvenue.
+  ///
+  /// In fr, this message translates to:
+  /// **'Que la paix de Dieu garde vos cœurs.'**
+  String get accueilBienvenue;
+
+  /// No description provided for @mesContenus.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes contenus'**
+  String get mesContenus;
+
+  /// No description provided for @nouveauContenu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouveau contenu'**
+  String get nouveauContenu;
+
+  /// No description provided for @modifierContenu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Modifier le contenu'**
+  String get modifierContenu;
+
+  /// No description provided for @brouillon.
+  ///
+  /// In fr, this message translates to:
+  /// **'Brouillon'**
+  String get brouillon;
+
+  /// No description provided for @publie.
+  ///
+  /// In fr, this message translates to:
+  /// **'Publié'**
+  String get publie;
+
+  /// No description provided for @champType.
+  ///
+  /// In fr, this message translates to:
+  /// **'Type'**
+  String get champType;
+
+  /// No description provided for @champTheme.
+  ///
+  /// In fr, this message translates to:
+  /// **'Thème'**
+  String get champTheme;
+
+  /// No description provided for @champTitre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Titre'**
+  String get champTitre;
+
+  /// No description provided for @champTexte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Texte'**
+  String get champTexte;
+
+  /// No description provided for @champReference.
+  ///
+  /// In fr, this message translates to:
+  /// **'Référence biblique (facultatif)'**
+  String get champReference;
+
+  /// No description provided for @champReferenceAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ex. Éphésiens 4:2'**
+  String get champReferenceAide;
+
+  /// No description provided for @langueVersion.
+  ///
+  /// In fr, this message translates to:
+  /// **'Version'**
+  String get langueVersion;
+
+  /// No description provided for @titreFrancaisRequis.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le titre en français est obligatoire.'**
+  String get titreFrancaisRequis;
+
+  /// No description provided for @visiblePourTous.
+  ///
+  /// In fr, this message translates to:
+  /// **'Visible sans compte'**
+  String get visiblePourTous;
+
+  /// No description provided for @visiblePourTousAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sinon, seulement pour les personnes connectées.'**
+  String get visiblePourTousAide;
+
+  /// No description provided for @publier.
+  ///
+  /// In fr, this message translates to:
+  /// **'Publier'**
+  String get publier;
+
+  /// No description provided for @publierAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Désactivé : brouillon, visible par vous seul.'**
+  String get publierAide;
+
+  /// No description provided for @champOrdre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ordre d\'affichage'**
+  String get champOrdre;
+
+  /// No description provided for @champOrdreAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Les méditations du jour suivent cet ordre (1, 2, 3…).'**
+  String get champOrdreAide;
+
+  /// No description provided for @enregistrer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrer'**
+  String get enregistrer;
+
+  /// No description provided for @enregistre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistré'**
+  String get enregistre;
+
+  /// No description provided for @supprimerContenuTitre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer ce contenu ?'**
+  String get supprimerContenuTitre;
+
+  /// No description provided for @supprimerContenuTexte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Il disparaîtra pour tout le monde. C\'est définitif.'**
+  String get supprimerContenuTexte;
 }
 
 class _AppLocalizationsDelegate
