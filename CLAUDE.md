@@ -268,3 +268,7 @@ Avant toute décision importante non prévue ici, pose la question au lieu de ch
   verrouillé grâce à `UIBackgroundModes audio`, ±15 s, vitesse) et `lecteur_video.dart` (video_player, plein
   écran) ; reprise de la position par contenu et par langue (`PositionLecture`, préférences locales).
   Remplacés par `FauxLecteurs` dans les tests. Commandes sur l'écran verrouillé : pas encore (audio_service).
+- Photo de profil : `users/{uid}.photoUrl` (adresse https ou null, vérifiée par les règles), fichier Storage
+  `users/{uid}/profil.jpg` (image < 5 Mo, chacun la sienne), prise ou choisie avec image_picker (800 px,
+  qualité 80) via `PhotoProfilService`. Widget `Avatar` (photo ou initiales) : Profil (toucher pour changer ou
+  supprimer) et fiche coach (photo des membres).

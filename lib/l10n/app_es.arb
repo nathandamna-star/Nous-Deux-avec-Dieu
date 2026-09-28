@@ -160,5 +160,10 @@
   "envoiEnCours": "Enviando… {pourcent} %",
   "fichierRequis": "Añade al menos un archivo.",
   "envoiEchoue": "El envío ha fallado. Inténtalo de nuevo.",
-  "champDescription": "Descripción"
+  "champDescription": "Descripción",
+  "changerPhoto": "Cambiar la foto de perfil",
+  "prendrePhoto": "Hacer una foto",
+  "choisirGalerie": "Elegir de la galería",
+  "supprimerPhoto": "Eliminar la foto",
+  "photoEnvoiEchoue": "No se ha podido guardar la foto. Inténtalo de nuevo."
 }

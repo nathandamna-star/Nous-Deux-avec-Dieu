@@ -12,6 +12,8 @@ import 'package:nous_deux_avec_dieu/features/contenus/contenus_providers.dart';
 import 'package:nous_deux_avec_dieu/features/contenus/data/medias_service.dart';
 import 'package:nous_deux_avec_dieu/features/contenus/domain/contenu.dart';
 import 'package:nous_deux_avec_dieu/features/contenus/presentation/lecteurs/lecteurs.dart';
+import 'package:nous_deux_avec_dieu/features/profil/data/photo_profil_service.dart';
+import 'package:nous_deux_avec_dieu/features/profil/profil_providers.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Banc d'essai : Firebase simulé, préférences en mémoire.
@@ -22,6 +24,7 @@ class Banc {
   final firestore = FakeFirebaseFirestore();
   final fonctions = FaussesFonctionsCoach();
   final medias = FauxMedias();
+  final photo = FaussePhotoProfil();
 
   Future<void> lancer(
     WidgetTester tester, {
@@ -44,6 +47,7 @@ class Banc {
           firestoreProvider.overrideWithValue(firestore),
           fonctionsCoachProvider.overrideWithValue(fonctions),
           mediasServiceProvider.overrideWithValue(medias),
+          photoProfilServiceProvider.overrideWithValue(photo),
           fabriqueLecteursProvider.overrideWithValue(const FauxLecteurs()),
         ],
         child: const NousDeuxAvecDieuApp(),
@@ -147,4 +151,17 @@ class FauxLecteurs implements FabriqueLecteurs {
   @override
   Widget video({required String url, required String cle}) =>
       Text('lecteur vidéo : $url');
+}
+
+class FaussePhotoProfil implements PhotoProfilService {
+  final appels = <String>[];
+
+  @override
+  Future<String?> choisirEtEnvoyer(String uid, {required bool camera}) async {
+    appels.add(camera ? 'camera' : 'galerie');
+    return 'https://stockage.test/users/$uid/profil.jpg';
+  }
+
+  @override
+  Future<void> supprimer(String uid) async => appels.add('supprimer');
 }

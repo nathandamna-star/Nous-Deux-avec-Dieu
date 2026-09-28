@@ -202,5 +202,10 @@
   },
   "fichierRequis": "Ajoutez au moins un fichier.",
   "envoiEchoue": "L'envoi du fichier a échoué. Réessayez.",
-  "champDescription": "Description"
+  "champDescription": "Description",
+  "changerPhoto": "Changer la photo de profil",
+  "prendrePhoto": "Prendre une photo",
+  "choisirGalerie": "Choisir dans la galerie",
+  "supprimerPhoto": "Supprimer la photo",
+  "photoEnvoiEchoue": "La photo n'a pas pu être enregistrée. Réessayez."
 }

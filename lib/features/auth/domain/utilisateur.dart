@@ -10,6 +10,7 @@ class Utilisateur {
     required this.email,
     required this.langue,
     required this.parcours,
+    this.photoUrl,
     this.consentementLe,
   });
 
@@ -18,6 +19,7 @@ class Utilisateur {
   final String email;
   final String langue;
   final Parcours parcours;
+  final String? photoUrl;
 
   /// Date du consentement au traitement des données sensibles (RGPD).
   final DateTime? consentementLe;
@@ -32,6 +34,7 @@ class Utilisateur {
       email: d['email'] as String? ?? '',
       langue: d['langue'] as String? ?? 'fr',
       parcours: Parcours.depuis(d['parcours'] as String?),
+      photoUrl: d['photoUrl'] as String?,
       consentementLe: (d['consentementLe'] as Timestamp?)?.toDate(),
     );
   }

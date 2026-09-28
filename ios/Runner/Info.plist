@@ -6,8 +6,10 @@
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Nous deux avec Dieu utilise l'appareil photo pour votre photo de profil.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Nous deux avec Dieu utilise vos vidéos et photos pour les contenus que vous publiez.</string>
+	<string>Nous deux avec Dieu utilise vos photos pour votre photo de profil et les vidéos que vous publiez.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>

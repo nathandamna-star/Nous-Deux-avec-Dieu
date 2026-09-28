@@ -64,6 +64,9 @@ describe('profils', () => {
       });
     });
     await assertSucceeds(updateDoc(doc(marie(), 'users/marie'), { langue: 'nl' }));
+    await assertSucceeds(updateDoc(doc(marie(), 'users/marie'), { photoUrl: 'https://stockage/marie.jpg' }));
+    await assertSucceeds(updateDoc(doc(marie(), 'users/marie'), { photoUrl: null }));
+    await assertFails(updateDoc(doc(marie(), 'users/marie'), { photoUrl: 'javascript:alert(1)' }));
     await assertFails(updateDoc(doc(marie(), 'users/marie'), { consentementLe: new Date(2020, 0, 1) }));
     await assertFails(updateDoc(doc(paul(), 'users/marie'), { nom: 'Pirate' }));
     await assertFails(deleteDoc(doc(paul(), 'users/marie')));

@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../l10n/app_localizations.dart';
+import '../../shared/widgets/avatar.dart';
 import '../../shared/widgets/connexion_requise.dart';
 import '../accompagnement/accompagnement_providers.dart';
 import '../accompagnement/presentation/carte_mon_accompagnement.dart';
 import '../auth/auth_providers.dart';
+import 'profil_providers.dart';
 
 class ProfilScreen extends ConsumerWidget {
   const ProfilScreen({super.key});
@@ -37,6 +39,44 @@ class ProfilScreen extends ConsumerWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Center(
+                      child: Semantics(
+                        button: true,
+                        label: l10n.changerPhoto,
+                        child: InkWell(
+                          customBorder: const CircleBorder(),
+                          onTap: () => _changerPhoto(
+                            context,
+                            ref,
+                            user.uid,
+                            (profil?.photoUrl ?? '').isNotEmpty,
+                          ),
+                          child: Stack(
+                            children: [
+                              Avatar(
+                                photoUrl: profil?.photoUrl,
+                                nom: nom,
+                                rayon: 44,
+                              ),
+                              Positioned(
+                                right: 0,
+                                bottom: 0,
+                                child: CircleAvatar(
+                                  radius: 14,
+                                  backgroundColor: theme.colorScheme.primary,
+                                  child: Icon(
+                                    Icons.photo_camera,
+                                    size: 16,
+                                    color: theme.colorScheme.onPrimary,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 12),
                     Text(
                       l10n.bonjourNom(nom),
                       style: theme.textTheme.headlineSmall,
@@ -70,6 +110,59 @@ class ProfilScreen extends ConsumerWidget {
         ],
       ),
     );
+  }
+
+  Future<void> _changerPhoto(
+    BuildContext context,
+    WidgetRef ref,
+    String uid,
+    bool aUnePhoto,
+  ) async {
+    final l10n = AppLocalizations.of(context);
+    final choix = await showModalBottomSheet<String>(
+      context: context,
+      builder: (context) => SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: const Icon(Icons.photo_camera_outlined),
+              title: Text(l10n.prendrePhoto),
+              onTap: () => Navigator.pop(context, 'camera'),
+            ),
+            ListTile(
+              leading: const Icon(Icons.photo_library_outlined),
+              title: Text(l10n.choisirGalerie),
+              onTap: () => Navigator.pop(context, 'galerie'),
+            ),
+            if (aUnePhoto)
+              ListTile(
+                leading: const Icon(Icons.delete_outline),
+                title: Text(l10n.supprimerPhoto),
+                onTap: () => Navigator.pop(context, 'supprimer'),
+              ),
+          ],
+        ),
+      ),
+    );
+    if (choix == null || !context.mounted) return;
+    final messager = ScaffoldMessenger.of(context);
+    final service = ref.read(photoProfilServiceProvider);
+    final repo = ref.read(authRepositoryProvider);
+    try {
+      if (choix == 'supprimer') {
+        await service.supprimer(uid);
+        await repo.definirPhoto(null);
+      } else {
+        final url = await service.choisirEtEnvoyer(
+          uid,
+          camera: choix == 'camera',
+        );
+        if (url != null) await repo.definirPhoto(url);
+      }
+    } catch (_) {
+      messager.showSnackBar(SnackBar(content: Text(l10n.photoEnvoiEchoue)));
+    }
   }
 
   Future<void> _activerCoach(BuildContext context, WidgetRef ref) async {

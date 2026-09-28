@@ -531,4 +531,20 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get champDescription => 'Description';
+
+  @override
+  String get changerPhoto => 'Changer la photo de profil';
+
+  @override
+  String get prendrePhoto => 'Prendre une photo';
+
+  @override
+  String get choisirGalerie => 'Choisir dans la galerie';
+
+  @override
+  String get supprimerPhoto => 'Supprimer la photo';
+
+  @override
+  String get photoEnvoiEchoue =>
+      'La photo n\'a pas pu être enregistrée. Réessayez.';
 }

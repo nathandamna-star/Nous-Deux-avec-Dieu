@@ -22,6 +22,14 @@ before(async () => {
 });
 after(async () => { await env.cleanup(); });
 
+describe('photos de profil', () => {
+  it('chacun envoie sa photo, pas celle d\'un autre, images seulement', async () => {
+    await assertSucceeds(uploadBytes(ref(marie(), 'users/marie/profil.jpg'), octets, { contentType: 'image/jpeg' }));
+    await assertFails(uploadBytes(ref(marie(), 'users/paul/profil.jpg'), octets, { contentType: 'image/jpeg' }));
+    await assertFails(uploadBytes(ref(marie(), 'users/marie/profil.mp4'), octets, { contentType: 'video/mp4' }));
+  });
+});
+
 describe('fichiers des contenus', () => {
   it('le coach envoie audio et vidéo', async () => {
     await assertSucceeds(uploadBytes(ref(coach(), 'contenus/c1/fr.m4a'), octets, { contentType: 'audio/mp4' }));

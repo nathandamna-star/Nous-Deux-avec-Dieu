@@ -530,4 +530,20 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get champDescription => 'Beschrijving';
+
+  @override
+  String get changerPhoto => 'Profielfoto wijzigen';
+
+  @override
+  String get prendrePhoto => 'Foto maken';
+
+  @override
+  String get choisirGalerie => 'Kiezen uit galerij';
+
+  @override
+  String get supprimerPhoto => 'Foto verwijderen';
+
+  @override
+  String get photoEnvoiEchoue =>
+      'De foto kon niet worden opgeslagen. Probeer opnieuw.';
 }

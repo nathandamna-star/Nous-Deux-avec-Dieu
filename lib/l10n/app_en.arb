@@ -160,5 +160,10 @@
   "envoiEnCours": "Uploading… {pourcent}%",
   "fichierRequis": "Add at least one file.",
   "envoiEchoue": "The upload failed. Please try again.",
-  "champDescription": "Description"
+  "champDescription": "Description",
+  "changerPhoto": "Change profile photo",
+  "prendrePhoto": "Take a photo",
+  "choisirGalerie": "Choose from gallery",
+  "supprimerPhoto": "Remove photo",
+  "photoEnvoiEchoue": "The photo could not be saved. Please try again."
 }

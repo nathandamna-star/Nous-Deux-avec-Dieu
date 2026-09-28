@@ -1069,6 +1069,36 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Description'**
   String get champDescription;
+
+  /// No description provided for @changerPhoto.
+  ///
+  /// In fr, this message translates to:
+  /// **'Changer la photo de profil'**
+  String get changerPhoto;
+
+  /// No description provided for @prendrePhoto.
+  ///
+  /// In fr, this message translates to:
+  /// **'Prendre une photo'**
+  String get prendrePhoto;
+
+  /// No description provided for @choisirGalerie.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisir dans la galerie'**
+  String get choisirGalerie;
+
+  /// No description provided for @supprimerPhoto.
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer la photo'**
+  String get supprimerPhoto;
+
+  /// No description provided for @photoEnvoiEchoue.
+  ///
+  /// In fr, this message translates to:
+  /// **'La photo n\'a pas pu être enregistrée. Réessayez.'**
+  String get photoEnvoiEchoue;
 }
 
 class _AppLocalizationsDelegate

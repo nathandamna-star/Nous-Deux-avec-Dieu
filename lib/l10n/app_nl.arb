@@ -160,5 +160,10 @@
   "envoiEnCours": "Uploaden… {pourcent}%",
   "fichierRequis": "Voeg minstens één bestand toe.",
   "envoiEchoue": "Uploaden mislukt. Probeer opnieuw.",
-  "champDescription": "Beschrijving"
+  "champDescription": "Beschrijving",
+  "changerPhoto": "Profielfoto wijzigen",
+  "prendrePhoto": "Foto maken",
+  "choisirGalerie": "Kiezen uit galerij",
+  "supprimerPhoto": "Foto verwijderen",
+  "photoEnvoiEchoue": "De foto kon niet worden opgeslagen. Probeer opnieuw."
 }

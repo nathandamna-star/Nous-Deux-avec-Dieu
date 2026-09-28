@@ -45,6 +45,14 @@ class AuthRepository {
     });
   });
 
+  /// Nouvelle photo de profil (null : supprimée).
+  Future<void> definirPhoto(String? url) async {
+    final user = auth.currentUser;
+    if (user == null) return;
+    await firestore.collection('users').doc(user.uid).update({'photoUrl': url});
+    await user.updatePhotoURL(url);
+  }
+
   Future<void> motDePasseOublie(String email) =>
       _executer(() => auth.sendPasswordResetEmail(email: email.trim()));
 

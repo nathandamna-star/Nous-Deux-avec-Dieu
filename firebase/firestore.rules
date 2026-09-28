@@ -38,7 +38,11 @@ service cloud.firestore {
       // Modification : nom, langue et parcours seulement.
       allow update: if connecte() && uid == moi()
         && request.resource.data.diff(resource.data).affectedKeys()
-             .hasOnly(['nom', 'langue', 'parcours'])
+             .hasOnly(['nom', 'langue', 'parcours', 'photoUrl'])
+        && (request.resource.data.get('photoUrl', null) == null
+          || (request.resource.data.photoUrl is string
+            && request.resource.data.photoUrl.matches('https://.+')
+            && request.resource.data.photoUrl.size() <= 1000))
         && texte(request.resource.data.nom, 100)
         && request.resource.data.langue in ['fr', 'en', 'pt', 'es', 'nl']
         && request.resource.data.parcours in ['couple', 'seul', 'decouverte'];

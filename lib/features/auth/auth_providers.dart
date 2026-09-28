@@ -58,6 +58,16 @@ final profilProvider = StreamProvider<Utilisateur?>((ref) {
       .map((doc) => doc.exists ? Utilisateur.depuisFirestore(doc) : null);
 });
 
+/// Profil d'un autre utilisateur (lisible par le coach).
+final profilUtilisateurProvider = StreamProvider.family<Utilisateur?, String>(
+  (ref, uid) => ref
+      .watch(firestoreProvider)
+      .collection('users')
+      .doc(uid)
+      .snapshots()
+      .map((doc) => doc.exists ? Utilisateur.depuisFirestore(doc) : null),
+);
+
 /// Choix fait sur l'écran de bienvenue avant l'inscription.
 final parcoursSouhaiteProvider = NotifierProvider<ParcoursSouhaite, Parcours>(
   ParcoursSouhaite.new,

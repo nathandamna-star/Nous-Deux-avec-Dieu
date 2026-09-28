@@ -5,7 +5,9 @@ import 'package:intl/intl.dart';
 import '../../l10n/app_localizations.dart';
 import '../accompagnement/accompagnement_providers.dart';
 import '../accompagnement/domain/accompagnement.dart';
+import '../../shared/widgets/avatar.dart';
 import '../accompagnement/presentation/libelles.dart';
+import '../auth/auth_providers.dart';
 
 /// Fiche d'un accompagnement (coach) : membres, statut, séances, notes privées.
 class FicheAccompagnementScreen extends ConsumerStatefulWidget {
@@ -106,7 +108,13 @@ class _FicheAccompagnementScreenState
           for (final uid in a.membres)
             ListTile(
               contentPadding: EdgeInsets.zero,
-              leading: const Icon(Icons.person_outline),
+              leading: Avatar(
+                photoUrl: ref
+                    .watch(profilUtilisateurProvider(uid))
+                    .value
+                    ?.photoUrl,
+                nom: a.noms[uid] ?? '',
+              ),
               title: Text(a.noms[uid] ?? ''),
             ),
           if (a.attendConjoint)
