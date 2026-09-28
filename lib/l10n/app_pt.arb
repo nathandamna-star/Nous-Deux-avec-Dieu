@@ -9,7 +9,6 @@
   "navProfil": "Perfil",
   "navCoach": "Coach",
   "bientot": "Em breve",
-  "messagesAVenir": "Aqui: a sua conversa com o seu coach.",
   "seancesAVenir": "Aqui: os seus encontros, as sessões restantes e os pacotes.",
   "profilAVenir": "Aqui: o seu idioma, o seu cônjuge, os donativos e os seus dados.",
   "bienvenueQuestion": "O que o traz aqui?",
@@ -213,5 +212,18 @@
   "etapesRequises": "Adicione pelo menos uma etapa.",
   "choisirContenuEtape": "Escolher um conteúdo",
   "supprimerParcoursTitre": "Apagar este percurso?",
-  "nbEtapes": "{n, plural, =1{1 etapa} other{{n} etapas}}"
+  "nbEtapes": "{n, plural, =1{1 etapa} other{{n} etapas}}",
+  "votreCoach": "O seu coach",
+  "messagesSansAccompagnement": "Para escrever ao seu coach, peça primeiro um acompanhamento no seu perfil.",
+  "aucunMessage": "Ainda sem mensagens. Escreva a primeira!",
+  "aucuneConversation": "Ainda sem conversas.",
+  "ecrireMessage": "Escrever uma mensagem",
+  "envoyerMessage": "Enviar",
+  "envoyerPhoto": "Enviar uma foto",
+  "messageVocal": "Mensagem de voz",
+  "enregistrementEnCours": "A gravar… {duree}",
+  "arreterEtEnvoyer": "Parar e enviar",
+  "microRefuse": "O acesso ao microfone foi recusado. Autorize-o nas Definições do telefone.",
+  "envoiMessageEchoue": "Não foi possível enviar a mensagem. Tente novamente.",
+  "nonLus": "{n, plural, =1{1 mensagem não lida} other{{n} mensagens não lidas}}"
 }

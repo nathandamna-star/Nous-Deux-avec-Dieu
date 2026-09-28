@@ -158,12 +158,6 @@ abstract class AppLocalizations {
   /// **'Bientôt disponible'**
   String get bientot;
 
-  /// No description provided for @messagesAVenir.
-  ///
-  /// In fr, this message translates to:
-  /// **'Ici : votre conversation avec votre coach.'**
-  String get messagesAVenir;
-
   /// No description provided for @seancesAVenir.
   ///
   /// In fr, this message translates to:
@@ -1387,6 +1381,84 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'{n, plural, =1{1 étape} other{{n} étapes}}'**
   String nbEtapes(int n);
+
+  /// No description provided for @votreCoach.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre coach'**
+  String get votreCoach;
+
+  /// No description provided for @messagesSansAccompagnement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pour écrire à votre coach, demandez d\'abord un accompagnement depuis votre profil.'**
+  String get messagesSansAccompagnement;
+
+  /// No description provided for @aucunMessage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun message pour l\'instant. Écrivez le premier !'**
+  String get aucunMessage;
+
+  /// No description provided for @aucuneConversation.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune conversation pour l\'instant.'**
+  String get aucuneConversation;
+
+  /// No description provided for @ecrireMessage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Écrire un message'**
+  String get ecrireMessage;
+
+  /// No description provided for @envoyerMessage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Envoyer'**
+  String get envoyerMessage;
+
+  /// No description provided for @envoyerPhoto.
+  ///
+  /// In fr, this message translates to:
+  /// **'Envoyer une photo'**
+  String get envoyerPhoto;
+
+  /// No description provided for @messageVocal.
+  ///
+  /// In fr, this message translates to:
+  /// **'Message vocal'**
+  String get messageVocal;
+
+  /// No description provided for @enregistrementEnCours.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrement… {duree}'**
+  String enregistrementEnCours(String duree);
+
+  /// No description provided for @arreterEtEnvoyer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Arrêter et envoyer'**
+  String get arreterEtEnvoyer;
+
+  /// No description provided for @microRefuse.
+  ///
+  /// In fr, this message translates to:
+  /// **'L\'accès au micro est refusé. Autorisez-le dans les Réglages du téléphone.'**
+  String get microRefuse;
+
+  /// No description provided for @envoiMessageEchoue.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le message n\'a pas pu être envoyé. Réessayez.'**
+  String get envoiMessageEchoue;
+
+  /// No description provided for @nonLus.
+  ///
+  /// In fr, this message translates to:
+  /// **'{n, plural, =1{1 message non lu} other{{n} messages non lus}}'**
+  String nonLus(int n);
 }
 
 class _AppLocalizationsDelegate

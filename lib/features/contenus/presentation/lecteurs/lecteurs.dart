@@ -3,11 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'lecteur_audio.dart';
 import 'lecteur_video.dart';
+import 'lecteur_vocal.dart';
 
 /// Fabrique des lecteurs (remplacée dans les tests : pas de lecteur natif).
 abstract interface class FabriqueLecteurs {
   Widget audio({required String url, required String cle});
   Widget video({required String url, required String cle});
+  Widget vocal({required String url, Color? couleur});
 }
 
 class LecteursNatifs implements FabriqueLecteurs {
@@ -20,6 +22,10 @@ class LecteursNatifs implements FabriqueLecteurs {
   @override
   Widget video({required String url, required String cle}) =>
       LecteurVideo(url: url, cle: cle);
+
+  @override
+  Widget vocal({required String url, Color? couleur}) =>
+      LecteurVocal(url: url, couleur: couleur);
 }
 
 final fabriqueLecteursProvider = Provider<FabriqueLecteurs>(

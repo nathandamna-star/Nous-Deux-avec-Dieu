@@ -37,9 +37,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get bientot => 'Bientôt disponible';
 
   @override
-  String get messagesAVenir => 'Ici : votre conversation avec votre coach.';
-
-  @override
   String get seancesAVenir =>
       'Ici : vos rendez-vous, vos séances restantes et les forfaits.';
 
@@ -725,6 +722,59 @@ class AppLocalizationsFr extends AppLocalizations {
       locale: localeName,
       other: '$n étapes',
       one: '1 étape',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get votreCoach => 'Votre coach';
+
+  @override
+  String get messagesSansAccompagnement =>
+      'Pour écrire à votre coach, demandez d\'abord un accompagnement depuis votre profil.';
+
+  @override
+  String get aucunMessage =>
+      'Aucun message pour l\'instant. Écrivez le premier !';
+
+  @override
+  String get aucuneConversation => 'Aucune conversation pour l\'instant.';
+
+  @override
+  String get ecrireMessage => 'Écrire un message';
+
+  @override
+  String get envoyerMessage => 'Envoyer';
+
+  @override
+  String get envoyerPhoto => 'Envoyer une photo';
+
+  @override
+  String get messageVocal => 'Message vocal';
+
+  @override
+  String enregistrementEnCours(String duree) {
+    return 'Enregistrement… $duree';
+  }
+
+  @override
+  String get arreterEtEnvoyer => 'Arrêter et envoyer';
+
+  @override
+  String get microRefuse =>
+      'L\'accès au micro est refusé. Autorisez-le dans les Réglages du téléphone.';
+
+  @override
+  String get envoiMessageEchoue =>
+      'Le message n\'a pas pu être envoyé. Réessayez.';
+
+  @override
+  String nonLus(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n messages non lus',
+      one: '1 message non lu',
     );
     return '$_temp0';
   }

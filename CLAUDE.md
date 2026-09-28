@@ -285,3 +285,13 @@ Avant toute décision importante non prévue ici, pose la question au lieu de ch
   (barre de progression, Commencer / Continuer) → étape (`ContenuScreen` avec `parcoursId` : « Marquer comme
   fait »). Coach : Mes contenus → Mes parcours → éditeur (étapes choisies dans la bibliothèque, glisser pour
   réordonner).
+- Messagerie (étape 6, `lib/features/messages/`) : `accompagnements/{id}/messages/{mid}` (auteur, texte, photoUrl,
+  audioUrl) ; une seule conversation par accompagnement, les deux conjoints la voient. Sur l'accompagnement :
+  `dernierMessage`, `dernierMessageLe`, `nonLusCoach`, `nonLus.{uid}` (un membre ne remet à zéro que les siens).
+  Photos (image_picker, 1600 px) et vocaux (`record`, AAC 64 kb/s) via `PiecesJointes`, Storage
+  `messages/{accId}/…` (règle Storage croisée avec Firestore : membres + coach). Client : onglet Messages =
+  conversation avec le coach ; coach : liste des conversations (pastille = non-lus), aussi depuis la fiche.
+- Notifications : jetons FCM dans `users/{uid}.jetonsNotif` (activés à la connexion, retirés à la déconnexion) ;
+  Cloud Functions `notifierMessage` (membres → coach : uid dans `systeme/coach` ; coach → membres) et
+  `notifierExercice`, textes dans les 5 langues (`functions/notifications.js`, testé). Toucher une notification
+  ouvre l'exercice ou la conversation. iPhone : clé APNs + capacités Xcode nécessaires (compte Apple payant).

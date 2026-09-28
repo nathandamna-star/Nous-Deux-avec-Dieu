@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:typed_data';
+
 import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 import 'package:firebase_auth_mocks/firebase_auth_mocks.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +15,10 @@ import 'package:nous_deux_avec_dieu/features/contenus/contenus_providers.dart';
 import 'package:nous_deux_avec_dieu/features/contenus/data/medias_service.dart';
 import 'package:nous_deux_avec_dieu/features/contenus/domain/contenu.dart';
 import 'package:nous_deux_avec_dieu/features/contenus/presentation/lecteurs/lecteurs.dart';
+import 'package:nous_deux_avec_dieu/features/messages/data/pieces_jointes.dart';
+import 'package:nous_deux_avec_dieu/features/messages/messagerie_providers.dart';
+import 'package:nous_deux_avec_dieu/features/notifications/notifications_providers.dart';
+import 'package:nous_deux_avec_dieu/features/notifications/notifications_service.dart';
 import 'package:nous_deux_avec_dieu/features/profil/data/photo_profil_service.dart';
 import 'package:nous_deux_avec_dieu/features/profil/profil_providers.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -25,6 +32,8 @@ class Banc {
   final fonctions = FaussesFonctionsCoach();
   final medias = FauxMedias();
   final photo = FaussePhotoProfil();
+  final pieces = FaussesPiecesJointes();
+  final notifications = FaussesNotifications();
 
   Future<void> lancer(
     WidgetTester tester, {
@@ -48,6 +57,8 @@ class Banc {
           fonctionsCoachProvider.overrideWithValue(fonctions),
           mediasServiceProvider.overrideWithValue(medias),
           photoProfilServiceProvider.overrideWithValue(photo),
+          piecesJointesProvider.overrideWithValue(pieces),
+          notificationsServiceProvider.overrideWithValue(notifications),
           fabriqueLecteursProvider.overrideWithValue(const FauxLecteurs()),
         ],
         child: const NousDeuxAvecDieuApp(),
@@ -151,6 +162,10 @@ class FauxLecteurs implements FabriqueLecteurs {
   @override
   Widget video({required String url, required String cle}) =>
       Text('lecteur vidéo : $url');
+
+  @override
+  Widget vocal({required String url, Color? couleur}) =>
+      Text('message vocal : $url');
 }
 
 class FaussePhotoProfil implements PhotoProfilService {
@@ -164,4 +179,47 @@ class FaussePhotoProfil implements PhotoProfilService {
 
   @override
   Future<void> supprimer(String uid) async => appels.add('supprimer');
+}
+
+class FaussesPiecesJointes implements PiecesJointes {
+  var micro = true;
+  var enregistre = false;
+
+  @override
+  Future<Uint8List?> choisirPhoto({required bool camera}) async =>
+      Uint8List.fromList([1, 2, 3]);
+
+  @override
+  Future<String> envoyerPhoto(String accId, Uint8List octets) async =>
+      'https://stockage.test/messages/$accId/photo.jpg';
+
+  @override
+  Future<bool> demarrerVocal() async => enregistre = micro;
+
+  @override
+  Future<String?> arreterVocal() async {
+    enregistre = false;
+    return '/tmp/vocal.m4a';
+  }
+
+  @override
+  Future<void> annulerVocal() async => enregistre = false;
+
+  @override
+  Future<String> envoyerVocal(String accId, String chemin) async =>
+      'https://stockage.test/messages/$accId/vocal.m4a';
+}
+
+class FaussesNotifications implements NotificationsService {
+  final actives = <String>[];
+  final touchees = StreamController<Map<String, dynamic>>.broadcast();
+
+  @override
+  Future<void> activer(String uid) async => actives.add(uid);
+
+  @override
+  Future<void> desactiver(String uid) async => actives.remove(uid);
+
+  @override
+  Stream<Map<String, dynamic>> get notificationsTouchees => touchees.stream;
 }

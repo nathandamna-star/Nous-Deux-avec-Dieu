@@ -7,6 +7,7 @@ import '../../shared/widgets/connexion_requise.dart';
 import '../accompagnement/accompagnement_providers.dart';
 import '../accompagnement/presentation/carte_mon_accompagnement.dart';
 import '../auth/auth_providers.dart';
+import '../notifications/notifications_providers.dart';
 import 'profil_providers.dart';
 
 class ProfilScreen extends ConsumerWidget {
@@ -103,7 +104,10 @@ class ProfilScreen extends ConsumerWidget {
           ],
           const SizedBox(height: 24),
           OutlinedButton.icon(
-            onPressed: () => ref.read(authRepositoryProvider).deconnexion(),
+            onPressed: () async {
+              await ref.read(notificationsServiceProvider).desactiver(user.uid);
+              await ref.read(authRepositoryProvider).deconnexion();
+            },
             icon: const Icon(Icons.logout),
             label: Text(l10n.seDeconnecter),
           ),

@@ -37,9 +37,6 @@ class AppLocalizationsNl extends AppLocalizations {
   String get bientot => 'Binnenkort beschikbaar';
 
   @override
-  String get messagesAVenir => 'Hier: je gesprek met je coach.';
-
-  @override
   String get seancesAVenir =>
       'Hier: je afspraken, resterende sessies en pakketten.';
 
@@ -722,6 +719,58 @@ class AppLocalizationsNl extends AppLocalizations {
       locale: localeName,
       other: '$n stappen',
       one: '1 stap',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get votreCoach => 'Je coach';
+
+  @override
+  String get messagesSansAccompagnement =>
+      'Vraag eerst begeleiding aan via je profiel om je coach te schrijven.';
+
+  @override
+  String get aucunMessage => 'Nog geen berichten. Schrijf het eerste!';
+
+  @override
+  String get aucuneConversation => 'Nog geen gesprekken.';
+
+  @override
+  String get ecrireMessage => 'Bericht schrijven';
+
+  @override
+  String get envoyerMessage => 'Versturen';
+
+  @override
+  String get envoyerPhoto => 'Foto versturen';
+
+  @override
+  String get messageVocal => 'Spraakbericht';
+
+  @override
+  String enregistrementEnCours(String duree) {
+    return 'Opnemen… $duree';
+  }
+
+  @override
+  String get arreterEtEnvoyer => 'Stoppen en versturen';
+
+  @override
+  String get microRefuse =>
+      'Toegang tot de microfoon is geweigerd. Sta dit toe in de instellingen van je telefoon.';
+
+  @override
+  String get envoiMessageEchoue =>
+      'Het bericht kon niet worden verzonden. Probeer opnieuw.';
+
+  @override
+  String nonLus(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n ongelezen berichten',
+      one: '1 ongelezen bericht',
     );
     return '$_temp0';
   }

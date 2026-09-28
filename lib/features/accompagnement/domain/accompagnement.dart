@@ -31,6 +31,10 @@ class Accompagnement {
     this.codeInvitation,
     this.message = '',
     this.seancesRestantes = 0,
+    this.dernierMessage = '',
+    this.dernierMessageLe,
+    this.nonLusCoach = 0,
+    this.nonLus = const {},
     this.createdAt,
   });
 
@@ -49,6 +53,12 @@ class Accompagnement {
   /// Ce que la personne a écrit en faisant sa demande.
   final String message;
   final int seancesRestantes;
+
+  /// Messagerie : aperçu du dernier message et non-lus (coach, et par membre).
+  final String dernierMessage;
+  final DateTime? dernierMessageLe;
+  final int nonLusCoach;
+  final Map<String, int> nonLus;
   final DateTime? createdAt;
 
   /// Couple dont le conjoint n'a pas encore rejoint l'accompagnement.
@@ -71,6 +81,13 @@ class Accompagnement {
       codeInvitation: d['codeInvitation'] as String?,
       message: d['message'] as String? ?? '',
       seancesRestantes: (d['seancesRestantes'] as num? ?? 0).toInt(),
+      dernierMessage: d['dernierMessage'] as String? ?? '',
+      dernierMessageLe: (d['dernierMessageLe'] as Timestamp?)?.toDate(),
+      nonLusCoach: (d['nonLusCoach'] as num? ?? 0).toInt(),
+      nonLus: {
+        for (final e in (d['nonLus'] as Map? ?? const {}).entries)
+          e.key as String: (e.value as num? ?? 0).toInt(),
+      },
       createdAt: (d['createdAt'] as Timestamp?)?.toDate(),
     );
   }

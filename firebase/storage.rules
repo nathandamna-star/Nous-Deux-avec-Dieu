@@ -18,6 +18,21 @@ service firebase.storage {
       allow delete: if request.auth != null && request.auth.uid == uid;
     }
 
+    // Photos et messages vocaux d'une conversation : le coach et les membres.
+    function membreConversation(accId) {
+      return request.auth != null
+        && request.auth.uid in firestore.get(/databases/(default)/documents/accompagnements/$(accId)).data.membres;
+    }
+
+    match /messages/{accId}/{fichier} {
+      allow read: if estCoach() || membreConversation(accId);
+      allow create: if (estCoach() || membreConversation(accId))
+        && ((request.resource.contentType.matches('image/.*')
+              && request.resource.size < 10 * 1024 * 1024)
+          || (request.resource.contentType.matches('audio/.*')
+              && request.resource.size < 20 * 1024 * 1024));
+    }
+
     match /contenus/{contenuId}/{fichier} {
       allow read: if request.auth != null;
       allow create, update: if estCoach()

@@ -38,7 +38,9 @@ service cloud.firestore {
       // Modification : nom, langue et parcours seulement.
       allow update: if connecte() && uid == moi()
         && request.resource.data.diff(resource.data).affectedKeys()
-             .hasOnly(['nom', 'langue', 'parcours', 'photoUrl'])
+             .hasOnly(['nom', 'langue', 'parcours', 'photoUrl', 'jetonsNotif'])
+        && request.resource.data.get('jetonsNotif', []) is list
+        && request.resource.data.get('jetonsNotif', []).size() <= 20
         && (request.resource.data.get('photoUrl', null) == null
           || (request.resource.data.photoUrl is string
             && request.resource.data.photoUrl.matches('https://.+')
@@ -98,9 +100,19 @@ service cloud.firestore {
         && request.resource.data.noms.diff(resource.data.noms).affectedKeys().hasOnly([moi()])
         && champs().hasOnly(['membres', 'noms', 'codeUtilise', 'updatedAt']);
 
-      // Le coach gère le statut et les séances restantes.
+      // Messagerie : un membre met à jour l'aperçu, les non-lus du coach et
+      // remet à zéro ses propres non-lus (jamais ceux de son conjoint).
+      allow update: if connecte() && moi() in resource.data.membres
+        && champs().hasOnly(['dernierMessage', 'dernierMessageLe', 'nonLusCoach', 'nonLus'])
+        && (!('nonLus' in champs())
+          || request.resource.data.nonLus.diff(resource.data.get('nonLus', {}))
+               .affectedKeys().hasOnly([moi()]))
+        && request.resource.data.get('nonLusCoach', 0) is int;
+
+      // Le coach gère le statut, les séances restantes et la messagerie.
       allow update: if estCoach()
-        && champs().hasOnly(['statut', 'seancesRestantes', 'updatedAt'])
+        && champs().hasOnly(['statut', 'seancesRestantes', 'updatedAt',
+             'dernierMessage', 'dernierMessageLe', 'nonLusCoach', 'nonLus'])
         && request.resource.data.statut in ['demande', 'actif', 'en_pause', 'termine']
         && request.resource.data.get('seancesRestantes', 0) is int
         && request.resource.data.get('seancesRestantes', 0) >= 0;
@@ -153,6 +165,20 @@ service cloud.firestore {
             && request.resource.data.texte is string
             && request.resource.data.texte.size() <= 10000;
         }
+      }
+
+      // Messages : le coach et les membres, chacun en son nom.
+      match /messages/{messageId} {
+        allow read: if estCoach() || membre();
+        allow create: if (estCoach() || membre())
+          && request.resource.data.auteur == moi()
+          && request.resource.data.keys().hasOnly([
+            'auteur', 'texte', 'photoUrl', 'audioUrl', 'createdAt'])
+          && request.resource.data.texte is string
+          && request.resource.data.texte.size() <= 5000
+          && (request.resource.data.texte.size() > 0
+            || 'photoUrl' in request.resource.data
+            || 'audioUrl' in request.resource.data);
       }
 
       // Notes privées : le coach seulement.

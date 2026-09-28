@@ -12,6 +12,8 @@ import '../../features/parcours/presentation/parcours_screen.dart';
 import '../../features/coach/envoi_exercice_screen.dart';
 import '../../features/coach/exercice_coach_screen.dart';
 import '../../features/exercices/presentation/exercice_screen.dart';
+import '../../features/messages/messagerie_providers.dart';
+import '../../features/messages/presentation/conversation_screen.dart';
 import '../../features/exercices/presentation/exercices_screen.dart';
 import '../../features/coach/editeur_contenu_screen.dart';
 import '../../features/coach/fiche_accompagnement_screen.dart';
@@ -96,6 +98,13 @@ final routerProvider = Provider<GoRouter>((ref) {
 });
 
 final _sousRoutes = <String, List<RouteBase>>{
+  Routes.messages: [
+    GoRoute(
+      path: ':id',
+      builder: (context, state) =>
+          ConversationScreen(accId: state.pathParameters['id']!),
+    ),
+  ],
   Routes.accueil: [
     GoRoute(
       path: 'exercices',
@@ -210,16 +219,41 @@ class _Coquille extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
     final coach = ref.watch(estCoachProvider);
+    final nonLus = ref.watch(nbNonLusProvider);
     final onglets = [
-      (Icons.wb_sunny_outlined, Icons.wb_sunny, l10n.navAccueil),
-      (Icons.auto_stories_outlined, Icons.auto_stories, l10n.navContenus),
-      (Icons.chat_bubble_outline, Icons.chat_bubble, l10n.navMessages),
-      (Icons.event_outlined, Icons.event, l10n.navSeances),
-      (Icons.person_outline, Icons.person, l10n.navProfil),
+      (
+        const Icon(Icons.wb_sunny_outlined),
+        const Icon(Icons.wb_sunny),
+        l10n.navAccueil,
+      ),
+      (
+        const Icon(Icons.auto_stories_outlined),
+        const Icon(Icons.auto_stories),
+        l10n.navContenus,
+      ),
+      (
+        Badge(
+          isLabelVisible: nonLus > 0,
+          label: Text('$nonLus'),
+          child: const Icon(Icons.chat_bubble_outline),
+        ),
+        const Icon(Icons.chat_bubble),
+        l10n.navMessages,
+      ),
+      (
+        const Icon(Icons.event_outlined),
+        const Icon(Icons.event),
+        l10n.navSeances,
+      ),
+      (
+        const Icon(Icons.person_outline),
+        const Icon(Icons.person),
+        l10n.navProfil,
+      ),
       if (coach)
         (
-          Icons.volunteer_activism_outlined,
-          Icons.volunteer_activism,
+          const Icon(Icons.volunteer_activism_outlined),
+          const Icon(Icons.volunteer_activism),
           l10n.navCoach,
         ),
     ];
@@ -232,8 +266,8 @@ class _Coquille extends ConsumerWidget {
         destinations: [
           for (final (icone, iconeActive, libelle) in onglets)
             NavigationDestination(
-              icon: Icon(icone),
-              selectedIcon: Icon(iconeActive),
+              icon: icone,
+              selectedIcon: iconeActive,
               label: libelle,
             ),
         ],

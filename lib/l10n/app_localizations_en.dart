@@ -37,9 +37,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get bientot => 'Coming soon';
 
   @override
-  String get messagesAVenir => 'Here: your conversation with your coach.';
-
-  @override
   String get seancesAVenir =>
       'Here: your appointments, remaining sessions and packages.';
 
@@ -721,6 +718,58 @@ class AppLocalizationsEn extends AppLocalizations {
       locale: localeName,
       other: '$n steps',
       one: '1 step',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get votreCoach => 'Your coach';
+
+  @override
+  String get messagesSansAccompagnement =>
+      'To write to your coach, first request coaching from your profile.';
+
+  @override
+  String get aucunMessage => 'No messages yet. Write the first one!';
+
+  @override
+  String get aucuneConversation => 'No conversations yet.';
+
+  @override
+  String get ecrireMessage => 'Write a message';
+
+  @override
+  String get envoyerMessage => 'Send';
+
+  @override
+  String get envoyerPhoto => 'Send a photo';
+
+  @override
+  String get messageVocal => 'Voice message';
+
+  @override
+  String enregistrementEnCours(String duree) {
+    return 'Recording… $duree';
+  }
+
+  @override
+  String get arreterEtEnvoyer => 'Stop and send';
+
+  @override
+  String get microRefuse =>
+      'Microphone access is denied. Allow it in your phone\'s Settings.';
+
+  @override
+  String get envoiMessageEchoue =>
+      'The message could not be sent. Please try again.';
+
+  @override
+  String nonLus(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n unread messages',
+      one: '1 unread message',
     );
     return '$_temp0';
   }

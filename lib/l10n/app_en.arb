@@ -9,7 +9,6 @@
   "navProfil": "Profile",
   "navCoach": "Coach",
   "bientot": "Coming soon",
-  "messagesAVenir": "Here: your conversation with your coach.",
   "seancesAVenir": "Here: your appointments, remaining sessions and packages.",
   "profilAVenir": "Here: your language, your spouse, donations and your data.",
   "bienvenueQuestion": "What brings you here?",
@@ -213,5 +212,18 @@
   "etapesRequises": "Add at least one step.",
   "choisirContenuEtape": "Choose a content item",
   "supprimerParcoursTitre": "Delete this programme?",
-  "nbEtapes": "{n, plural, =1{1 step} other{{n} steps}}"
+  "nbEtapes": "{n, plural, =1{1 step} other{{n} steps}}",
+  "votreCoach": "Your coach",
+  "messagesSansAccompagnement": "To write to your coach, first request coaching from your profile.",
+  "aucunMessage": "No messages yet. Write the first one!",
+  "aucuneConversation": "No conversations yet.",
+  "ecrireMessage": "Write a message",
+  "envoyerMessage": "Send",
+  "envoyerPhoto": "Send a photo",
+  "messageVocal": "Voice message",
+  "enregistrementEnCours": "Recording… {duree}",
+  "arreterEtEnvoyer": "Stop and send",
+  "microRefuse": "Microphone access is denied. Allow it in your phone's Settings.",
+  "envoiMessageEchoue": "The message could not be sent. Please try again.",
+  "nonLus": "{n, plural, =1{1 unread message} other{{n} unread messages}}"
 }

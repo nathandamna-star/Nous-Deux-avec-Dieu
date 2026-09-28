@@ -9,7 +9,6 @@
   "navProfil": "Profiel",
   "navCoach": "Coach",
   "bientot": "Binnenkort beschikbaar",
-  "messagesAVenir": "Hier: je gesprek met je coach.",
   "seancesAVenir": "Hier: je afspraken, resterende sessies en pakketten.",
   "profilAVenir": "Hier: je taal, je partner, giften en je gegevens.",
   "bienvenueQuestion": "Wat brengt je hier?",
@@ -213,5 +212,18 @@
   "etapesRequises": "Voeg minstens één stap toe.",
   "choisirContenuEtape": "Inhoud kiezen",
   "supprimerParcoursTitre": "Dit traject verwijderen?",
-  "nbEtapes": "{n, plural, =1{1 stap} other{{n} stappen}}"
+  "nbEtapes": "{n, plural, =1{1 stap} other{{n} stappen}}",
+  "votreCoach": "Je coach",
+  "messagesSansAccompagnement": "Vraag eerst begeleiding aan via je profiel om je coach te schrijven.",
+  "aucunMessage": "Nog geen berichten. Schrijf het eerste!",
+  "aucuneConversation": "Nog geen gesprekken.",
+  "ecrireMessage": "Bericht schrijven",
+  "envoyerMessage": "Versturen",
+  "envoyerPhoto": "Foto versturen",
+  "messageVocal": "Spraakbericht",
+  "enregistrementEnCours": "Opnemen… {duree}",
+  "arreterEtEnvoyer": "Stoppen en versturen",
+  "microRefuse": "Toegang tot de microfoon is geweigerd. Sta dit toe in de instellingen van je telefoon.",
+  "envoiMessageEchoue": "Het bericht kon niet worden verzonden. Probeer opnieuw.",
+  "nonLus": "{n, plural, =1{1 ongelezen bericht} other{{n} ongelezen berichten}}"
 }

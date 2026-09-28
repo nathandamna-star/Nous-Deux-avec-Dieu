@@ -51,6 +51,9 @@ dependencies:
   video_player: ^2.14.0
   audio_session: ^0.2.4
   image_picker: ^1.2.3
+  firebase_messaging: ^16.7.0
+  record: ^7.1.1
+  path_provider: ^2.1.6
 
 dev_dependencies:
   flutter_test:

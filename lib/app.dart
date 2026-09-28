@@ -4,13 +4,49 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'core/router/app_router.dart';
 import 'core/theme/app_theme.dart';
+import 'features/auth/auth_providers.dart';
+import 'features/notifications/notifications_providers.dart';
 import 'l10n/app_localizations.dart';
 
-class NousDeuxAvecDieuApp extends ConsumerWidget {
+class NousDeuxAvecDieuApp extends ConsumerStatefulWidget {
   const NousDeuxAvecDieuApp({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<NousDeuxAvecDieuApp> createState() =>
+      _NousDeuxAvecDieuAppState();
+}
+
+class _NousDeuxAvecDieuAppState extends ConsumerState<NousDeuxAvecDieuApp> {
+  @override
+  void initState() {
+    super.initState();
+    // Toucher une notification ouvre le message ou l'exercice concerné.
+    ref.read(notificationsServiceProvider).notificationsTouchees.listen((d) {
+      final router = ref.read(routerProvider);
+      if (d['exerciceId'] is String) {
+        router.go(Routes.exercice(d['exerciceId'] as String));
+      } else if (d['accompagnementId'] is String) {
+        router.go(
+          ref.read(estCoachProvider)
+              ? Routes.conversation(d['accompagnementId'] as String)
+              : Routes.messages,
+        );
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // Notifications activées pour chaque personne qui se connecte.
+    ref.listen(utilisateurFirebaseProvider.select((u) => u.value?.uid), (
+      avant,
+      uid,
+    ) {
+      if (uid != null && uid != avant) {
+        ref.read(notificationsServiceProvider).activer(uid);
+      }
+    });
+
     return MaterialApp.router(
       onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
       debugShowCheckedModeBanner: false,

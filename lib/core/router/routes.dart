@@ -24,6 +24,7 @@ abstract final class Routes {
       '/coach/accompagnement/$acc/exercice';
   static String exerciceCoach(String acc, String id) =>
       '/coach/accompagnement/$acc/exercice/$id';
+  static String conversation(String acc) => '/messages/$acc';
   static const contenusCoach = '/coach/contenus';
   static const nouveauContenu = '/coach/contenus/nouveau';
   static String modifierContenu(String id) => '/coach/contenus/$id';

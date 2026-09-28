@@ -274,3 +274,45 @@ describe('parcours', () => {
     await assertFails(setDoc(ref(marie(), 'marie'), { faits: ['c1'], note: 'x' }));
   });
 });
+
+describe('messagerie', () => {
+  const couple = () => env.withSecurityRulesDisabled(async (ctx) => {
+    await setDoc(doc(ctx.firestore(), 'accompagnements/a1'), {
+      type: 'couple', nom: 'Paul & Marie', membres: ['marie', 'paul'], statut: 'actif',
+      nonLusCoach: 0, nonLus: { marie: 2, paul: 3 },
+    });
+  });
+  const message = (auteur, extra = {}) => ({ auteur, texte: 'Bonjour', createdAt: serverTimestamp(), ...extra });
+
+  it('membres et coach écrivent en leur nom ; les autres non', async () => {
+    await couple();
+    await assertSucceeds(setDoc(doc(marie(), 'accompagnements/a1/messages/m1'), message('marie')));
+    await assertSucceeds(setDoc(doc(coach(), 'accompagnements/a1/messages/m2'), message('coach1')));
+    await assertFails(setDoc(doc(marie(), 'accompagnements/a1/messages/m3'), message('paul')));
+    const lucie = env.authenticatedContext('lucie').firestore();
+    await assertFails(setDoc(doc(lucie, 'accompagnements/a1/messages/m4'), message('lucie')));
+    await assertFails(getDocs(collection(lucie, 'accompagnements/a1/messages')));
+    await assertSucceeds(getDocs(collection(paul(), 'accompagnements/a1/messages')));
+    await assertFails(setDoc(doc(marie(), 'accompagnements/a1/messages/m5'), message('marie', { texte: '' })));
+    await assertSucceeds(setDoc(doc(marie(), 'accompagnements/a1/messages/m6'),
+      message('marie', { texte: '', audioUrl: 'https://x/v.m4a' })));
+  });
+
+  it('non-lus : chacun remet les siens à zéro, pas ceux du conjoint', async () => {
+    await couple();
+    const ref = (db) => doc(db, 'accompagnements/a1');
+    await assertSucceeds(updateDoc(ref(marie()), { 'nonLus.marie': 0 }));
+    await assertFails(updateDoc(ref(marie()), { 'nonLus.paul': 0 }));
+    await assertSucceeds(updateDoc(ref(marie()), { nonLusCoach: 1, dernierMessage: 'Bonjour', dernierMessageLe: serverTimestamp() }));
+    await assertFails(updateDoc(ref(marie()), { statut: 'termine' }));
+    await assertSucceeds(updateDoc(ref(coach()), { 'nonLus.marie': 1, 'nonLus.paul': 4, nonLusCoach: 0 }));
+  });
+
+  it('jetons de notification dans son profil', async () => {
+    await env.withSecurityRulesDisabled(async (ctx) => {
+      await setDoc(doc(ctx.firestore(), 'users/marie'), { nom: 'Marie', langue: 'fr', parcours: 'couple' });
+    });
+    await assertSucceeds(updateDoc(doc(marie(), 'users/marie'), { jetonsNotif: ['jeton1'] }));
+    await assertFails(updateDoc(doc(paul(), 'users/marie'), { jetonsNotif: ['pirate'] }));
+  });
+});

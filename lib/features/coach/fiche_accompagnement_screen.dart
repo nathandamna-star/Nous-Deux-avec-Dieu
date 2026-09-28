@@ -68,7 +68,16 @@ class _FicheAccompagnementScreenState
         );
 
     return Scaffold(
-      appBar: AppBar(title: Text(a.nom)),
+      appBar: AppBar(
+        title: Text(a.nom),
+        actions: [
+          IconButton(
+            tooltip: l10n.navMessages,
+            icon: const Icon(Icons.chat_bubble_outline),
+            onPressed: () => context.push(Routes.conversation(a.id)),
+          ),
+        ],
+      ),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [

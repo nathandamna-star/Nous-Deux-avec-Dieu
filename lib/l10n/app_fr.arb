@@ -9,7 +9,6 @@
   "navProfil": "Profil",
   "navCoach": "Coach",
   "bientot": "Bientôt disponible",
-  "messagesAVenir": "Ici : votre conversation avec votre coach.",
   "seancesAVenir": "Ici : vos rendez-vous, vos séances restantes et les forfaits.",
   "profilAVenir": "Ici : votre langue, votre conjoint, les dons et vos données.",
   "bienvenueQuestion": "Qu'est-ce qui vous amène ?",
@@ -295,6 +294,33 @@
   "supprimerParcoursTitre": "Supprimer ce parcours ?",
   "nbEtapes": "{n, plural, =1{1 étape} other{{n} étapes}}",
   "@nbEtapes": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "votreCoach": "Votre coach",
+  "messagesSansAccompagnement": "Pour écrire à votre coach, demandez d'abord un accompagnement depuis votre profil.",
+  "aucunMessage": "Aucun message pour l'instant. Écrivez le premier !",
+  "aucuneConversation": "Aucune conversation pour l'instant.",
+  "ecrireMessage": "Écrire un message",
+  "envoyerMessage": "Envoyer",
+  "envoyerPhoto": "Envoyer une photo",
+  "messageVocal": "Message vocal",
+  "enregistrementEnCours": "Enregistrement… {duree}",
+  "@enregistrementEnCours": {
+    "placeholders": {
+      "duree": {
+        "type": "String"
+      }
+    }
+  },
+  "arreterEtEnvoyer": "Arrêter et envoyer",
+  "microRefuse": "L'accès au micro est refusé. Autorisez-le dans les Réglages du téléphone.",
+  "envoiMessageEchoue": "Le message n'a pas pu être envoyé. Réessayez.",
+  "nonLus": "{n, plural, =1{1 message non lu} other{{n} messages non lus}}",
+  "@nonLus": {
     "placeholders": {
       "n": {
         "type": "int"
