@@ -14,5 +14,55 @@
   "messagesAVenir": "Ici : votre conversation avec votre coach.",
   "seancesAVenir": "Ici : vos rendez-vous, vos séances restantes et les forfaits.",
   "profilAVenir": "Ici : votre langue, votre conjoint, les dons et vos données.",
-  "coachAVenir": "Ici : vos accompagnements, votre agenda, vos contenus et les paiements."
+  "coachAVenir": "Ici : vos accompagnements, votre agenda, vos contenus et les paiements.",
+  "bienvenueQuestion": "Qu'est-ce qui vous amène ?",
+  "parcoursCouple": "Nous venons en couple",
+  "parcoursCoupleAide": "Mariés, fiancés ou en couple",
+  "parcoursSeul": "Je viens seul(e)",
+  "parcoursSeulAide": "Pour avancer personnellement ou préparer l'avenir",
+  "parcoursDecouverte": "Je découvre",
+  "parcoursDecouverteAide": "Méditations, questions à deux, audios et vidéos",
+  "continuerEmail": "Continuer avec l'e-mail",
+  "explorerSansCompte": "Découvrir sans compte",
+  "seConnecter": "Se connecter",
+  "creerCompte": "Créer un compte",
+  "seDeconnecter": "Se déconnecter",
+  "champNom": "Prénom et nom",
+  "champEmail": "Adresse e-mail",
+  "champMotDePasse": "Mot de passe",
+  "afficherMotDePasse": "Afficher le mot de passe",
+  "masquerMotDePasse": "Masquer le mot de passe",
+  "motDePasseOublie": "Mot de passe oublié ?",
+  "emailReinitialisationEnvoye": "Un e-mail pour choisir un nouveau mot de passe a été envoyé à {email}.",
+  "@emailReinitialisationEnvoye": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "validationNomRequis": "Indiquez votre nom.",
+  "validationEmail": "Indiquez une adresse e-mail valide.",
+  "validationMotDePasse": "Au moins 8 caractères.",
+  "consentementTexte": "J'accepte que mes réponses et échanges, qui peuvent concerner ma foi et ma vie de couple, soient conservés en Europe et vus uniquement par mon coach, pour m'accompagner. Je peux retirer mon accord et supprimer mon compte à tout moment.",
+  "consentementRequis": "Cochez la case pour créer votre compte.",
+  "chargement": "Chargement…",
+  "erreurEmailInvalide": "Cette adresse e-mail n'est pas valide.",
+  "erreurMotDePasseFaible": "Ce mot de passe est trop faible. Utilisez au moins 8 caractères.",
+  "erreurEmailDejaUtilise": "Un compte existe déjà avec cette adresse. Connectez-vous plutôt.",
+  "erreurIdentifiantsIncorrects": "Adresse e-mail ou mot de passe incorrect.",
+  "erreurTropDeTentatives": "Trop de tentatives. Réessayez dans quelques minutes.",
+  "erreurReseau": "Pas de connexion internet. Vérifiez votre réseau et réessayez.",
+  "erreurInconnue": "Une erreur est survenue. Réessayez.",
+  "connexionRequiseTitre": "Un espace rien qu'à vous",
+  "connexionRequiseTexte": "Connectez-vous pour échanger avec votre coach, suivre vos séances et gérer votre profil.",
+  "bonjourNom": "Bonjour {nom}",
+  "@bonjourNom": {
+    "placeholders": {
+      "nom": {
+        "type": "String"
+      }
+    }
+  },
+  "roleCoach": "Coach"
 }

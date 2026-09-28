@@ -193,6 +193,222 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Ici : vos accompagnements, votre agenda, vos contenus et les paiements.'**
   String get coachAVenir;
+
+  /// No description provided for @bienvenueQuestion.
+  ///
+  /// In fr, this message translates to:
+  /// **'Qu\'est-ce qui vous amène ?'**
+  String get bienvenueQuestion;
+
+  /// No description provided for @parcoursCouple.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nous venons en couple'**
+  String get parcoursCouple;
+
+  /// No description provided for @parcoursCoupleAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mariés, fiancés ou en couple'**
+  String get parcoursCoupleAide;
+
+  /// No description provided for @parcoursSeul.
+  ///
+  /// In fr, this message translates to:
+  /// **'Je viens seul(e)'**
+  String get parcoursSeul;
+
+  /// No description provided for @parcoursSeulAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pour avancer personnellement ou préparer l\'avenir'**
+  String get parcoursSeulAide;
+
+  /// No description provided for @parcoursDecouverte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Je découvre'**
+  String get parcoursDecouverte;
+
+  /// No description provided for @parcoursDecouverteAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Méditations, questions à deux, audios et vidéos'**
+  String get parcoursDecouverteAide;
+
+  /// No description provided for @continuerEmail.
+  ///
+  /// In fr, this message translates to:
+  /// **'Continuer avec l\'e-mail'**
+  String get continuerEmail;
+
+  /// No description provided for @explorerSansCompte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Découvrir sans compte'**
+  String get explorerSansCompte;
+
+  /// No description provided for @seConnecter.
+  ///
+  /// In fr, this message translates to:
+  /// **'Se connecter'**
+  String get seConnecter;
+
+  /// No description provided for @creerCompte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Créer un compte'**
+  String get creerCompte;
+
+  /// No description provided for @seDeconnecter.
+  ///
+  /// In fr, this message translates to:
+  /// **'Se déconnecter'**
+  String get seDeconnecter;
+
+  /// No description provided for @champNom.
+  ///
+  /// In fr, this message translates to:
+  /// **'Prénom et nom'**
+  String get champNom;
+
+  /// No description provided for @champEmail.
+  ///
+  /// In fr, this message translates to:
+  /// **'Adresse e-mail'**
+  String get champEmail;
+
+  /// No description provided for @champMotDePasse.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mot de passe'**
+  String get champMotDePasse;
+
+  /// No description provided for @afficherMotDePasse.
+  ///
+  /// In fr, this message translates to:
+  /// **'Afficher le mot de passe'**
+  String get afficherMotDePasse;
+
+  /// No description provided for @masquerMotDePasse.
+  ///
+  /// In fr, this message translates to:
+  /// **'Masquer le mot de passe'**
+  String get masquerMotDePasse;
+
+  /// No description provided for @motDePasseOublie.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mot de passe oublié ?'**
+  String get motDePasseOublie;
+
+  /// No description provided for @emailReinitialisationEnvoye.
+  ///
+  /// In fr, this message translates to:
+  /// **'Un e-mail pour choisir un nouveau mot de passe a été envoyé à {email}.'**
+  String emailReinitialisationEnvoye(String email);
+
+  /// No description provided for @validationNomRequis.
+  ///
+  /// In fr, this message translates to:
+  /// **'Indiquez votre nom.'**
+  String get validationNomRequis;
+
+  /// No description provided for @validationEmail.
+  ///
+  /// In fr, this message translates to:
+  /// **'Indiquez une adresse e-mail valide.'**
+  String get validationEmail;
+
+  /// No description provided for @validationMotDePasse.
+  ///
+  /// In fr, this message translates to:
+  /// **'Au moins 8 caractères.'**
+  String get validationMotDePasse;
+
+  /// No description provided for @consentementTexte.
+  ///
+  /// In fr, this message translates to:
+  /// **'J\'accepte que mes réponses et échanges, qui peuvent concerner ma foi et ma vie de couple, soient conservés en Europe et vus uniquement par mon coach, pour m\'accompagner. Je peux retirer mon accord et supprimer mon compte à tout moment.'**
+  String get consentementTexte;
+
+  /// No description provided for @consentementRequis.
+  ///
+  /// In fr, this message translates to:
+  /// **'Cochez la case pour créer votre compte.'**
+  String get consentementRequis;
+
+  /// No description provided for @chargement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Chargement…'**
+  String get chargement;
+
+  /// No description provided for @erreurEmailInvalide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Cette adresse e-mail n\'est pas valide.'**
+  String get erreurEmailInvalide;
+
+  /// No description provided for @erreurMotDePasseFaible.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce mot de passe est trop faible. Utilisez au moins 8 caractères.'**
+  String get erreurMotDePasseFaible;
+
+  /// No description provided for @erreurEmailDejaUtilise.
+  ///
+  /// In fr, this message translates to:
+  /// **'Un compte existe déjà avec cette adresse. Connectez-vous plutôt.'**
+  String get erreurEmailDejaUtilise;
+
+  /// No description provided for @erreurIdentifiantsIncorrects.
+  ///
+  /// In fr, this message translates to:
+  /// **'Adresse e-mail ou mot de passe incorrect.'**
+  String get erreurIdentifiantsIncorrects;
+
+  /// No description provided for @erreurTropDeTentatives.
+  ///
+  /// In fr, this message translates to:
+  /// **'Trop de tentatives. Réessayez dans quelques minutes.'**
+  String get erreurTropDeTentatives;
+
+  /// No description provided for @erreurReseau.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pas de connexion internet. Vérifiez votre réseau et réessayez.'**
+  String get erreurReseau;
+
+  /// No description provided for @erreurInconnue.
+  ///
+  /// In fr, this message translates to:
+  /// **'Une erreur est survenue. Réessayez.'**
+  String get erreurInconnue;
+
+  /// No description provided for @connexionRequiseTitre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Un espace rien qu\'à vous'**
+  String get connexionRequiseTitre;
+
+  /// No description provided for @connexionRequiseTexte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Connectez-vous pour échanger avec votre coach, suivre vos séances et gérer votre profil.'**
+  String get connexionRequiseTexte;
+
+  /// No description provided for @bonjourNom.
+  ///
+  /// In fr, this message translates to:
+  /// **'Bonjour {nom}'**
+  String bonjourNom(String nom);
+
+  /// No description provided for @roleCoach.
+  ///
+  /// In fr, this message translates to:
+  /// **'Coach'**
+  String get roleCoach;
 }
 
 class _AppLocalizationsDelegate

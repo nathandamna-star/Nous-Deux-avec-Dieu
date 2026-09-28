@@ -4,27 +4,58 @@ import 'package:go_router/go_router.dart';
 
 import '../../features/accueil/accueil_screen.dart';
 import '../../features/auth/auth_providers.dart';
+import '../../features/auth/presentation/bienvenue_screen.dart';
+import '../../features/auth/presentation/connexion_email_screen.dart';
 import '../../features/coach/coach_screen.dart';
 import '../../features/contenus/contenus_screen.dart';
 import '../../features/messages/messages_screen.dart';
 import '../../features/profil/profil_screen.dart';
 import '../../features/seances/seances_screen.dart';
 import '../../l10n/app_localizations.dart';
+import '../preferences/preferences.dart';
 import 'routes.dart';
 
 export 'routes.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
+  // Relance les redirections quand la connexion ou le rôle change.
+  final rafraichir = ValueNotifier(0);
+  ref.listen(estConnecteProvider, (_, _) => rafraichir.value++);
+  ref.listen(estCoachProvider, (_, _) => rafraichir.value++);
+  ref.listen(bienvenueVueProvider, (_, _) => rafraichir.value++);
+  ref.onDispose(rafraichir.dispose);
+
   return GoRouter(
     initialLocation: Routes.accueil,
-    // Onglet Coach réservé au coach.
-    redirect: (context, state) =>
-        state.matchedLocation.startsWith(Routes.coach) &&
-            !ref.read(estCoachProvider)
-        ? Routes.accueil
-        : null,
+    refreshListenable: rafraichir,
+    redirect: (context, state) {
+      final lieu = state.matchedLocation;
+      final connecte = ref.read(estConnecteProvider);
+      final surBienvenue = lieu.startsWith(Routes.bienvenue);
+      // Une fois connecté, on quitte les écrans de connexion.
+      if (connecte && surBienvenue) return Routes.accueil;
+      // Premier lancement : écran de bienvenue.
+      if (!connecte && !surBienvenue && !ref.read(bienvenueVueProvider)) {
+        return Routes.bienvenue;
+      }
+      // Onglet Coach réservé au coach.
+      if (lieu.startsWith(Routes.coach) && !ref.read(estCoachProvider)) {
+        return Routes.accueil;
+      }
+      return null;
+    },
     onException: (context, state, router) => router.go(Routes.accueil),
     routes: [
+      GoRoute(
+        path: Routes.bienvenue,
+        builder: (context, state) => const BienvenueScreen(),
+        routes: [
+          GoRoute(
+            path: 'email',
+            builder: (context, state) => const ConnexionEmailScreen(),
+          ),
+        ],
+      ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, shell) => _Coquille(shell: shell),
         branches: [

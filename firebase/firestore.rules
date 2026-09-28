@@ -1,0 +1,49 @@
+rules_version = '2';
+
+// Règles de sécurité (voir CLAUDE.md, sections 5 et 6 : données sensibles).
+// Tout ce qui n'est pas explicitement autorisé est refusé.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function connecte() {
+      return request.auth != null;
+    }
+
+    function moi() {
+      return request.auth.uid;
+    }
+
+    // Rôle coach : custom claim attribué par une Cloud Function, jamais par l'app.
+    function estCoach() {
+      return connecte() && request.auth.token.coach == true;
+    }
+
+    function texte(v, max) {
+      return v is string && v.size() > 0 && v.size() <= max;
+    }
+
+    // ----- Profils -----
+    match /users/{uid} {
+      allow read: if (connecte() && uid == moi()) || estCoach();
+
+      // Création : consentement explicite daté par le serveur.
+      allow create: if connecte() && uid == moi()
+        && request.resource.data.keys().hasOnly([
+          'nom', 'email', 'langue', 'parcours', 'consentementLe', 'createdAt'])
+        && texte(request.resource.data.nom, 100)
+        && request.resource.data.langue in ['fr', 'en', 'pt', 'es', 'nl']
+        && request.resource.data.parcours in ['couple', 'seul', 'decouverte']
+        && request.resource.data.consentementLe == request.time;
+
+      // Modification : nom, langue et parcours seulement.
+      allow update: if connecte() && uid == moi()
+        && request.resource.data.diff(resource.data).affectedKeys()
+             .hasOnly(['nom', 'langue', 'parcours'])
+        && texte(request.resource.data.nom, 100)
+        && request.resource.data.langue in ['fr', 'en', 'pt', 'es', 'nl']
+        && request.resource.data.parcours in ['couple', 'seul', 'decouverte'];
+
+      allow delete: if connecte() && uid == moi();
+    }
+  }
+}

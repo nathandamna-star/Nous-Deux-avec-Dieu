@@ -238,3 +238,10 @@ Avant toute décision importante non prévue ici, pose la question au lieu de ch
   (config dans `lib/core/firebase/firebase_options.dart`, une clé API par plateforme).
 - Navigation : `StatefulShellRoute` à 5 onglets ; onglet Coach si `estCoachProvider` (branché à l'étape 2).
 - Vérifier avant chaque commit : `flutter analyze` et `flutter test` (CI : `.github/workflows/ci.yml`).
+- Auth (étape 2, `lib/features/auth/`) : e-mail + mot de passe (Google et Apple à ajouter quand les
+  fournisseurs seront activés dans Firebase). Écran de bienvenue (parcours couple / seul / découverte,
+  « Découvrir sans compte »), inscription avec **case de consentement non pré-cochée** ; profil `users/{uid}`
+  avec `consentementLe` = heure du serveur (vérifié par les règles). Coach = custom claim `coach`
+  (`estCoachProvider`) ; la Cloud Function qui l'attribue viendra avec le forfait Blaze.
+  Messages, Séances et Profil demandent une connexion (`ConnexionRequise`).
+- Règles : `firebase/firestore.rules`, tests `cd firebase && npm install && npm test` (Java 21 requis).
