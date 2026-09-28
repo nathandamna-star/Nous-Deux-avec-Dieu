@@ -14,6 +14,8 @@ class PaiementsRepository {
       db.collection('paiements');
   DocumentReference<Map<String, dynamic>> get _parametres =>
       db.doc('parametres/coach');
+  DocumentReference<Map<String, dynamic>> get _presentation =>
+      db.doc('parametres/presentation');
 
   static List<Forfait> _forfaitsTries(QuerySnapshot<Map<String, dynamic>> s) =>
       s.docs.map(Forfait.depuisFirestore).toList()
@@ -121,10 +123,27 @@ class PaiementsRepository {
 
   // ----- Paramètres du coach -----
 
-  Stream<ParametresCoach> parametres() =>
-      _parametres.snapshots().map((d) => ParametresCoach.depuis(d.data()));
+  /// Coordonnées bancaires et présentation (pour l'écran du coach).
+  Stream<ParametresCoach> parametres() => _parametres.snapshots().asyncMap(
+    (d) async =>
+        ParametresCoach.depuis(d.data())
+            .avecPresentation((await _presentation.get()).data()),
+  );
 
-  Future<void> enregistrerParametres(ParametresCoach p) => _parametres.set({
+  Stream<PresentationCoach> presentation() =>
+      _presentation.snapshots().map((d) => PresentationCoach.depuis(d.data()));
+
+  Future<void> enregistrerParametres(ParametresCoach p) async {
+    await _presentation.set({
+      'nomAffiche': p.nomAffiche.trim(),
+      'bio': p.bios,
+      'photoUrl': p.photoUrl,
+      'updatedAt': FieldValue.serverTimestamp(),
+    });
+    await _parametresBancaires(p);
+  }
+
+  Future<void> _parametresBancaires(ParametresCoach p) => _parametres.set({
     'nomAffiche': p.nomAffiche.trim(),
     'titulaire': p.titulaire.trim(),
     'iban': nettoyerIban(p.iban),

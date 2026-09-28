@@ -47,4 +47,6 @@ abstract final class Routes {
   static const livresCoach = '/coach/livres';
   static const nouveauLivre = '/coach/livres/nouveau';
   static String modifierLivre(String id) => '/coach/livres/$id';
+  static String legal(String page) => '/legal/$page';
+  static const presentationCoach = '/accueil/coach';
 }

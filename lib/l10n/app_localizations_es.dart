@@ -1198,4 +1198,67 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get aTraiter => 'Por gestionar';
+
+  @override
+  String get cgu => 'Condiciones de uso';
+
+  @override
+  String get confidentialite => 'Privacidad';
+
+  @override
+  String get aideContact => 'Ayuda y contacto';
+
+  @override
+  String get legalEnFrancais =>
+      'Por ahora, esta página solo está disponible en francés.';
+
+  @override
+  String get langueApp => 'Idioma de la aplicación';
+
+  @override
+  String get langueTelephone => 'Idioma del teléfono';
+
+  @override
+  String get mesDonnees => 'Mis datos';
+
+  @override
+  String get telechargerMesDonnees => 'Descargar mis datos';
+
+  @override
+  String get exportEchoue =>
+      'La exportación ha fallado. Comprueba tu conexión e inténtalo de nuevo.';
+
+  @override
+  String get supprimerMonCompte => 'Eliminar mi cuenta';
+
+  @override
+  String get supprimerCompteTexte =>
+      'Tu cuenta, mensajes, respuestas y progreso se eliminarán definitivamente. Si te acompañan en pareja, tu cónyuge conserva el acompañamiento. Los pagos se conservan sin tu nombre para la contabilidad. Esta acción es irreversible.';
+
+  @override
+  String get supprimerDefinitivement => 'Eliminar definitivamente';
+
+  @override
+  String get compteSupprime => 'Tu cuenta ha sido eliminada.';
+
+  @override
+  String get erreurCommandeEnCours =>
+      'Un libro pagado aún no se ha enviado: inténtalo de nuevo cuando lo recibas.';
+
+  @override
+  String get erreurCompteCoach =>
+      'La cuenta del coach no se puede eliminar desde la aplicación.';
+
+  @override
+  String get presentationCoach => 'Mi presentación';
+
+  @override
+  String get presentationCoachAide =>
+      'Visible para todos en el inicio, con tu nombre y la foto de tu perfil.';
+
+  @override
+  String get champBio => 'Presentación';
+
+  @override
+  String get informationsLegales => 'Información';
 }

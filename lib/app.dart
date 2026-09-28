@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'core/router/app_router.dart';
+import 'core/preferences/langue.dart';
 import 'core/theme/app_theme.dart';
 import 'features/auth/auth_providers.dart';
 import 'features/notifications/notifications_providers.dart';
@@ -72,6 +73,10 @@ class _NousDeuxAvecDieuAppState extends ConsumerState<NousDeuxAvecDieuApp> {
       theme: AppTheme.clair,
       darkTheme: AppTheme.sombre,
       routerConfig: ref.watch(routerProvider),
+      locale: switch (ref.watch(langueAppProvider)) {
+        final l? => Locale(l),
+        null => null,
+      },
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,

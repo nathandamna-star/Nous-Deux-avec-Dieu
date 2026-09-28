@@ -7,12 +7,18 @@ import { getMessaging } from 'firebase-admin/messaging';
 import { FieldValue, getFirestore } from 'firebase-admin/firestore';
 import { setGlobalOptions } from 'firebase-functions/v2';
 import { defineString } from 'firebase-functions/params';
-import { HttpsError, onCall } from 'firebase-functions/v2/https';
+import { HttpsError, onCall, onRequest } from 'firebase-functions/v2/https';
 import {
   onDocumentCreated, onDocumentUpdated, onDocumentWritten,
 } from 'firebase-functions/v2/firestore';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
 import { logger } from 'firebase-functions';
+import { readFileSync } from 'node:fs';
+import { getStorage } from 'firebase-admin/storage';
+import {
+  ANONYME, commandeEnCours, departMembre, profilExporte, versJson,
+} from './compte.js';
+import { versHtml } from './legal.js';
 import {
   destinatairesMessage, jetonsInvalides, notificationExercice, notificationMessage,
 } from './notifications.js';
@@ -225,4 +231,164 @@ export const suiviCommandeLivre = onDocumentUpdated('commandesLivres/{commandeId
   await envoyerNotification(apres.uid, (langue) => notificationSuiviCommande({
     commandeId: evenement.params.commandeId, commande: apres, statut, langue,
   }));
+});
+
+// ----- Compte : export, suppression, pages légales -----
+
+const donnees = (s) => s.docs.map((d) => ({ id: d.id, ...versJson(d.data()) }));
+
+/**
+ * Export des données personnelles (RGPD, droit d'accès et de portabilité) :
+ * profil, progression, accompagnement (sans les notes privées du coach),
+ * messages, exercices et réponses, rendez-vous, paiements, commandes de livres.
+ */
+export const exporterMesDonnees = onCall(async (requete) => {
+  if (!requete.auth) throw new HttpsError('unauthenticated', 'Connexion requise.');
+  const uid = requete.auth.uid;
+  const db = getFirestore();
+  const refProfil = db.doc(`users/${uid}`);
+  const [profil, progression, accompagnements, paiements, commandes] = await Promise.all([
+    refProfil.get(),
+    refProfil.collection('progression').get(),
+    db.collection('accompagnements').where('membres', 'array-contains', uid).get(),
+    db.collection('paiements').where('uid', '==', uid).get(),
+    db.collection('commandesLivres').where('uid', '==', uid).get(),
+  ]);
+  const detailsAccompagnements = [];
+  for (const acc of accompagnements.docs) {
+    const [messages, exercices, rendezVous] = await Promise.all([
+      acc.ref.collection('messages').get(),
+      acc.ref.collection('exercices').get(),
+      acc.ref.collection('rendezVous').get(),
+    ]);
+    const reponses = [];
+    for (const ex of exercices.docs) {
+      for (const cle of [uid, 'couple']) {
+        const r = await ex.ref.collection('reponses').doc(cle).get();
+        if (r.exists) reponses.push({ exercice: ex.id, cle, ...versJson(r.data()) });
+      }
+    }
+    const { nonLusCoach: _n, ...acces } = acc.data();
+    detailsAccompagnements.push({
+      id: acc.id,
+      ...versJson(acces),
+      messages: donnees(messages),
+      exercices: donnees(exercices),
+      reponses,
+      rendezVous: donnees(rendezVous),
+    });
+  }
+  return {
+    exporteLe: new Date().toISOString(),
+    compte: { uid, email: requete.auth.token.email ?? null },
+    profil: profilExporte(profil.data()),
+    progression: donnees(progression),
+    accompagnements: detailsAccompagnements,
+    paiements: donnees(paiements),
+    commandesLivres: donnees(commandes),
+  };
+});
+
+async function supprimerRequete(requete) {
+  const db = getFirestore();
+  for (;;) {
+    const s = await requete.limit(400).get();
+    if (s.empty) return;
+    const lot = db.batch();
+    s.docs.forEach((d) => lot.delete(d.ref));
+    await lot.commit();
+  }
+}
+
+async function supprimerFichiers(prefixe) {
+  try {
+    await getStorage().bucket().deleteFiles({ prefix: prefixe });
+  } catch (e) {
+    logger.warn('Suppression de fichiers impossible', { prefixe, message: e.message });
+  }
+}
+
+/**
+ * Suppression du compte (RGPD, exigence de l'App Store) :
+ * - refusée pour le coach, et tant qu'un livre payé n'est pas encore envoyé ;
+ * - accompagnement : supprimé si la personne est seule, sinon elle en est
+ *   retirée (le conjoint le garde) avec ses messages et ses réponses ;
+ * - paiements et commandes : conservés, anonymisés (obligations comptables) ;
+ * - profil, progression, photo, puis compte de connexion supprimés.
+ */
+export const supprimerMonCompte = onCall({ timeoutSeconds: 120 }, async (requete) => {
+  if (!requete.auth) throw new HttpsError('unauthenticated', 'Connexion requise.');
+  if (requete.auth.token.coach === true) {
+    throw new HttpsError('failed-precondition', 'compte-coach', { code: 'compte-coach' });
+  }
+  const uid = requete.auth.uid;
+  const db = getFirestore();
+
+  const [commandes, paiements, accompagnements] = await Promise.all([
+    db.collection('commandesLivres').where('uid', '==', uid).get(),
+    db.collection('paiements').where('uid', '==', uid).get(),
+    db.collection('accompagnements').where('membres', 'array-contains', uid).get(),
+  ]);
+  if (commandeEnCours(commandes.docs.map((d) => d.data()))) {
+    throw new HttpsError('failed-precondition', 'commande-en-cours', { code: 'commande-en-cours' });
+  }
+
+  const lot = db.batch();
+  for (const d of commandes.docs) {
+    lot.update(d.ref, {
+      uid: ANONYME,
+      nom: '',
+      adresse: FieldValue.delete(),
+      ...(d.data().statut === 'en_attente' ? { statut: 'annulee' } : {}),
+    });
+  }
+  for (const d of paiements.docs) {
+    lot.update(d.ref, {
+      uid: ANONYME,
+      nom: '',
+      ...(d.data().statut === 'en_attente' ? { statut: 'annule' } : {}),
+    });
+  }
+  await lot.commit();
+
+  for (const acc of accompagnements.docs) {
+    const depart = departMembre(acc.data(), uid);
+    if (depart.supprimer) {
+      await supprimerFichiers(`messages/${acc.id}/`);
+      const code = acc.data().codeInvitation;
+      if (code) await db.doc(`invitations/${code}`).delete();
+      await db.recursiveDelete(acc.ref);
+      continue;
+    }
+    await supprimerRequete(acc.ref.collection('messages').where('auteur', '==', uid));
+    const exercices = await acc.ref.collection('exercices').get();
+    for (const ex of exercices.docs) {
+      await ex.ref.collection('reponses').doc(uid).delete();
+    }
+    await acc.ref.update(depart.maj);
+  }
+
+  await supprimerFichiers(`users/${uid}/`);
+  await db.recursiveDelete(db.doc(`users/${uid}`));
+  await getAuth().deleteUser(uid);
+  logger.info('Compte supprimé', { uid });
+  return { supprime: true };
+});
+
+const PAGES = {
+  cgu: ['cgu_fr.md', 'Conditions d\'utilisation'],
+  confidentialite: ['confidentialite_fr.md', 'Politique de confidentialité'],
+  support: ['support_fr.md', 'Aide et contact'],
+};
+
+/**
+ * Pages légales publiques (adresses demandées par l'App Store et Google Play) :
+ * …/legal?page=confidentialite|cgu|support
+ */
+export const legal = onRequest((requete, reponse) => {
+  const [fichier, titre] = PAGES[requete.query.page] ?? PAGES.confidentialite;
+  const texte = readFileSync(new URL(`./legal/${fichier}`, import.meta.url), 'utf8');
+  reponse.set('Cache-Control', 'public, max-age=3600')
+    .set('Content-Type', 'text/html; charset=utf-8')
+    .send(versHtml(texte, titre));
 });

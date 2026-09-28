@@ -6,9 +6,16 @@ import '../../l10n/app_localizations.dart';
 
 /// Affiché à la place d'un écran réservé aux personnes connectées.
 class ConnexionRequise extends StatelessWidget {
-  const ConnexionRequise({super.key, required this.titre});
+  const ConnexionRequise({
+    super.key,
+    required this.titre,
+    this.enBas = const [],
+  });
 
   final String titre;
+
+  /// Éléments affichés sous le bouton (ex. langue et pages légales du Profil).
+  final List<Widget> enBas;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +24,7 @@ class ConnexionRequise extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(titre)),
       body: Center(
-        child: Padding(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(32),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -46,6 +53,7 @@ class ConnexionRequise extends StatelessWidget {
                 onPressed: () => context.go(Routes.bienvenue),
                 child: Text(l10n.seConnecter),
               ),
+              ...enBas,
             ],
           ),
         ),

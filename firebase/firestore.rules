@@ -289,6 +289,16 @@ service cloud.firestore {
         && texte(p.forfaitNom, 100);
     }
 
+    // Présentation publique du coach : visible par tous, même sans compte.
+    match /parametres/presentation {
+      allow read: if true;
+      allow write: if estCoach()
+        && request.resource.data.keys().hasOnly(['nomAffiche', 'bio', 'photoUrl', 'updatedAt'])
+        && request.resource.data.nomAffiche is string && request.resource.data.nomAffiche.size() <= 100
+        && langues(request.resource.data.bio)
+        && lienHttps(request.resource.data.photoUrl);
+    }
+
     // Coordonnées bancaires et textes du coach.
     match /parametres/coach {
       allow read: if connecte();

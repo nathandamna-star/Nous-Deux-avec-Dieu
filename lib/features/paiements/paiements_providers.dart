@@ -40,3 +40,8 @@ final nbPaiementsEnAttenteProvider = Provider<int>(
 final parametresCoachProvider = StreamProvider<ParametresCoach>(
   (ref) => ref.watch(paiementsRepositoryProvider).parametres(),
 );
+
+/// Présentation publique du coach (nom, photo, bio).
+final presentationCoachProvider = StreamProvider<PresentationCoach>(
+  (ref) => ref.watch(paiementsRepositoryProvider).presentation(),
+);

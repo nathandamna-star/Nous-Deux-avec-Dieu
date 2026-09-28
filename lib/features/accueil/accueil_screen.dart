@@ -6,6 +6,7 @@ import '../../core/router/routes.dart';
 import '../../l10n/app_localizations.dart';
 import '../accompagnement/accompagnement_providers.dart';
 import '../auth/auth_providers.dart';
+import '../coach/presentation_coach_screen.dart';
 import '../contenus/contenus_providers.dart';
 import '../contenus/domain/contenu.dart';
 import '../exercices/exercices_providers.dart';
@@ -56,6 +57,7 @@ class AccueilScreen extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 20),
+          const CarteCoach(),
           if (prochain != null) ...[
             Text(l10n.prochainRendezVous, style: theme.textTheme.titleMedium),
             const SizedBox(height: 4),

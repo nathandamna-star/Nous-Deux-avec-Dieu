@@ -327,3 +327,15 @@ Avant toute décision importante non prévue ici, pose la question au lieu de ch
   Contenus (`/contenus/livres`, déclaré avant `:id`) via `_routeLivres(base)`. Coach : menu ⋮ → Mes livres
   (vues Livres / Commandes, pastille des commandes à traiter). Instructions de virement partagées :
   `InstructionsVirement` (forfaits, dons, livres).
+- Profil (étape 10) : langue de l'app (`lib/core/preferences/langue.dart`, préférence locale ; `users.langue`
+  mis à jour pour les notifications), aide / CGU / confidentialité (aussi sans compte et sur l'écran de
+  bienvenue), « Mes données » (pas pour le coach) : export JSON via la fonction `exporterMesDonnees` partagé
+  par `Partage` (share_plus), suppression via `supprimerMonCompte` (refusée au coach et si un livre payé n'est
+  pas encore envoyé ; accompagnement supprimé si la personne est seule, sinon elle en est retirée avec ses
+  messages et réponses ; paiements et commandes anonymisés `compte-supprime` ; profil, progression, photo et
+  compte Auth supprimés). Logique pure : `functions/compte.js`.
+- Pages légales : modèles FR dans `assets/legal/` (à compléter entre [ ], relecture par un juriste), copiés dans
+  `functions/legal/` (test d'égalité) ; en ligne : `https://europe-west1-nous-deux-avec-dieu.cloudfunctions.net/legal?page=confidentialite|cgu|support`.
+  Dans l'app : `/legal/:page` (toujours accessible).
+- Présentation du coach : `parametres/presentation` (nomAffiche, bio par langue, photoUrl = photo du profil du
+  coach), lisible par tous ; saisie dans Paramètres du coach ; carte « Votre coach » à l'accueil → `/accueil/coach`.

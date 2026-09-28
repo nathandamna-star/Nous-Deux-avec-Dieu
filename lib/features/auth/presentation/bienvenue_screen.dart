@@ -109,6 +109,21 @@ class BienvenueScreen extends ConsumerWidget {
                   },
                   child: Text(l10n.explorerSansCompte),
                 ),
+                const SizedBox(height: 16),
+                Wrap(
+                  alignment: WrapAlignment.center,
+                  children: [
+                    TextButton(
+                      onPressed: () => context.push(Routes.legal('cgu')),
+                      child: Text(l10n.cgu),
+                    ),
+                    TextButton(
+                      onPressed: () =>
+                          context.push(Routes.legal('confidentialite')),
+                      child: Text(l10n.confidentialite),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),

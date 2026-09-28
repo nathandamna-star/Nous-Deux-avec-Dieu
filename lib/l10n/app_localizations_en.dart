@@ -1198,4 +1198,67 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get aTraiter => 'To do';
+
+  @override
+  String get cgu => 'Terms of use';
+
+  @override
+  String get confidentialite => 'Privacy';
+
+  @override
+  String get aideContact => 'Help and contact';
+
+  @override
+  String get legalEnFrancais =>
+      'This page is currently available in French only.';
+
+  @override
+  String get langueApp => 'App language';
+
+  @override
+  String get langueTelephone => 'Phone language';
+
+  @override
+  String get mesDonnees => 'My data';
+
+  @override
+  String get telechargerMesDonnees => 'Download my data';
+
+  @override
+  String get exportEchoue =>
+      'Export failed. Check your connection and try again.';
+
+  @override
+  String get supprimerMonCompte => 'Delete my account';
+
+  @override
+  String get supprimerCompteTexte =>
+      'Your account, messages, answers and progress will be permanently deleted. If you are coached as a couple, your spouse keeps the coaching. Payments are kept without your name for accounting. This cannot be undone.';
+
+  @override
+  String get supprimerDefinitivement => 'Delete permanently';
+
+  @override
+  String get compteSupprime => 'Your account has been deleted.';
+
+  @override
+  String get erreurCommandeEnCours =>
+      'A paid book has not been sent yet: try again once you have received it.';
+
+  @override
+  String get erreurCompteCoach =>
+      'The coach account cannot be deleted from the app.';
+
+  @override
+  String get presentationCoach => 'My introduction';
+
+  @override
+  String get presentationCoachAide =>
+      'Visible to everyone on the home screen, with your display name and profile photo.';
+
+  @override
+  String get champBio => 'Introduction';
+
+  @override
+  String get informationsLegales => 'Information';
 }

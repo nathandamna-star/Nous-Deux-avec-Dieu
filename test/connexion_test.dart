@@ -68,7 +68,7 @@ void main() {
 
   testWidgets('déconnexion depuis le profil', (tester) async {
     final banc = bancConnecte();
-    await banc.lancer(tester);
+    await banc.lancer(tester, grand: true);
     await tester.tap(find.text('Profil'));
     await tester.pumpAndSettle();
     await toucher(tester, find.text('Se déconnecter'));

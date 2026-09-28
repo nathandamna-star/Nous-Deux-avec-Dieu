@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../l10n/app_localizations.dart';
+import '../../auth/auth_providers.dart';
 import '../../contenus/domain/contenu.dart';
 import '../domain/paiement.dart';
 import '../domain/virement.dart';
@@ -25,11 +26,19 @@ class _ParametresCoachScreenState extends ConsumerState<ParametresCoachScreen> {
   final _messages = {
     for (final l in languesContenu) l: TextEditingController(),
   };
+  final _bios = {for (final l in languesContenu) l: TextEditingController()};
   var _pret = false;
 
   @override
   void dispose() {
-    for (final c in [_nom, _titulaire, _iban, _bic, ..._messages.values]) {
+    for (final c in [
+      _nom,
+      _titulaire,
+      _iban,
+      _bic,
+      ..._messages.values,
+      ..._bios.values,
+    ]) {
       c.dispose();
     }
     super.dispose();
@@ -44,6 +53,7 @@ class _ParametresCoachScreenState extends ConsumerState<ParametresCoachScreen> {
     _bic.text = p.bic;
     for (final l in languesContenu) {
       _messages[l]!.text = p.messagesDon[l] ?? '';
+      _bios[l]!.text = p.bios[l] ?? '';
     }
   }
 
@@ -63,6 +73,12 @@ class _ParametresCoachScreenState extends ConsumerState<ParametresCoachScreen> {
               for (final e in _messages.entries)
                 if (e.value.text.trim().isNotEmpty) e.key: e.value.text.trim(),
             },
+            bios: {
+              for (final e in _bios.entries)
+                if (e.value.text.trim().isNotEmpty) e.key: e.value.text.trim(),
+            },
+            // Photo publique : celle du profil du coach.
+            photoUrl: ref.read(profilProvider).value?.photoUrl ?? '',
           ),
         );
     messager.showSnackBar(SnackBar(content: Text(texte)));
@@ -121,6 +137,29 @@ class _ParametresCoachScreenState extends ConsumerState<ParametresCoachScreen> {
                           : l10n.bicInvalide;
                     },
                   ),
+                  const SizedBox(height: 24),
+                  Text(
+                    l10n.presentationCoach,
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  Text(
+                    l10n.presentationCoachAide,
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                  const SizedBox(height: 8),
+                  for (final l in languesContenu)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: TextFormField(
+                        controller: _bios[l],
+                        decoration: InputDecoration(
+                          labelText: '${l10n.champBio} (${l.toUpperCase()})',
+                        ),
+                        minLines: 2,
+                        maxLines: 8,
+                        maxLength: 3000,
+                      ),
+                    ),
                   const SizedBox(height: 24),
                   Text(
                     l10n.champMessageDon,

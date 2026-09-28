@@ -10,6 +10,8 @@ import '../accompagnement/accompagnement_providers.dart';
 import '../accompagnement/presentation/carte_mon_accompagnement.dart';
 import '../auth/auth_providers.dart';
 import '../notifications/notifications_providers.dart';
+import 'presentation/mes_donnees.dart';
+import 'presentation/reglages.dart';
 import 'profil_providers.dart';
 
 class ProfilScreen extends ConsumerWidget {
@@ -20,7 +22,12 @@ class ProfilScreen extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
     final user = ref.watch(utilisateurFirebaseProvider).value;
-    if (user == null) return ConnexionRequise(titre: l10n.navProfil);
+    if (user == null) {
+      return ConnexionRequise(
+        titre: l10n.navProfil,
+        enBas: [const SizedBox(height: 24), ...reglages(context, ref)],
+      );
+    }
     final profil = ref.watch(profilProvider).value;
     final nom = profil?.nom ?? user.displayName ?? '';
 
@@ -112,6 +119,12 @@ class ProfilScreen extends ConsumerWidget {
                 onTap: () => context.push(Routes.don),
               ),
             ),
+          ],
+          const SizedBox(height: 12),
+          ...reglages(context, ref),
+          if (!ref.watch(estCoachProvider)) ...[
+            const SizedBox(height: 12),
+            const CarteMesDonnees(),
           ],
           const SizedBox(height: 24),
           OutlinedButton.icon(

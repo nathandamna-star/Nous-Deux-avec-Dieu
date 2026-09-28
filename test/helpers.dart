@@ -23,7 +23,9 @@ import 'package:nous_deux_avec_dieu/features/profil/data/photo_profil_service.da
 import 'package:nous_deux_avec_dieu/features/profil/profil_providers.dart';
 import 'package:nous_deux_avec_dieu/features/livres/data/couvertures_service.dart';
 import 'package:nous_deux_avec_dieu/features/livres/livres_providers.dart';
+import 'package:nous_deux_avec_dieu/features/profil/data/compte_service.dart';
 import 'package:nous_deux_avec_dieu/features/rendezvous/rendez_vous_providers.dart';
+import 'package:nous_deux_avec_dieu/shared/services/partage.dart';
 import 'package:nous_deux_avec_dieu/shared/services/lanceur.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -40,6 +42,8 @@ class Banc {
   final notifications = FaussesNotifications();
   final lanceur = FauxLanceur();
   final couvertures = FaussesCouvertures();
+  final compte = FauxCompte();
+  final partage = FauxPartage();
 
   /// Heure « actuelle » vue par l'app (rendez-vous).
   DateTime maintenant = DateTime.now();
@@ -71,6 +75,8 @@ class Banc {
           fabriqueLecteursProvider.overrideWithValue(const FauxLecteurs()),
           lanceurProvider.overrideWithValue(lanceur),
           couverturesServiceProvider.overrideWithValue(couvertures),
+          compteServiceProvider.overrideWithValue(compte),
+          partageProvider.overrideWithValue(partage),
           horlogeProvider.overrideWithValue(() => maintenant),
         ],
         child: const NousDeuxAvecDieuApp(),
@@ -254,4 +260,35 @@ class FaussesCouvertures implements CouverturesService {
     envois.add(livreId);
     return 'https://stockage.test/livres/$livreId/couverture.jpg';
   }
+}
+
+class FauxCompte implements CompteService {
+  var exports = 0;
+  var suppressions = 0;
+
+  /// Code d'erreur à renvoyer à la suppression (null : réussite).
+  String? erreur;
+
+  @override
+  Future<String> exporterMesDonnees() async {
+    exports++;
+    return '{"profil": {"nom": "Marie"}}';
+  }
+
+  @override
+  Future<void> supprimerMonCompte() async {
+    if (erreur != null) throw ErreurCompte(erreur!);
+    suppressions++;
+  }
+}
+
+class FauxPartage implements Partage {
+  final fichiers = <String, String>{};
+
+  @override
+  Future<void> partagerFichier({
+    required String nom,
+    required String contenu,
+    required String typeMime,
+  }) async => fichiers[nom] = contenu;
 }

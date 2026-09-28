@@ -122,6 +122,8 @@ class ParametresCoach {
     this.iban = '',
     this.bic = '',
     this.messagesDon = const {},
+    this.bios = const {},
+    this.photoUrl = '',
   });
 
   final String nomAffiche;
@@ -131,6 +133,14 @@ class ParametresCoach {
 
   /// Remerciement affiché sur l'écran de don, par langue.
   final Map<String, String> messagesDon;
+
+  /// Présentation publique du coach, par langue.
+  final Map<String, String> bios;
+
+  /// Photo publique : celle du profil du coach.
+  final String photoUrl;
+
+  String bio(String langue) => Contenu.traduire(bios, langue);
 
   bool get virementPossible => titulaire.isNotEmpty && iban.isNotEmpty;
 
@@ -143,4 +153,39 @@ class ParametresCoach {
     bic: d?['bic'] as String? ?? '',
     messagesDon: _carte(d?['messageDon']),
   );
+
+  /// Ajoute la présentation publique (`parametres/presentation`).
+  ParametresCoach avecPresentation(Map<String, dynamic>? p) => ParametresCoach(
+    nomAffiche: nomAffiche,
+    titulaire: titulaire,
+    iban: iban,
+    bic: bic,
+    messagesDon: messagesDon,
+    bios: _carte(p?['bio']),
+    photoUrl: p?['photoUrl'] as String? ?? '',
+  );
+}
+
+/// Présentation publique du coach (visible même sans compte).
+class PresentationCoach {
+  const PresentationCoach({
+    this.nomAffiche = '',
+    this.bios = const {},
+    this.photoUrl = '',
+  });
+
+  final String nomAffiche;
+  final Map<String, String> bios;
+  final String photoUrl;
+
+  bool get vide => nomAffiche.isEmpty;
+
+  String bio(String langue) => Contenu.traduire(bios, langue);
+
+  factory PresentationCoach.depuis(Map<String, dynamic>? d) =>
+      PresentationCoach(
+        nomAffiche: d?['nomAffiche'] as String? ?? '',
+        bios: _carte(d?['bio']),
+        photoUrl: d?['photoUrl'] as String? ?? '',
+      );
 }

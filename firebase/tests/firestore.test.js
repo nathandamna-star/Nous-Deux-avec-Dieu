@@ -498,3 +498,15 @@ describe('livres et commandes', () => {
     await assertSucceeds(getDoc(ref(marie())));
   });
 });
+
+describe('présentation du coach', () => {
+  it('visible par tous, écrite par le coach seulement', async () => {
+    const p = { nomAffiche: 'Nathan', bio: { fr: 'Coach de couple.' }, photoUrl: 'https://x/p.jpg' };
+    await assertSucceeds(setDoc(doc(coach(), 'parametres/presentation'), p));
+    await assertSucceeds(getDoc(doc(visiteur(), 'parametres/presentation')));
+    await assertFails(setDoc(doc(marie(), 'parametres/presentation'), p));
+    await assertFails(setDoc(doc(coach(), 'parametres/presentation'), { ...p, iban: 'BE71096123456769' }));
+    // Les coordonnées bancaires restent réservées aux personnes connectées.
+    await assertFails(getDoc(doc(visiteur(), 'parametres/coach')));
+  });
+});

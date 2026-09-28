@@ -25,6 +25,8 @@ import '../../features/coach/coach_screen.dart';
 import '../../features/contenus/contenus_screen.dart';
 import '../../features/messages/messages_screen.dart';
 import '../../features/profil/profil_screen.dart';
+import '../../features/coach/presentation_coach_screen.dart';
+import '../../features/legal/legal_screen.dart';
 import '../../features/livres/presentation/commande_livre_screen.dart';
 import '../../features/livres/presentation/commander_livre_screen.dart';
 import '../../features/livres/presentation/editeur_livre_screen.dart';
@@ -61,6 +63,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       final lieu = state.matchedLocation;
       final connecte = ref.read(estConnecteProvider);
       final surBienvenue = lieu.startsWith(Routes.bienvenue);
+      // Pages légales : toujours accessibles.
+      if (lieu.startsWith('/legal')) return null;
       // Une fois connecté, on quitte les écrans de connexion.
       if (connecte && surBienvenue) return Routes.accueil;
       // Premier lancement : écran de bienvenue.
@@ -75,6 +79,15 @@ final routerProvider = Provider<GoRouter>((ref) {
     },
     onException: (context, state, router) => router.go(Routes.accueil),
     routes: [
+      GoRoute(
+        path: '/legal/:page',
+        builder: (context, state) => LegalScreen(
+          page: PageLegale.values.firstWhere(
+            (p) => p.name == state.pathParameters['page'],
+            orElse: () => PageLegale.confidentialite,
+          ),
+        ),
+      ),
       GoRoute(
         path: Routes.bienvenue,
         builder: (context, state) => const BienvenueScreen(),
@@ -120,6 +133,10 @@ final _sousRoutes = <String, List<RouteBase>>{
     ),
   ],
   Routes.accueil: [
+    GoRoute(
+      path: 'coach',
+      builder: (context, state) => const PresentationCoachScreen(),
+    ),
     _routeLivres(Routes.livresAccueil),
     GoRoute(
       path: 'exercices',

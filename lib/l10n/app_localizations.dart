@@ -2245,6 +2245,120 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'À traiter'**
   String get aTraiter;
+
+  /// No description provided for @cgu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Conditions d\'utilisation'**
+  String get cgu;
+
+  /// No description provided for @confidentialite.
+  ///
+  /// In fr, this message translates to:
+  /// **'Confidentialité'**
+  String get confidentialite;
+
+  /// No description provided for @aideContact.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aide et contact'**
+  String get aideContact;
+
+  /// No description provided for @legalEnFrancais.
+  ///
+  /// In fr, this message translates to:
+  /// **''**
+  String get legalEnFrancais;
+
+  /// No description provided for @langueApp.
+  ///
+  /// In fr, this message translates to:
+  /// **'Langue de l\'application'**
+  String get langueApp;
+
+  /// No description provided for @langueTelephone.
+  ///
+  /// In fr, this message translates to:
+  /// **'Langue du téléphone'**
+  String get langueTelephone;
+
+  /// No description provided for @mesDonnees.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes données'**
+  String get mesDonnees;
+
+  /// No description provided for @telechargerMesDonnees.
+  ///
+  /// In fr, this message translates to:
+  /// **'Télécharger mes données'**
+  String get telechargerMesDonnees;
+
+  /// No description provided for @exportEchoue.
+  ///
+  /// In fr, this message translates to:
+  /// **'L\'export a échoué. Vérifiez votre connexion et réessayez.'**
+  String get exportEchoue;
+
+  /// No description provided for @supprimerMonCompte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer mon compte'**
+  String get supprimerMonCompte;
+
+  /// No description provided for @supprimerCompteTexte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre compte, vos messages, vos réponses et votre progression seront définitivement supprimés. Si vous êtes accompagné en couple, votre conjoint garde l\'accompagnement. Les paiements sont conservés sans votre nom pour la comptabilité. Cette action est irréversible.'**
+  String get supprimerCompteTexte;
+
+  /// No description provided for @supprimerDefinitivement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer définitivement'**
+  String get supprimerDefinitivement;
+
+  /// No description provided for @compteSupprime.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre compte a été supprimé.'**
+  String get compteSupprime;
+
+  /// No description provided for @erreurCommandeEnCours.
+  ///
+  /// In fr, this message translates to:
+  /// **'Un livre payé n\'a pas encore été envoyé : réessayez après sa réception.'**
+  String get erreurCommandeEnCours;
+
+  /// No description provided for @erreurCompteCoach.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le compte du coach ne peut pas être supprimé depuis l\'application.'**
+  String get erreurCompteCoach;
+
+  /// No description provided for @presentationCoach.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ma présentation'**
+  String get presentationCoach;
+
+  /// No description provided for @presentationCoachAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Visible par tous sur l\'accueil, avec votre nom affiché et la photo de votre profil.'**
+  String get presentationCoachAide;
+
+  /// No description provided for @champBio.
+  ///
+  /// In fr, this message translates to:
+  /// **'Présentation'**
+  String get champBio;
+
+  /// No description provided for @informationsLegales.
+  ///
+  /// In fr, this message translates to:
+  /// **'Informations'**
+  String get informationsLegales;
 }
 
 class _AppLocalizationsDelegate

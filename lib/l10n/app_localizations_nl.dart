@@ -1201,4 +1201,67 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get aTraiter => 'Te verwerken';
+
+  @override
+  String get cgu => 'Gebruiksvoorwaarden';
+
+  @override
+  String get confidentialite => 'Privacy';
+
+  @override
+  String get aideContact => 'Hulp en contact';
+
+  @override
+  String get legalEnFrancais =>
+      'Deze pagina is voorlopig enkel in het Frans beschikbaar.';
+
+  @override
+  String get langueApp => 'Taal van de app';
+
+  @override
+  String get langueTelephone => 'Taal van de telefoon';
+
+  @override
+  String get mesDonnees => 'Mijn gegevens';
+
+  @override
+  String get telechargerMesDonnees => 'Mijn gegevens downloaden';
+
+  @override
+  String get exportEchoue =>
+      'Exporteren is mislukt. Controleer je verbinding en probeer opnieuw.';
+
+  @override
+  String get supprimerMonCompte => 'Mijn account verwijderen';
+
+  @override
+  String get supprimerCompteTexte =>
+      'Je account, berichten, antwoorden en voortgang worden definitief verwijderd. Als je als koppel begeleid wordt, behoudt je partner de begeleiding. Betalingen worden zonder je naam bewaard voor de boekhouding. Dit kan niet ongedaan worden.';
+
+  @override
+  String get supprimerDefinitivement => 'Definitief verwijderen';
+
+  @override
+  String get compteSupprime => 'Je account is verwijderd.';
+
+  @override
+  String get erreurCommandeEnCours =>
+      'Een betaald boek is nog niet verzonden: probeer opnieuw nadat je het ontvangen hebt.';
+
+  @override
+  String get erreurCompteCoach =>
+      'Het account van de coach kan niet vanuit de app verwijderd worden.';
+
+  @override
+  String get presentationCoach => 'Mijn voorstelling';
+
+  @override
+  String get presentationCoachAide =>
+      'Voor iedereen zichtbaar op het startscherm, met je naam en profielfoto.';
+
+  @override
+  String get champBio => 'Voorstelling';
+
+  @override
+  String get informationsLegales => 'Informatie';
 }
