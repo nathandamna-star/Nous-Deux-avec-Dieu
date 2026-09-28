@@ -471,4 +471,63 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get supprimerContenuTexte => 'Desaparecerá para todos. É definitivo.';
+
+  @override
+  String get typeAudio => 'Áudio';
+
+  @override
+  String get typeVideo => 'Vídeo';
+
+  @override
+  String get lecture => 'Reproduzir';
+
+  @override
+  String get pause => 'Pausa';
+
+  @override
+  String get reculer15 => 'Recuar 15 segundos';
+
+  @override
+  String get avancer15 => 'Avançar 15 segundos';
+
+  @override
+  String get vitesse => 'Velocidade';
+
+  @override
+  String get pleinEcran => 'Ecrã inteiro';
+
+  @override
+  String get erreurLecture =>
+      'Não é possível reproduzir este ficheiro. Verifique a ligação.';
+
+  @override
+  String fichierMedia(String langue) {
+    return 'Ficheiro ($langue)';
+  }
+
+  @override
+  String get choisirFichier => 'Escolher o ficheiro';
+
+  @override
+  String get remplacerFichier => 'Substituir';
+
+  @override
+  String get fichierAjoute => 'Ficheiro adicionado';
+
+  @override
+  String get aucunFichier => 'Nenhum ficheiro neste idioma.';
+
+  @override
+  String envoiEnCours(int pourcent) {
+    return 'A enviar… $pourcent %';
+  }
+
+  @override
+  String get fichierRequis => 'Adicione pelo menos um ficheiro.';
+
+  @override
+  String get envoiEchoue => 'O envio falhou. Tente novamente.';
+
+  @override
+  String get champDescription => 'Descrição';
 }

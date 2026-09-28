@@ -261,3 +261,10 @@ Avant toute décision importante non prévue ici, pose la question au lieu de ch
   `publie`, `ordre`. Méditation du jour sur l'Accueil (`meditationDuJour` : ordre du coach, un par jour, en
   boucle). Éditeur du coach : Coach → Mes contenus (brouillons, une version par langue, suppression).
   Audios et vidéos : étape 4b (Storage, forfait Blaze).
+- Audios et vidéos (étape 4b) : types `audio` / `video`, champ `medias` = langue → adresse Storage
+  (`contenus/{id}/{langue}-{horodatage}.{ext}`, envoi par `MediasService` : file_picker puis Firebase Storage,
+  vidéos recompressées par le téléphone, qualité 60). Règles Storage : envoi par le coach, audio < 200 Mo,
+  vidéo < 1 Go. Lecteurs : `lecteur_audio.dart` (just_audio + audio_session « musique », continue écran
+  verrouillé grâce à `UIBackgroundModes audio`, ±15 s, vitesse) et `lecteur_video.dart` (video_player, plein
+  écran) ; reprise de la position par contenu et par langue (`PositionLecture`, préférences locales).
+  Remplacés par `FauxLecteurs` dans les tests. Commandes sur l'écran verrouillé : pas encore (audio_service).

@@ -961,6 +961,114 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Il disparaîtra pour tout le monde. C\'est définitif.'**
   String get supprimerContenuTexte;
+
+  /// No description provided for @typeAudio.
+  ///
+  /// In fr, this message translates to:
+  /// **'Audio'**
+  String get typeAudio;
+
+  /// No description provided for @typeVideo.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vidéo'**
+  String get typeVideo;
+
+  /// No description provided for @lecture.
+  ///
+  /// In fr, this message translates to:
+  /// **'Lecture'**
+  String get lecture;
+
+  /// No description provided for @pause.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pause'**
+  String get pause;
+
+  /// No description provided for @reculer15.
+  ///
+  /// In fr, this message translates to:
+  /// **'Reculer de 15 secondes'**
+  String get reculer15;
+
+  /// No description provided for @avancer15.
+  ///
+  /// In fr, this message translates to:
+  /// **'Avancer de 15 secondes'**
+  String get avancer15;
+
+  /// No description provided for @vitesse.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vitesse de lecture'**
+  String get vitesse;
+
+  /// No description provided for @pleinEcran.
+  ///
+  /// In fr, this message translates to:
+  /// **'Plein écran'**
+  String get pleinEcran;
+
+  /// No description provided for @erreurLecture.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible de lire ce fichier. Vérifiez votre connexion.'**
+  String get erreurLecture;
+
+  /// No description provided for @fichierMedia.
+  ///
+  /// In fr, this message translates to:
+  /// **'Fichier ({langue})'**
+  String fichierMedia(String langue);
+
+  /// No description provided for @choisirFichier.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisir le fichier'**
+  String get choisirFichier;
+
+  /// No description provided for @remplacerFichier.
+  ///
+  /// In fr, this message translates to:
+  /// **'Remplacer'**
+  String get remplacerFichier;
+
+  /// No description provided for @fichierAjoute.
+  ///
+  /// In fr, this message translates to:
+  /// **'Fichier ajouté'**
+  String get fichierAjoute;
+
+  /// No description provided for @aucunFichier.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun fichier dans cette langue.'**
+  String get aucunFichier;
+
+  /// No description provided for @envoiEnCours.
+  ///
+  /// In fr, this message translates to:
+  /// **'Envoi en cours… {pourcent} %'**
+  String envoiEnCours(int pourcent);
+
+  /// No description provided for @fichierRequis.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajoutez au moins un fichier.'**
+  String get fichierRequis;
+
+  /// No description provided for @envoiEchoue.
+  ///
+  /// In fr, this message translates to:
+  /// **'L\'envoi du fichier a échoué. Réessayez.'**
+  String get envoiEchoue;
+
+  /// No description provided for @champDescription.
+  ///
+  /// In fr, this message translates to:
+  /// **'Description'**
+  String get champDescription;
 }
 
 class _AppLocalizationsDelegate

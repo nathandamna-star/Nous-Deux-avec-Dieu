@@ -189,7 +189,11 @@ describe('contenus', () => {
     await assertFails(setDoc(doc(marie(), 'contenus/c2'), contenu()));
     await assertFails(setDoc(doc(coach(), 'contenus/c3'), contenu({ titre: { en: 'Only English' } })));
     await assertFails(setDoc(doc(coach(), 'contenus/c4'), contenu({ titre: { fr: 'x', de: 'y' } })));
-    await assertFails(setDoc(doc(coach(), 'contenus/c5'), contenu({ type: 'video' })));
+    await assertFails(setDoc(doc(coach(), 'contenus/c5'), contenu({ type: 'podcast' })));
+    await assertSucceeds(setDoc(doc(coach(), 'contenus/c6'), contenu({
+      type: 'audio', medias: { fr: 'https://x/fr.m4a', en: 'https://x/en.m4a' },
+    })));
+    await assertFails(setDoc(doc(coach(), 'contenus/c7'), contenu({ type: 'audio', medias: { de: 'x' } })));
     await assertSucceeds(deleteDoc(doc(coach(), 'contenus/c1')));
   });
 });

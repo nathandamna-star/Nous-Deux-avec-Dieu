@@ -58,6 +58,10 @@ class _FormulaireState extends ConsumerState<_Formulaire> {
     for (final l in languesContenu)
       l: TextEditingController(text: widget.existant?.textes[l]),
   };
+  late final _id =
+      widget.existant?.id ?? ref.read(contenusRepositoryProvider).nouvelId();
+  late final _medias = {...?widget.existant?.medias};
+  double? _envoi;
   var _occupe = false;
   String? _erreur;
 
@@ -74,8 +78,37 @@ class _FormulaireState extends ConsumerState<_Formulaire> {
     super.dispose();
   }
 
+  Future<void> _choisirFichier() async {
+    final l10n = AppLocalizations.of(context);
+    setState(() {
+      _envoi = 0;
+      _erreur = null;
+    });
+    try {
+      final url = await ref
+          .read(mediasServiceProvider)
+          .choisirEtEnvoyer(
+            contenuId: _id,
+            langue: _langue,
+            type: _type,
+            progression: (p) {
+              if (mounted) setState(() => _envoi = p);
+            },
+          );
+      if (url != null && mounted) setState(() => _medias[_langue] = url);
+    } catch (_) {
+      if (mounted) setState(() => _erreur = l10n.envoiEchoue);
+    } finally {
+      if (mounted) setState(() => _envoi = null);
+    }
+  }
+
   Future<void> _enregistrer() async {
     final l10n = AppLocalizations.of(context);
+    if (_type.estMedia && _medias.values.every((u) => u.isEmpty)) {
+      setState(() => _erreur = l10n.fichierRequis);
+      return;
+    }
     if (_titres['fr']!.text.trim().isEmpty) {
       setState(() {
         _langue = 'fr';
@@ -88,7 +121,8 @@ class _FormulaireState extends ConsumerState<_Formulaire> {
       _erreur = null;
     });
     final contenu = Contenu(
-      id: widget.existant?.id ?? '',
+      id: _id,
+      medias: _medias,
       type: _type,
       theme: _theme,
       titres: {for (final e in _titres.entries) e.key: e.value.text},
@@ -99,7 +133,9 @@ class _FormulaireState extends ConsumerState<_Formulaire> {
       ordre: int.tryParse(_ordre.text.trim()) ?? 0,
     );
     try {
-      await ref.read(contenusRepositoryProvider).enregistrer(contenu);
+      await ref
+          .read(contenusRepositoryProvider)
+          .enregistrer(contenu, nouveau: widget.existant == null);
       if (!mounted) return;
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(l10n.enregistre)));
@@ -207,14 +243,73 @@ class _FormulaireState extends ConsumerState<_Formulaire> {
               maxLength: 150,
             ),
             const SizedBox(height: 8),
+            if (_type.estMedia) ...[
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        l10n.fichierMedia(_langue.toUpperCase()),
+                        style: theme.textTheme.titleSmall,
+                      ),
+                      const SizedBox(height: 4),
+                      Row(
+                        children: [
+                          Icon(
+                            (_medias[_langue] ?? '').isEmpty
+                                ? Icons.info_outline
+                                : Icons.check_circle,
+                            color: (_medias[_langue] ?? '').isEmpty
+                                ? theme.colorScheme.onSurfaceVariant
+                                : theme.colorScheme.primary,
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Text(
+                              (_medias[_langue] ?? '').isEmpty
+                                  ? l10n.aucunFichier
+                                  : l10n.fichierAjoute,
+                            ),
+                          ),
+                          TextButton.icon(
+                            onPressed: _envoi != null ? null : _choisirFichier,
+                            icon: Icon(
+                              _type == TypeContenu.video
+                                  ? Icons.video_library_outlined
+                                  : Icons.audio_file_outlined,
+                            ),
+                            label: Text(
+                              (_medias[_langue] ?? '').isEmpty
+                                  ? l10n.choisirFichier
+                                  : l10n.remplacerFichier,
+                            ),
+                          ),
+                        ],
+                      ),
+                      if (_envoi != null) ...[
+                        const SizedBox(height: 8),
+                        LinearProgressIndicator(value: _envoi),
+                        const SizedBox(height: 4),
+                        Text(l10n.envoiEnCours((_envoi! * 100).round())),
+                      ],
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+            ],
             TextFormField(
               key: ValueKey('texte-$_langue'),
               controller: _textes[_langue],
               decoration: InputDecoration(
-                labelText: '${l10n.champTexte} (${_langue.toUpperCase()})',
+                labelText:
+                    '${_type.estMedia ? l10n.champDescription : l10n.champTexte}'
+                    ' (${_langue.toUpperCase()})',
                 alignLabelWithHint: true,
               ),
-              minLines: 8,
+              minLines: _type.estMedia ? 3 : 8,
               maxLines: 20,
             ),
             const SizedBox(height: 16),
@@ -247,7 +342,7 @@ class _FormulaireState extends ConsumerState<_Formulaire> {
             ],
             const SizedBox(height: 16),
             FilledButton(
-              onPressed: _occupe ? null : _enregistrer,
+              onPressed: _occupe || _envoi != null ? null : _enregistrer,
               child: Text(l10n.enregistrer),
             ),
           ],

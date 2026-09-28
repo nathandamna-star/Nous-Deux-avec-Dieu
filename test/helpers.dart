@@ -8,6 +8,10 @@ import 'package:nous_deux_avec_dieu/core/preferences/preferences.dart';
 import 'package:nous_deux_avec_dieu/features/accompagnement/accompagnement_providers.dart';
 import 'package:nous_deux_avec_dieu/features/accompagnement/data/fonctions_coach.dart';
 import 'package:nous_deux_avec_dieu/features/auth/auth_providers.dart';
+import 'package:nous_deux_avec_dieu/features/contenus/contenus_providers.dart';
+import 'package:nous_deux_avec_dieu/features/contenus/data/medias_service.dart';
+import 'package:nous_deux_avec_dieu/features/contenus/domain/contenu.dart';
+import 'package:nous_deux_avec_dieu/features/contenus/presentation/lecteurs/lecteurs.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Banc d'essai : Firebase simulé, préférences en mémoire.
@@ -17,6 +21,7 @@ class Banc {
   final MockFirebaseAuth auth;
   final firestore = FakeFirebaseFirestore();
   final fonctions = FaussesFonctionsCoach();
+  final medias = FauxMedias();
 
   Future<void> lancer(
     WidgetTester tester, {
@@ -38,6 +43,8 @@ class Banc {
           firebaseAuthProvider.overrideWithValue(auth),
           firestoreProvider.overrideWithValue(firestore),
           fonctionsCoachProvider.overrideWithValue(fonctions),
+          mediasServiceProvider.overrideWithValue(medias),
+          fabriqueLecteursProvider.overrideWithValue(const FauxLecteurs()),
         ],
         child: const NousDeuxAvecDieuApp(),
       ),
@@ -107,4 +114,37 @@ Future<Banc> bancAvecProfil({
 Future<void> ouvrirProfil(WidgetTester tester) async {
   await tester.tap(find.text('Profil'));
   await tester.pumpAndSettle();
+}
+
+/// Envoi de fichier simulé : renvoie une adresse, ou null si « annulé ».
+class FauxMedias implements MediasService {
+  final envois = <String>[];
+  var annuler = false;
+
+  @override
+  Future<String?> choisirEtEnvoyer({
+    required String contenuId,
+    required String langue,
+    required TypeContenu type,
+    void Function(double)? progression,
+  }) async {
+    if (annuler) return null;
+    progression?.call(0.5);
+    final url = 'https://stockage.test/$contenuId/$langue.${type.name}';
+    envois.add(url);
+    return url;
+  }
+}
+
+/// Lecteurs remplacés par un simple texte (pas de lecteur natif en test).
+class FauxLecteurs implements FabriqueLecteurs {
+  const FauxLecteurs();
+
+  @override
+  Widget audio({required String url, required String cle}) =>
+      Text('lecteur audio : $url');
+
+  @override
+  Widget video({required String url, required String cle}) =>
+      Text('lecteur vidéo : $url');
 }

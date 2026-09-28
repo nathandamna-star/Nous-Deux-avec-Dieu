@@ -170,5 +170,37 @@
   "enregistrer": "Enregistrer",
   "enregistre": "Enregistré",
   "supprimerContenuTitre": "Supprimer ce contenu ?",
-  "supprimerContenuTexte": "Il disparaîtra pour tout le monde. C'est définitif."
+  "supprimerContenuTexte": "Il disparaîtra pour tout le monde. C'est définitif.",
+  "typeAudio": "Audio",
+  "typeVideo": "Vidéo",
+  "lecture": "Lecture",
+  "pause": "Pause",
+  "reculer15": "Reculer de 15 secondes",
+  "avancer15": "Avancer de 15 secondes",
+  "vitesse": "Vitesse de lecture",
+  "pleinEcran": "Plein écran",
+  "erreurLecture": "Impossible de lire ce fichier. Vérifiez votre connexion.",
+  "fichierMedia": "Fichier ({langue})",
+  "@fichierMedia": {
+    "placeholders": {
+      "langue": {
+        "type": "String"
+      }
+    }
+  },
+  "choisirFichier": "Choisir le fichier",
+  "remplacerFichier": "Remplacer",
+  "fichierAjoute": "Fichier ajouté",
+  "aucunFichier": "Aucun fichier dans cette langue.",
+  "envoiEnCours": "Envoi en cours… {pourcent} %",
+  "@envoiEnCours": {
+    "placeholders": {
+      "pourcent": {
+        "type": "int"
+      }
+    }
+  },
+  "fichierRequis": "Ajoutez au moins un fichier.",
+  "envoiEchoue": "L'envoi du fichier a échoué. Réessayez.",
+  "champDescription": "Description"
 }

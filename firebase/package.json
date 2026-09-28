@@ -1,10 +1,10 @@
 {
   "name": "nous-deux-avec-dieu-firebase",
   "private": true,
-  "description": "Règles de sécurité Firebase et leurs tests (émulateur)",
+  "description": "R\u00e8gles de s\u00e9curit\u00e9 Firebase et leurs tests (\u00e9mulateur)",
   "type": "module",
   "scripts": {
-    "test": "firebase emulators:exec --only firestore --project demo-ndad \"node --test --test-concurrency=1 tests/*.test.js\""
+    "test": "firebase emulators:exec --only firestore,storage --project demo-ndad \"node --test --test-concurrency=1 tests/*.test.js\""
   },
   "devDependencies": {
     "@firebase/rules-unit-testing": "^5.0.2",

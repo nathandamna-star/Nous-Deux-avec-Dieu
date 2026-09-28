@@ -117,9 +117,10 @@ service cloud.firestore {
 
       allow create, update: if estCoach()
         && request.resource.data.keys().hasOnly([
-          'type', 'theme', 'titre', 'texte', 'reference', 'visibilite',
+          'type', 'theme', 'titre', 'texte', 'medias', 'reference', 'visibilite',
           'publie', 'ordre', 'createdAt', 'updatedAt'])
-        && request.resource.data.type in ['meditation', 'question', 'exercice', 'article']
+        && request.resource.data.type in ['meditation', 'question', 'exercice', 'article', 'audio', 'video']
+        && (!('medias' in request.resource.data) || langues(request.resource.data.medias))
         && request.resource.data.visibilite in ['public', 'connectes']
         && request.resource.data.publie is bool
         && langues(request.resource.data.titre)

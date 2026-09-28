@@ -33,14 +33,18 @@ class ContenusRepository {
       .snapshots()
       .map((d) => d.exists ? Contenu.depuisFirestore(d) : null);
 
-  Future<String> enregistrer(Contenu c) async {
-    if (c.id.isEmpty) {
-      final ref = await _contenus.add({
+  /// Identifiant réservé pour un nouveau contenu (les fichiers audio ou vidéo
+  /// sont envoyés avant le premier enregistrement).
+  String nouvelId() => _contenus.doc().id;
+
+  Future<String> enregistrer(Contenu c, {bool nouveau = false}) async {
+    if (nouveau) {
+      await _contenus.doc(c.id).set({
         ...c.versFirestore(),
         'createdAt': FieldValue.serverTimestamp(),
         'updatedAt': FieldValue.serverTimestamp(),
       });
-      return ref.id;
+      return c.id;
     }
     await _contenus.doc(c.id).set({
       ...c.versFirestore(),

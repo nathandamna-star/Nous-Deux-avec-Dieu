@@ -472,4 +472,63 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get supprimerContenuTexte =>
       'Il disparaîtra pour tout le monde. C\'est définitif.';
+
+  @override
+  String get typeAudio => 'Audio';
+
+  @override
+  String get typeVideo => 'Vidéo';
+
+  @override
+  String get lecture => 'Lecture';
+
+  @override
+  String get pause => 'Pause';
+
+  @override
+  String get reculer15 => 'Reculer de 15 secondes';
+
+  @override
+  String get avancer15 => 'Avancer de 15 secondes';
+
+  @override
+  String get vitesse => 'Vitesse de lecture';
+
+  @override
+  String get pleinEcran => 'Plein écran';
+
+  @override
+  String get erreurLecture =>
+      'Impossible de lire ce fichier. Vérifiez votre connexion.';
+
+  @override
+  String fichierMedia(String langue) {
+    return 'Fichier ($langue)';
+  }
+
+  @override
+  String get choisirFichier => 'Choisir le fichier';
+
+  @override
+  String get remplacerFichier => 'Remplacer';
+
+  @override
+  String get fichierAjoute => 'Fichier ajouté';
+
+  @override
+  String get aucunFichier => 'Aucun fichier dans cette langue.';
+
+  @override
+  String envoiEnCours(int pourcent) {
+    return 'Envoi en cours… $pourcent %';
+  }
+
+  @override
+  String get fichierRequis => 'Ajoutez au moins un fichier.';
+
+  @override
+  String get envoiEchoue => 'L\'envoi du fichier a échoué. Réessayez.';
+
+  @override
+  String get champDescription => 'Description';
 }

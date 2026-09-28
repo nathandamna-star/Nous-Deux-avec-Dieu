@@ -7,6 +7,8 @@ extension LibellesContenu on AppLocalizations {
     TypeContenu.question => typeQuestion,
     TypeContenu.exercice => typeExercice,
     TypeContenu.article => typeArticle,
+    TypeContenu.audio => typeAudio,
+    TypeContenu.video => typeVideo,
   };
 
   String themeContenu(ThemeContenu t) => switch (t) {

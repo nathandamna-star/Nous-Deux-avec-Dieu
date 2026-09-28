@@ -1,6 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-enum TypeContenu { meditation, question, exercice, article }
+enum TypeContenu {
+  meditation,
+  question,
+  exercice,
+  article,
+  audio,
+  video;
+
+  bool get estMedia => this == audio || this == video;
+}
 
 enum ThemeContenu {
   communication,
@@ -34,6 +43,7 @@ class Contenu {
     required this.theme,
     required this.titres,
     required this.textes,
+    this.medias = const {},
     this.reference = '',
     this.visibilite = Visibilite.public,
     this.publie = false,
@@ -48,6 +58,9 @@ class Contenu {
   /// Langue → titre / texte. Le français sert de secours.
   final Map<String, String> titres;
   final Map<String, String> textes;
+
+  /// Langue → adresse du fichier audio ou vidéo (Firebase Storage).
+  final Map<String, String> medias;
 
   /// Référence biblique, ex. « Éphésiens 4:2 ».
   final String reference;
@@ -68,6 +81,7 @@ class Contenu {
 
   String titre(String langue) => traduire(titres, langue);
   String texte(String langue) => traduire(textes, langue);
+  String media(String langue) => traduire(medias, langue);
 
   /// Vrai si le texte n'existe pas dans [langue] (on affiche une autre langue).
   bool manque(String langue) => (titres[langue]?.trim() ?? '').isEmpty;
@@ -88,6 +102,7 @@ class Contenu {
       theme: _enum(ThemeContenu.values, d['theme'], ThemeContenu.communication),
       titres: _carte(d['titre']),
       textes: _carte(d['texte']),
+      medias: _carte(d['medias']),
       reference: d['reference'] as String? ?? '',
       visibilite: _enum(Visibilite.values, d['visibilite'], Visibilite.public),
       publie: d['publie'] as bool? ?? false,
@@ -106,6 +121,10 @@ class Contenu {
     'texte': {
       for (final e in textes.entries)
         if (e.value.trim().isNotEmpty) e.key: e.value.trim(),
+    },
+    'medias': {
+      for (final e in medias.entries)
+        if (e.value.isNotEmpty) e.key: e.value,
     },
     'reference': reference.trim(),
     'visibilite': visibilite.name,

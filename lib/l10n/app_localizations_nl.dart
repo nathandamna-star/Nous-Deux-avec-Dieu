@@ -471,4 +471,63 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get supprimerContenuTexte =>
       'Het verdwijnt voor iedereen. Dit is definitief.';
+
+  @override
+  String get typeAudio => 'Audio';
+
+  @override
+  String get typeVideo => 'Video';
+
+  @override
+  String get lecture => 'Afspelen';
+
+  @override
+  String get pause => 'Pauze';
+
+  @override
+  String get reculer15 => '15 seconden terug';
+
+  @override
+  String get avancer15 => '15 seconden vooruit';
+
+  @override
+  String get vitesse => 'Afspeelsnelheid';
+
+  @override
+  String get pleinEcran => 'Volledig scherm';
+
+  @override
+  String get erreurLecture =>
+      'Dit bestand kan niet worden afgespeeld. Controleer je verbinding.';
+
+  @override
+  String fichierMedia(String langue) {
+    return 'Bestand ($langue)';
+  }
+
+  @override
+  String get choisirFichier => 'Bestand kiezen';
+
+  @override
+  String get remplacerFichier => 'Vervangen';
+
+  @override
+  String get fichierAjoute => 'Bestand toegevoegd';
+
+  @override
+  String get aucunFichier => 'Geen bestand in deze taal.';
+
+  @override
+  String envoiEnCours(int pourcent) {
+    return 'Uploaden… $pourcent%';
+  }
+
+  @override
+  String get fichierRequis => 'Voeg minstens één bestand toe.';
+
+  @override
+  String get envoiEchoue => 'Uploaden mislukt. Probeer opnieuw.';
+
+  @override
+  String get champDescription => 'Beschrijving';
 }

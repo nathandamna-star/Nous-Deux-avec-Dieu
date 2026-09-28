@@ -471,4 +471,63 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get supprimerContenuTexte =>
       'It will disappear for everyone. This cannot be undone.';
+
+  @override
+  String get typeAudio => 'Audio';
+
+  @override
+  String get typeVideo => 'Video';
+
+  @override
+  String get lecture => 'Play';
+
+  @override
+  String get pause => 'Pause';
+
+  @override
+  String get reculer15 => 'Back 15 seconds';
+
+  @override
+  String get avancer15 => 'Forward 15 seconds';
+
+  @override
+  String get vitesse => 'Playback speed';
+
+  @override
+  String get pleinEcran => 'Full screen';
+
+  @override
+  String get erreurLecture =>
+      'This file can\'t be played. Check your connection.';
+
+  @override
+  String fichierMedia(String langue) {
+    return 'File ($langue)';
+  }
+
+  @override
+  String get choisirFichier => 'Choose the file';
+
+  @override
+  String get remplacerFichier => 'Replace';
+
+  @override
+  String get fichierAjoute => 'File added';
+
+  @override
+  String get aucunFichier => 'No file in this language.';
+
+  @override
+  String envoiEnCours(int pourcent) {
+    return 'Uploading… $pourcent%';
+  }
+
+  @override
+  String get fichierRequis => 'Add at least one file.';
+
+  @override
+  String get envoiEchoue => 'The upload failed. Please try again.';
+
+  @override
+  String get champDescription => 'Description';
 }

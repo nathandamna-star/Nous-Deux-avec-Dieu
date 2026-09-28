@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../contenus_providers.dart';
+import '../domain/contenu.dart';
+import 'lecteurs/lecteurs.dart';
 import 'libelles.dart';
 
 /// Lecture d'un contenu, dans la langue de l'app si elle existe.
@@ -51,6 +53,17 @@ class ContenuScreen extends ConsumerWidget {
             if (c.manque(langue)) ...[
               const SizedBox(height: 12),
               Text(l10n.autreLangue, style: theme.textTheme.bodySmall),
+            ],
+            if (c.type.estMedia && c.media(langue).isNotEmpty) ...[
+              const SizedBox(height: 20),
+              if (c.type == TypeContenu.audio)
+                ref
+                    .read(fabriqueLecteursProvider)
+                    .audio(url: c.media(langue), cle: '${c.id}:$langue')
+              else
+                ref
+                    .read(fabriqueLecteursProvider)
+                    .video(url: c.media(langue), cle: '${c.id}:$langue'),
             ],
             const SizedBox(height: 20),
             Text(
