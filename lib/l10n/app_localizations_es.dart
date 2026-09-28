@@ -772,4 +772,104 @@ class AppLocalizationsEs extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get rendezVous => 'Citas';
+
+  @override
+  String get prochainRendezVous => 'Próxima cita';
+
+  @override
+  String get aucunRendezVous =>
+      'Todavía no hay ninguna cita programada. Tu coach te propondrá una fecha.';
+
+  @override
+  String get seancesSansAccompagnement =>
+      'Tus citas aparecerán aquí cuando empiece tu acompañamiento.';
+
+  @override
+  String get planifierRendezVous => 'Programar una cita';
+
+  @override
+  String get modifierRendezVous => 'Modificar la cita';
+
+  @override
+  String get champDate => 'Fecha';
+
+  @override
+  String get champHeure => 'Hora';
+
+  @override
+  String get champDuree => 'Duración';
+
+  @override
+  String dureeMinutes(int n) {
+    return '$n min';
+  }
+
+  @override
+  String get champLienZoom => 'Enlace de Zoom';
+
+  @override
+  String get champLienZoomAide =>
+      'Pega el enlace de la reunión de Zoom (https://…)';
+
+  @override
+  String get lienZoomInvalide => 'Enlace no válido: debe empezar por https://';
+
+  @override
+  String get rejoindreZoom => 'Unirse en Zoom';
+
+  @override
+  String get lienZoomAVenir => 'Tu coach añadirá el enlace de Zoom.';
+
+  @override
+  String get lienImpossible => 'No se puede abrir el enlace.';
+
+  @override
+  String get rdvEnCours => 'En curso';
+
+  @override
+  String get rdvAnnule => 'Cancelada';
+
+  @override
+  String get rdvFait => 'Realizada';
+
+  @override
+  String get rdvPasse => 'Pasada';
+
+  @override
+  String get annulerRendezVous => 'Cancelar la cita';
+
+  @override
+  String get confirmerAnnulationRdv =>
+      '¿Cancelar esta cita? Se avisará a las personas acompañadas.';
+
+  @override
+  String get marquerSeanceFaite => 'Sesión realizada (−1 sesión)';
+
+  @override
+  String get historique => 'Historial';
+
+  @override
+  String get aVenir => 'Próximas';
+
+  @override
+  String get agenda => 'Agenda';
+
+  @override
+  String get agendaVide => 'No hay citas próximas.';
+
+  @override
+  String get rappelsAutomatiques =>
+      'Recordatorio automático el día anterior y 1 hora antes.';
+
+  @override
+  String get rendezVousEnregistre => 'Cita guardada';
+
+  @override
+  String get dateDansLePasse => 'Elige una fecha futura.';
+
+  @override
+  String get nonMerci => 'No';
 }

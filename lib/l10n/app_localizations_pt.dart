@@ -774,4 +774,103 @@ class AppLocalizationsPt extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get rendezVous => 'Consultas';
+
+  @override
+  String get prochainRendezVous => 'Próxima consulta';
+
+  @override
+  String get aucunRendezVous =>
+      'Ainda não há nenhuma consulta marcada. O seu coach vai propor uma data.';
+
+  @override
+  String get seancesSansAccompagnement =>
+      'As suas consultas aparecerão aqui quando o acompanhamento começar.';
+
+  @override
+  String get planifierRendezVous => 'Marcar uma consulta';
+
+  @override
+  String get modifierRendezVous => 'Alterar a consulta';
+
+  @override
+  String get champDate => 'Data';
+
+  @override
+  String get champHeure => 'Hora';
+
+  @override
+  String get champDuree => 'Duração';
+
+  @override
+  String dureeMinutes(int n) {
+    return '$n min';
+  }
+
+  @override
+  String get champLienZoom => 'Link do Zoom';
+
+  @override
+  String get champLienZoomAide => 'Cole o link da reunião Zoom (https://…)';
+
+  @override
+  String get lienZoomInvalide => 'Link inválido: deve começar por https://';
+
+  @override
+  String get rejoindreZoom => 'Entrar no Zoom';
+
+  @override
+  String get lienZoomAVenir => 'O link do Zoom será adicionado pelo seu coach.';
+
+  @override
+  String get lienImpossible => 'Não foi possível abrir o link.';
+
+  @override
+  String get rdvEnCours => 'Em curso';
+
+  @override
+  String get rdvAnnule => 'Cancelada';
+
+  @override
+  String get rdvFait => 'Realizada';
+
+  @override
+  String get rdvPasse => 'Passada';
+
+  @override
+  String get annulerRendezVous => 'Cancelar a consulta';
+
+  @override
+  String get confirmerAnnulationRdv =>
+      'Cancelar esta consulta? As pessoas acompanhadas serão avisadas.';
+
+  @override
+  String get marquerSeanceFaite => 'Sessão realizada (−1 sessão)';
+
+  @override
+  String get historique => 'Histórico';
+
+  @override
+  String get aVenir => 'Próximas';
+
+  @override
+  String get agenda => 'Agenda';
+
+  @override
+  String get agendaVide => 'Nenhuma consulta marcada.';
+
+  @override
+  String get rappelsAutomatiques =>
+      'Lembrete automático na véspera e 1 hora antes.';
+
+  @override
+  String get rendezVousEnregistre => 'Consulta guardada';
+
+  @override
+  String get dateDansLePasse => 'Escolha uma data futura.';
+
+  @override
+  String get nonMerci => 'Não';
 }

@@ -43,6 +43,11 @@ class _CoachScreenState extends ConsumerState<CoachScreen> {
       appBar: AppBar(
         title: Text(l10n.navCoach),
         actions: [
+          IconButton(
+            tooltip: l10n.agenda,
+            icon: const Icon(Icons.calendar_month_outlined),
+            onPressed: () => context.push(Routes.agenda),
+          ),
           TextButton.icon(
             onPressed: () => context.push(Routes.contenusCoach),
             icon: const Icon(Icons.edit_note),

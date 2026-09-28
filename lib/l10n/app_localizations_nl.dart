@@ -774,4 +774,104 @@ class AppLocalizationsNl extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get rendezVous => 'Afspraken';
+
+  @override
+  String get prochainRendezVous => 'Volgende afspraak';
+
+  @override
+  String get aucunRendezVous =>
+      'Nog geen afspraak gepland. Je coach stelt een datum voor.';
+
+  @override
+  String get seancesSansAccompagnement =>
+      'Je afspraken verschijnen hier zodra je begeleiding is gestart.';
+
+  @override
+  String get planifierRendezVous => 'Afspraak plannen';
+
+  @override
+  String get modifierRendezVous => 'Afspraak wijzigen';
+
+  @override
+  String get champDate => 'Datum';
+
+  @override
+  String get champHeure => 'Tijd';
+
+  @override
+  String get champDuree => 'Duur';
+
+  @override
+  String dureeMinutes(int n) {
+    return '$n min';
+  }
+
+  @override
+  String get champLienZoom => 'Zoom-link';
+
+  @override
+  String get champLienZoomAide =>
+      'Plak de link van de Zoom-vergadering (https://…)';
+
+  @override
+  String get lienZoomInvalide => 'Ongeldige link: moet beginnen met https://';
+
+  @override
+  String get rejoindreZoom => 'Deelnemen via Zoom';
+
+  @override
+  String get lienZoomAVenir => 'Je coach voegt de Zoom-link toe.';
+
+  @override
+  String get lienImpossible => 'Kan de link niet openen.';
+
+  @override
+  String get rdvEnCours => 'Bezig';
+
+  @override
+  String get rdvAnnule => 'Geannuleerd';
+
+  @override
+  String get rdvFait => 'Gedaan';
+
+  @override
+  String get rdvPasse => 'Voorbij';
+
+  @override
+  String get annulerRendezVous => 'Afspraak annuleren';
+
+  @override
+  String get confirmerAnnulationRdv =>
+      'Deze afspraak annuleren? De begeleide personen worden verwittigd.';
+
+  @override
+  String get marquerSeanceFaite => 'Sessie gedaan (−1 sessie)';
+
+  @override
+  String get historique => 'Geschiedenis';
+
+  @override
+  String get aVenir => 'Gepland';
+
+  @override
+  String get agenda => 'Agenda';
+
+  @override
+  String get agendaVide => 'Geen geplande afspraken.';
+
+  @override
+  String get rappelsAutomatiques =>
+      'Automatische herinnering de dag ervoor en 1 uur ervoor.';
+
+  @override
+  String get rendezVousEnregistre => 'Afspraak opgeslagen';
+
+  @override
+  String get dateDansLePasse => 'Kies een datum in de toekomst.';
+
+  @override
+  String get nonMerci => 'Nee';
 }

@@ -21,6 +21,8 @@ import 'package:nous_deux_avec_dieu/features/notifications/notifications_provide
 import 'package:nous_deux_avec_dieu/features/notifications/notifications_service.dart';
 import 'package:nous_deux_avec_dieu/features/profil/data/photo_profil_service.dart';
 import 'package:nous_deux_avec_dieu/features/profil/profil_providers.dart';
+import 'package:nous_deux_avec_dieu/features/rendezvous/rendez_vous_providers.dart';
+import 'package:nous_deux_avec_dieu/shared/services/lanceur.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Banc d'essai : Firebase simulé, préférences en mémoire.
@@ -34,6 +36,10 @@ class Banc {
   final photo = FaussePhotoProfil();
   final pieces = FaussesPiecesJointes();
   final notifications = FaussesNotifications();
+  final lanceur = FauxLanceur();
+
+  /// Heure « actuelle » vue par l'app (rendez-vous).
+  DateTime maintenant = DateTime.now();
 
   Future<void> lancer(
     WidgetTester tester, {
@@ -60,6 +66,8 @@ class Banc {
           piecesJointesProvider.overrideWithValue(pieces),
           notificationsServiceProvider.overrideWithValue(notifications),
           fabriqueLecteursProvider.overrideWithValue(const FauxLecteurs()),
+          lanceurProvider.overrideWithValue(lanceur),
+          horlogeProvider.overrideWithValue(() => maintenant),
         ],
         child: const NousDeuxAvecDieuApp(),
       ),
@@ -222,4 +230,14 @@ class FaussesNotifications implements NotificationsService {
 
   @override
   Stream<Map<String, dynamic>> get notificationsTouchees => touchees.stream;
+}
+
+class FauxLanceur implements Lanceur {
+  final ouverts = <Uri>[];
+
+  @override
+  Future<bool> ouvrir(Uri url) async {
+    ouverts.add(url);
+    return true;
+  }
 }

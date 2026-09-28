@@ -295,3 +295,13 @@ Avant toute décision importante non prévue ici, pose la question au lieu de ch
   Cloud Functions `notifierMessage` (membres → coach : uid dans `systeme/coach` ; coach → membres) et
   `notifierExercice`, textes dans les 5 langues (`functions/notifications.js`, testé). Toucher une notification
   ouvre l'exercice ou la conversation. iPhone : clé APNs + capacités Xcode nécessaires (compte Apple payant).
+- Rendez-vous (étape 7, `lib/features/rendezvous/`) : `accompagnements/{id}/rendezVous/{rdvId}` (nom, debut,
+  dureeMin, lienZoom https ou vide, statut prevu|fait|annule, rappelVeille, rappelHeure). Le coach écrit, les
+  membres lisent (le conjoint arrivé plus tard voit tout) ; agenda du coach = requête de groupe `rendezVous`
+  (règle `/{chemin=**}/rendezVous`). « Séance faite » décompte une séance (`seancesRestantes`). Les rappels ne
+  sont remis à zéro que si la date change. Dernier lien Zoom mémorisé sur le téléphone du coach.
+  Onglet Séances (à venir + Zoom via `Lanceur`, historique, séances restantes), carte « Prochain rendez-vous » à
+  l'accueil, section sur la fiche, écran Agenda. Heure de l'app remplaçable (`horlogeProvider`).
+- Fonctions : `notifierRendezVous` (nouveau, déplacé, annulé) et `rappelsRendezVous` (Cloud Scheduler toutes
+  les 15 min : veille = entre 24 h et 3 h avant, puis 1 h avant). Heure locale via `users.decalageMin`
+  (enregistré avec le jeton de notification ; absent = Europe/Brussels). Logique pure : `functions/rendezvous.js`.

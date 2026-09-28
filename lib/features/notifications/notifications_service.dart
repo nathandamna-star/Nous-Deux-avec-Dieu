@@ -45,8 +45,11 @@ class NotificationsFirebase implements NotificationsService {
     }
   }
 
+  /// Jeton du téléphone et décalage horaire (minutes par rapport à UTC),
+  /// pour que les rappels de rendez-vous affichent l'heure locale.
   Future<void> _enregistrer(String uid, String jeton) => _profil(uid).update({
     'jetonsNotif': FieldValue.arrayUnion([jeton]),
+    'decalageMin': DateTime.now().timeZoneOffset.inMinutes,
   });
 
   @override

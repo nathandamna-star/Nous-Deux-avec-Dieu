@@ -15,7 +15,10 @@ void main() {
 
     await tester.tap(find.text('Séances'));
     await tester.pumpAndSettle();
-    expect(find.textContaining('séances restantes'), findsOneWidget);
+    expect(
+      find.textContaining('une fois votre accompagnement'),
+      findsOneWidget,
+    );
 
     await tester.tap(find.text('Contenus'));
     await tester.pumpAndSettle();

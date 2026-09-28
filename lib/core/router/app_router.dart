@@ -25,6 +25,8 @@ import '../../features/coach/coach_screen.dart';
 import '../../features/contenus/contenus_screen.dart';
 import '../../features/messages/messages_screen.dart';
 import '../../features/profil/profil_screen.dart';
+import '../../features/rendezvous/presentation/agenda_screen.dart';
+import '../../features/rendezvous/presentation/editeur_rendez_vous_screen.dart';
 import '../../features/seances/seances_screen.dart';
 import '../../l10n/app_localizations.dart';
 import '../preferences/preferences.dart';
@@ -204,8 +206,24 @@ final _sousRoutes = <String, List<RouteBase>>{
             ),
           ],
         ),
+        GoRoute(
+          path: 'rendezvous',
+          builder: (context, state) => EditeurRendezVousScreen(
+            accompagnementId: state.pathParameters['id']!,
+          ),
+          routes: [
+            GoRoute(
+              path: ':rdvId',
+              builder: (context, state) => EditeurRendezVousScreen(
+                accompagnementId: state.pathParameters['id']!,
+                rendezVousId: state.pathParameters['rdvId'],
+              ),
+            ),
+          ],
+        ),
       ],
     ),
+    GoRoute(path: 'agenda', builder: (context, state) => const AgendaScreen()),
   ],
 };
 

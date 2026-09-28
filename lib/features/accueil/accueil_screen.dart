@@ -9,6 +9,8 @@ import '../auth/auth_providers.dart';
 import '../contenus/contenus_providers.dart';
 import '../contenus/domain/contenu.dart';
 import '../exercices/exercices_providers.dart';
+import '../rendezvous/presentation/carte_rendez_vous.dart';
+import '../rendezvous/rendez_vous_providers.dart';
 
 /// Accueil : salutation et méditation du jour.
 class AccueilScreen extends ConsumerWidget {
@@ -32,6 +34,12 @@ class AccueilScreen extends ConsumerWidget {
         : (ref.watch(exercicesProvider(acc.id)).value ?? const [])
               .where((e) => !e.fait)
               .length;
+    final maintenant = ref.watch(horlogeProvider)();
+    final prochain = acc == null
+        ? null
+        : (ref.watch(rendezVousProvider(acc.id)).value ?? const [])
+              .where((r) => r.aVenir(maintenant))
+              .firstOrNull;
 
     return Scaffold(
       appBar: AppBar(title: Text(l10n.appTitle)),
@@ -47,6 +55,15 @@ class AccueilScreen extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 20),
+          if (prochain != null) ...[
+            Text(l10n.prochainRendezVous, style: theme.textTheme.titleMedium),
+            const SizedBox(height: 4),
+            CarteRendezVous(
+              rdv: prochain,
+              onTap: () => context.go(Routes.seances),
+            ),
+            const SizedBox(height: 12),
+          ],
           if (acc != null) ...[
             Card(
               child: ListTile(

@@ -1459,6 +1459,192 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'{n, plural, =1{1 message non lu} other{{n} messages non lus}}'**
   String nonLus(int n);
+
+  /// No description provided for @rendezVous.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rendez-vous'**
+  String get rendezVous;
+
+  /// No description provided for @prochainRendezVous.
+  ///
+  /// In fr, this message translates to:
+  /// **'Prochain rendez-vous'**
+  String get prochainRendezVous;
+
+  /// No description provided for @aucunRendezVous.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun rendez-vous prévu pour l\'instant. Votre coach vous proposera une date.'**
+  String get aucunRendezVous;
+
+  /// No description provided for @seancesSansAccompagnement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vos rendez-vous apparaîtront ici une fois votre accompagnement commencé.'**
+  String get seancesSansAccompagnement;
+
+  /// No description provided for @planifierRendezVous.
+  ///
+  /// In fr, this message translates to:
+  /// **'Planifier un rendez-vous'**
+  String get planifierRendezVous;
+
+  /// No description provided for @modifierRendezVous.
+  ///
+  /// In fr, this message translates to:
+  /// **'Modifier le rendez-vous'**
+  String get modifierRendezVous;
+
+  /// No description provided for @champDate.
+  ///
+  /// In fr, this message translates to:
+  /// **'Date'**
+  String get champDate;
+
+  /// No description provided for @champHeure.
+  ///
+  /// In fr, this message translates to:
+  /// **'Heure'**
+  String get champHeure;
+
+  /// No description provided for @champDuree.
+  ///
+  /// In fr, this message translates to:
+  /// **'Durée'**
+  String get champDuree;
+
+  /// No description provided for @dureeMinutes.
+  ///
+  /// In fr, this message translates to:
+  /// **'{n} min'**
+  String dureeMinutes(int n);
+
+  /// No description provided for @champLienZoom.
+  ///
+  /// In fr, this message translates to:
+  /// **'Lien Zoom'**
+  String get champLienZoom;
+
+  /// No description provided for @champLienZoomAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Collez le lien de la réunion Zoom (https://…)'**
+  String get champLienZoomAide;
+
+  /// No description provided for @lienZoomInvalide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Lien invalide : il doit commencer par https://'**
+  String get lienZoomInvalide;
+
+  /// No description provided for @rejoindreZoom.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rejoindre sur Zoom'**
+  String get rejoindreZoom;
+
+  /// No description provided for @lienZoomAVenir.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le lien Zoom sera ajouté par votre coach.'**
+  String get lienZoomAVenir;
+
+  /// No description provided for @lienImpossible.
+  ///
+  /// In fr, this message translates to:
+  /// **'Impossible d\'ouvrir le lien.'**
+  String get lienImpossible;
+
+  /// No description provided for @rdvEnCours.
+  ///
+  /// In fr, this message translates to:
+  /// **'En cours'**
+  String get rdvEnCours;
+
+  /// No description provided for @rdvAnnule.
+  ///
+  /// In fr, this message translates to:
+  /// **'Annulé'**
+  String get rdvAnnule;
+
+  /// No description provided for @rdvFait.
+  ///
+  /// In fr, this message translates to:
+  /// **'Fait'**
+  String get rdvFait;
+
+  /// No description provided for @rdvPasse.
+  ///
+  /// In fr, this message translates to:
+  /// **'Passé'**
+  String get rdvPasse;
+
+  /// No description provided for @annulerRendezVous.
+  ///
+  /// In fr, this message translates to:
+  /// **'Annuler le rendez-vous'**
+  String get annulerRendezVous;
+
+  /// No description provided for @confirmerAnnulationRdv.
+  ///
+  /// In fr, this message translates to:
+  /// **'Annuler ce rendez-vous ? Les personnes accompagnées seront prévenues.'**
+  String get confirmerAnnulationRdv;
+
+  /// No description provided for @marquerSeanceFaite.
+  ///
+  /// In fr, this message translates to:
+  /// **'Séance faite (−1 séance)'**
+  String get marquerSeanceFaite;
+
+  /// No description provided for @historique.
+  ///
+  /// In fr, this message translates to:
+  /// **'Historique'**
+  String get historique;
+
+  /// No description provided for @aVenir.
+  ///
+  /// In fr, this message translates to:
+  /// **'À venir'**
+  String get aVenir;
+
+  /// No description provided for @agenda.
+  ///
+  /// In fr, this message translates to:
+  /// **'Agenda'**
+  String get agenda;
+
+  /// No description provided for @agendaVide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun rendez-vous à venir.'**
+  String get agendaVide;
+
+  /// No description provided for @rappelsAutomatiques.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rappel automatique la veille et 1 heure avant.'**
+  String get rappelsAutomatiques;
+
+  /// No description provided for @rendezVousEnregistre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rendez-vous enregistré'**
+  String get rendezVousEnregistre;
+
+  /// No description provided for @dateDansLePasse.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisissez une date à venir.'**
+  String get dateDansLePasse;
+
+  /// No description provided for @nonMerci.
+  ///
+  /// In fr, this message translates to:
+  /// **'Non'**
+  String get nonMerci;
 }
 
 class _AppLocalizationsDelegate

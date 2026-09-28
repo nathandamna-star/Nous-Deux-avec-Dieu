@@ -38,7 +38,10 @@ service cloud.firestore {
       // Modification : nom, langue et parcours seulement.
       allow update: if connecte() && uid == moi()
         && request.resource.data.diff(resource.data).affectedKeys()
-             .hasOnly(['nom', 'langue', 'parcours', 'photoUrl', 'jetonsNotif'])
+             .hasOnly(['nom', 'langue', 'parcours', 'photoUrl', 'jetonsNotif', 'decalageMin'])
+        && (request.resource.data.get('decalageMin', 0) is int
+          && request.resource.data.get('decalageMin', 0) >= -720
+          && request.resource.data.get('decalageMin', 0) <= 840)
         && request.resource.data.get('jetonsNotif', []) is list
         && request.resource.data.get('jetonsNotif', []).size() <= 20
         && (request.resource.data.get('photoUrl', null) == null
@@ -181,6 +184,26 @@ service cloud.firestore {
             || 'audioUrl' in request.resource.data);
       }
 
+      // Rendez-vous : le coach les planifie ; les membres les lisent.
+      // Les rappels (rappelVeille, rappelHeure) sont cochés par le serveur.
+      match /rendezVous/{rdvId} {
+        allow read: if estCoach() || membre();
+        allow create, update: if estCoach()
+          && request.resource.data.keys().hasOnly([
+            'nom', 'debut', 'dureeMin', 'lienZoom', 'statut',
+            'rappelVeille', 'rappelHeure', 'createdAt', 'updatedAt'])
+          && request.resource.data.debut is timestamp
+          && request.resource.data.dureeMin is int
+          && request.resource.data.dureeMin >= 15
+          && request.resource.data.dureeMin <= 240
+          && request.resource.data.lienZoom is string
+          && request.resource.data.lienZoom.size() <= 500
+          && (request.resource.data.lienZoom == ''
+            || request.resource.data.lienZoom.matches('https://[^ ]+'))
+          && request.resource.data.statut in ['prevu', 'fait', 'annule'];
+        allow delete: if estCoach();
+      }
+
       // Notes privées : le coach seulement.
       match /notes/{noteId} {
         allow read, delete: if estCoach();
@@ -188,6 +211,11 @@ service cloud.firestore {
           && request.resource.data.keys().hasOnly(['texte', 'createdAt', 'updatedAt'])
           && texte(request.resource.data.texte, 10000);
       }
+    }
+
+    // Agenda du coach : tous les rendez-vous (requête de groupe).
+    match /{chemin=**}/rendezVous/{rdvId} {
+      allow read: if estCoach();
     }
 
     // ----- Contenus du coach -----

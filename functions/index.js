@@ -8,11 +8,13 @@ import { FieldValue, getFirestore } from 'firebase-admin/firestore';
 import { setGlobalOptions } from 'firebase-functions/v2';
 import { defineString } from 'firebase-functions/params';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
-import { onDocumentCreated } from 'firebase-functions/v2/firestore';
+import { onDocumentCreated, onDocumentWritten } from 'firebase-functions/v2/firestore';
+import { onSchedule } from 'firebase-functions/v2/scheduler';
 import { logger } from 'firebase-functions';
 import {
   destinatairesMessage, jetonsInvalides, notificationExercice, notificationMessage,
 } from './notifications.js';
+import { changementRendezVous, notificationRendezVous, rappelsDus } from './rendezvous.js';
 
 initializeApp();
 
@@ -61,7 +63,7 @@ async function envoyerNotification(uid, construire) {
   const profil = (await refProfil.get()).data() ?? {};
   const jetons = profil.jetonsNotif ?? [];
   if (jetons.length === 0) return;
-  const { notification, data } = construire(profil.langue);
+  const { notification, data } = construire(profil.langue, profil.decalageMin);
   if (process.env.FUNCTIONS_EMULATOR === 'true') {
     logger.info('Émulateur : notification non envoyée', { uid, notification });
     return;
@@ -108,3 +110,51 @@ export const notifierExercice = onDocumentCreated(
       notificationExercice({ exerciceId, exercice, langue }))));
   },
 );
+
+/** Rendez-vous créé, déplacé ou annulé par le coach : les membres sont prévenus. */
+export const notifierRendezVous = onDocumentWritten(
+  'accompagnements/{accompagnementId}/rendezVous/{rendezVousId}',
+  async (evenement) => {
+    const { accompagnementId, rendezVousId } = evenement.params;
+    const avant = evenement.data?.before?.data();
+    const apres = evenement.data?.after?.data();
+    const type = changementRendezVous(avant, apres);
+    if (!type) return;
+    const accompagnement = (await getFirestore().doc(`accompagnements/${accompagnementId}`).get()).data();
+    if (!accompagnement) return;
+    await Promise.all((accompagnement.membres ?? []).map((uid) => envoyerNotification(uid,
+      (langue, decalageMin) => notificationRendezVous({
+        type, accompagnementId, rendezVousId, rdv: apres, langue, decalageMin,
+      }))));
+  },
+);
+
+/**
+ * Toutes les 15 minutes : rappels la veille et 1 heure avant chaque séance.
+ * Cloud Scheduler : gratuit jusqu'à 3 tâches planifiées par compte.
+ */
+export const rappelsRendezVous = onSchedule('every 15 minutes', async () => {
+  const db = getFirestore();
+  const maintenant = new Date();
+  const limite = new Date(maintenant.getTime() + 24 * 60 * 60 * 1000);
+  const accompagnements = await db.collection('accompagnements').get();
+  for (const acc of accompagnements.docs) {
+    const rdvs = await acc.ref.collection('rendezVous')
+      .where('debut', '>', maintenant)
+      .where('debut', '<=', limite)
+      .get();
+    for (const doc of rdvs.docs) {
+      const rdv = doc.data();
+      const { envoyer, marquer } = rappelsDus(rdv, maintenant);
+      if (Object.keys(marquer).length === 0) continue;
+      // Marqué d'abord : jamais deux fois le même rappel.
+      await doc.ref.update(marquer);
+      for (const type of envoyer) {
+        await Promise.all((acc.data().membres ?? []).map((uid) => envoyerNotification(uid,
+          (langue, decalageMin) => notificationRendezVous({
+            type, accompagnementId: acc.id, rendezVousId: doc.id, rdv, langue, decalageMin,
+          }))));
+      }
+    }
+  }
+});

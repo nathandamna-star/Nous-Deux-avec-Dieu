@@ -326,5 +326,43 @@
         "type": "int"
       }
     }
-  }
+  },
+  "rendezVous": "Rendez-vous",
+  "prochainRendezVous": "Prochain rendez-vous",
+  "aucunRendezVous": "Aucun rendez-vous prévu pour l'instant. Votre coach vous proposera une date.",
+  "seancesSansAccompagnement": "Vos rendez-vous apparaîtront ici une fois votre accompagnement commencé.",
+  "planifierRendezVous": "Planifier un rendez-vous",
+  "modifierRendezVous": "Modifier le rendez-vous",
+  "champDate": "Date",
+  "champHeure": "Heure",
+  "champDuree": "Durée",
+  "dureeMinutes": "{n} min",
+  "@dureeMinutes": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "champLienZoom": "Lien Zoom",
+  "champLienZoomAide": "Collez le lien de la réunion Zoom (https://…)",
+  "lienZoomInvalide": "Lien invalide : il doit commencer par https://",
+  "rejoindreZoom": "Rejoindre sur Zoom",
+  "lienZoomAVenir": "Le lien Zoom sera ajouté par votre coach.",
+  "lienImpossible": "Impossible d'ouvrir le lien.",
+  "rdvEnCours": "En cours",
+  "rdvAnnule": "Annulé",
+  "rdvFait": "Fait",
+  "rdvPasse": "Passé",
+  "annulerRendezVous": "Annuler le rendez-vous",
+  "confirmerAnnulationRdv": "Annuler ce rendez-vous ? Les personnes accompagnées seront prévenues.",
+  "marquerSeanceFaite": "Séance faite (−1 séance)",
+  "historique": "Historique",
+  "aVenir": "À venir",
+  "agenda": "Agenda",
+  "agendaVide": "Aucun rendez-vous à venir.",
+  "rappelsAutomatiques": "Rappel automatique la veille et 1 heure avant.",
+  "rendezVousEnregistre": "Rendez-vous enregistré",
+  "dateDansLePasse": "Choisissez une date à venir.",
+  "nonMerci": "Non"
 }

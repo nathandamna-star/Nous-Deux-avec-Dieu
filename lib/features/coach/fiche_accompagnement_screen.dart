@@ -12,6 +12,9 @@ import '../../shared/widgets/avatar.dart';
 import '../accompagnement/presentation/libelles.dart';
 import '../auth/auth_providers.dart';
 import '../exercices/exercices_providers.dart';
+import '../rendezvous/presentation/carte_rendez_vous.dart';
+import '../rendezvous/presentation/menu_rendez_vous.dart';
+import '../rendezvous/rendez_vous_providers.dart';
 
 /// Fiche d'un accompagnement (coach) : membres, statut, séances, notes privées.
 class FicheAccompagnementScreen extends ConsumerStatefulWidget {
@@ -41,6 +44,21 @@ class _FicheAccompagnementScreenState
     await ref
         .read(accompagnementRepositoryProvider)
         .ajouterNote(widget.id, texte);
+  }
+
+  /// Rendez-vous à venir, puis les 3 derniers passés.
+  List<Widget> _rendezVous() {
+    final maintenant = ref.watch(horlogeProvider)();
+    final tous = ref.watch(rendezVousProvider(widget.id)).value ?? const [];
+    final aVenir = tous.where((r) => r.aVenir(maintenant));
+    final passes = tous.where((r) => !r.aVenir(maintenant)).toList().reversed;
+    return [
+      for (final r in [...aVenir, ...passes.take(3)])
+        CarteRendezVous(
+          rdv: r,
+          actions: MenuRendezVous(rdv: r),
+        ),
+    ];
   }
 
   @override
@@ -167,6 +185,23 @@ class _FicheAccompagnementScreenState
               ),
             ],
           ),
+          const Divider(height: 32),
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  l10n.rendezVous,
+                  style: theme.textTheme.titleMedium,
+                ),
+              ),
+              TextButton.icon(
+                onPressed: () => context.push(Routes.nouveauRendezVous(a.id)),
+                icon: const Icon(Icons.add),
+                label: Text(l10n.planifierRendezVous),
+              ),
+            ],
+          ),
+          ..._rendezVous(),
           const Divider(height: 32),
           Row(
             children: [

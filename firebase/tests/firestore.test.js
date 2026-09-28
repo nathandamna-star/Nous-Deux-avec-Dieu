@@ -4,7 +4,7 @@ import {
   assertFails, assertSucceeds, initializeTestEnvironment,
 } from '@firebase/rules-unit-testing';
 import {
-  addDoc, arrayUnion, collection, deleteDoc, doc, getDoc, getDocs, query, serverTimestamp, setDoc,
+  addDoc, arrayUnion, collection, collectionGroup, deleteDoc, doc, getDoc, getDocs, query, serverTimestamp, setDoc,
   updateDoc, where, writeBatch,
 } from 'firebase/firestore';
 
@@ -312,7 +312,51 @@ describe('messagerie', () => {
     await env.withSecurityRulesDisabled(async (ctx) => {
       await setDoc(doc(ctx.firestore(), 'users/marie'), { nom: 'Marie', langue: 'fr', parcours: 'couple' });
     });
-    await assertSucceeds(updateDoc(doc(marie(), 'users/marie'), { jetonsNotif: ['jeton1'] }));
+    await assertSucceeds(updateDoc(doc(marie(), 'users/marie'), { jetonsNotif: ['jeton1'], decalageMin: 120 }));
+    await assertFails(updateDoc(doc(marie(), 'users/marie'), { decalageMin: 5000 }));
     await assertFails(updateDoc(doc(paul(), 'users/marie'), { jetonsNotif: ['pirate'] }));
+  });
+});
+
+describe('rendez-vous', () => {
+  const couple = () => env.withSecurityRulesDisabled(async (ctx) => {
+    await setDoc(doc(ctx.firestore(), 'accompagnements/a1'), {
+      type: 'couple', nom: 'Paul & Marie', membres: ['marie', 'paul'], statut: 'actif',
+    });
+  });
+  const rdv = (extra = {}) => ({
+    nom: 'Paul & Marie', debut: new Date(2030, 0, 10, 19), dureeMin: 60,
+    lienZoom: 'https://zoom.us/j/123', statut: 'prevu', rappelVeille: false, rappelHeure: false,
+    createdAt: serverTimestamp(), updatedAt: serverTimestamp(), ...extra,
+  });
+
+  it('seul le coach planifie ; les membres lisent', async () => {
+    await couple();
+    await assertSucceeds(setDoc(doc(coach(), 'accompagnements/a1/rendezVous/r1'), rdv()));
+    await assertFails(setDoc(doc(marie(), 'accompagnements/a1/rendezVous/r2'), rdv()));
+    await assertFails(updateDoc(doc(marie(), 'accompagnements/a1/rendezVous/r1'), { statut: 'annule' }));
+    await assertSucceeds(getDocs(collection(paul(), 'accompagnements/a1/rendezVous')));
+    const lucie = env.authenticatedContext('lucie').firestore();
+    await assertFails(getDocs(collection(lucie, 'accompagnements/a1/rendezVous')));
+    await assertSucceeds(updateDoc(doc(coach(), 'accompagnements/a1/rendezVous/r1'), { statut: 'annule' }));
+  });
+
+  it('lien Zoom, durée et champs vérifiés', async () => {
+    await couple();
+    const ref = (id) => doc(coach(), `accompagnements/a1/rendezVous/${id}`);
+    await assertSucceeds(setDoc(ref('r1'), rdv({ lienZoom: '' })));
+    await assertFails(setDoc(ref('r2'), rdv({ lienZoom: 'javascript:alert(1)' })));
+    await assertFails(setDoc(ref('r3'), rdv({ dureeMin: 600 })));
+    await assertFails(setDoc(ref('r4'), rdv({ statut: 'inconnu' })));
+    await assertFails(setDoc(ref('r5'), rdv({ pirate: true })));
+  });
+
+  it('agenda : le coach seul liste tous les rendez-vous', async () => {
+    await couple();
+    await env.withSecurityRulesDisabled(async (ctx) => {
+      await setDoc(doc(ctx.firestore(), 'accompagnements/a1/rendezVous/r1'), rdv());
+    });
+    await assertSucceeds(getDocs(collectionGroup(coach(), 'rendezVous')));
+    await assertFails(getDocs(collectionGroup(marie(), 'rendezVous')));
   });
 });

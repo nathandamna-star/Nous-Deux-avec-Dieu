@@ -778,4 +778,105 @@ class AppLocalizationsFr extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get rendezVous => 'Rendez-vous';
+
+  @override
+  String get prochainRendezVous => 'Prochain rendez-vous';
+
+  @override
+  String get aucunRendezVous =>
+      'Aucun rendez-vous prévu pour l\'instant. Votre coach vous proposera une date.';
+
+  @override
+  String get seancesSansAccompagnement =>
+      'Vos rendez-vous apparaîtront ici une fois votre accompagnement commencé.';
+
+  @override
+  String get planifierRendezVous => 'Planifier un rendez-vous';
+
+  @override
+  String get modifierRendezVous => 'Modifier le rendez-vous';
+
+  @override
+  String get champDate => 'Date';
+
+  @override
+  String get champHeure => 'Heure';
+
+  @override
+  String get champDuree => 'Durée';
+
+  @override
+  String dureeMinutes(int n) {
+    return '$n min';
+  }
+
+  @override
+  String get champLienZoom => 'Lien Zoom';
+
+  @override
+  String get champLienZoomAide =>
+      'Collez le lien de la réunion Zoom (https://…)';
+
+  @override
+  String get lienZoomInvalide =>
+      'Lien invalide : il doit commencer par https://';
+
+  @override
+  String get rejoindreZoom => 'Rejoindre sur Zoom';
+
+  @override
+  String get lienZoomAVenir => 'Le lien Zoom sera ajouté par votre coach.';
+
+  @override
+  String get lienImpossible => 'Impossible d\'ouvrir le lien.';
+
+  @override
+  String get rdvEnCours => 'En cours';
+
+  @override
+  String get rdvAnnule => 'Annulé';
+
+  @override
+  String get rdvFait => 'Fait';
+
+  @override
+  String get rdvPasse => 'Passé';
+
+  @override
+  String get annulerRendezVous => 'Annuler le rendez-vous';
+
+  @override
+  String get confirmerAnnulationRdv =>
+      'Annuler ce rendez-vous ? Les personnes accompagnées seront prévenues.';
+
+  @override
+  String get marquerSeanceFaite => 'Séance faite (−1 séance)';
+
+  @override
+  String get historique => 'Historique';
+
+  @override
+  String get aVenir => 'À venir';
+
+  @override
+  String get agenda => 'Agenda';
+
+  @override
+  String get agendaVide => 'Aucun rendez-vous à venir.';
+
+  @override
+  String get rappelsAutomatiques =>
+      'Rappel automatique la veille et 1 heure avant.';
+
+  @override
+  String get rendezVousEnregistre => 'Rendez-vous enregistré';
+
+  @override
+  String get dateDansLePasse => 'Choisissez une date à venir.';
+
+  @override
+  String get nonMerci => 'Non';
 }

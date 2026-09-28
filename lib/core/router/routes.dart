@@ -28,4 +28,9 @@ abstract final class Routes {
   static const contenusCoach = '/coach/contenus';
   static const nouveauContenu = '/coach/contenus/nouveau';
   static String modifierContenu(String id) => '/coach/contenus/$id';
+  static const agenda = '/coach/agenda';
+  static String nouveauRendezVous(String acc) =>
+      '/coach/accompagnement/$acc/rendezvous';
+  static String modifierRendezVous(String acc, String id) =>
+      '/coach/accompagnement/$acc/rendezvous/$id';
 }

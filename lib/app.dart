@@ -20,10 +20,17 @@ class _NousDeuxAvecDieuAppState extends ConsumerState<NousDeuxAvecDieuApp> {
   @override
   void initState() {
     super.initState();
-    // Toucher une notification ouvre le message ou l'exercice concerné.
+    // Toucher une notification ouvre le rendez-vous, le message ou
+    // l'exercice concerné.
     ref.read(notificationsServiceProvider).notificationsTouchees.listen((d) {
       final router = ref.read(routerProvider);
-      if (d['exerciceId'] is String) {
+      if (d['rendezVousId'] is String) {
+        router.go(
+          ref.read(estCoachProvider) && d['accompagnementId'] is String
+              ? Routes.ficheAccompagnement(d['accompagnementId'] as String)
+              : Routes.seances,
+        );
+      } else if (d['exerciceId'] is String) {
         router.go(Routes.exercice(d['exerciceId'] as String));
       } else if (d['accompagnementId'] is String) {
         router.go(
