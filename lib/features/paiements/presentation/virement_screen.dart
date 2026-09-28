@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../domain/paiement.dart';
-import '../domain/virement.dart';
 import '../paiements_providers.dart';
+import 'instructions_virement.dart';
 import 'libelles_paiement.dart';
 
 /// Instructions de virement d'un paiement : QR code EPC, IBAN,
@@ -21,31 +19,12 @@ class VirementScreen extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
     final p = ref.watch(paiementProvider(id)).value;
-    final param = ref.watch(parametresCoachProvider).value;
-    if (p == null || param == null) {
+    if (p == null) {
       return Scaffold(
         appBar: AppBar(title: Text(l10n.virementTitre)),
         body: const Center(child: CircularProgressIndicator()),
       );
     }
-
-    Widget ligne(String titre, String valeur, {bool copier = false}) =>
-        ListTile(
-          contentPadding: EdgeInsets.zero,
-          title: Text(titre, style: theme.textTheme.bodySmall),
-          subtitle: SelectableText(valeur, style: theme.textTheme.titleMedium),
-          trailing: copier
-              ? IconButton(
-                  tooltip: l10n.copier,
-                  icon: const Icon(Icons.copy),
-                  onPressed: () async {
-                    final messager = ScaffoldMessenger.of(context);
-                    await Clipboard.setData(ClipboardData(text: valeur));
-                    messager.showSnackBar(SnackBar(content: Text(l10n.copie)));
-                  },
-                )
-              : null,
-        );
 
     final enAttente = p.statut == StatutPaiement.enAttente;
     return Scaffold(
@@ -72,41 +51,11 @@ class VirementScreen extends ConsumerWidget {
                 title: Text(l10n.paiementRecuMerci),
               ),
             ),
-          if (enAttente && !param.virementPossible)
-            Text(l10n.coordonneesIndisponibles),
-          if (enAttente && param.virementPossible) ...[
-            Text(l10n.virementAide),
-            const SizedBox(height: 16),
-            Center(
-              child: Container(
-                color: Colors.white,
-                padding: const EdgeInsets.all(12),
-                child: QrImageView(
-                  data: codeEpc(
-                    titulaire: param.titulaire,
-                    iban: param.iban,
-                    bic: param.bic,
-                    montant: p.montant,
-                    communication: p.communication,
-                  ),
-                  size: 220,
-                  semanticsLabel: l10n.virementTitre,
-                ),
-              ),
+          if (enAttente)
+            InstructionsVirement(
+              montant: p.montant,
+              communication: p.communication,
             ),
-            const SizedBox(height: 16),
-            ligne(l10n.montant, euros(context, p.montant)),
-            ligne(l10n.beneficiaire, param.titulaire),
-            ligne(l10n.iban, formaterIban(param.iban), copier: true),
-            if (param.bic.isNotEmpty) ligne(l10n.bic, param.bic),
-            ligne(
-              l10n.communicationStructuree,
-              formaterCommunication(p.communication),
-              copier: true,
-            ),
-            const SizedBox(height: 8),
-            Text(l10n.paiementAttenteAide, style: theme.textTheme.bodySmall),
-          ],
           if (enAttente) ...[
             const SizedBox(height: 24),
             TextButton(

@@ -441,3 +441,60 @@ describe('forfaits et paiements', () => {
     await assertFails(getDoc(doc(visiteur(), 'parametres/coach')));
   });
 });
+
+describe('livres et commandes', () => {
+  const COMM = '100000000034';
+  const livre = (extra = {}) => ({
+    titre: { fr: 'Aimer selon Dieu' }, sousTitre: {}, description: { fr: 'Un livre.' },
+    couvertureUrl: 'https://x/c.jpg', langues: ['fr'],
+    formats: [{ type: 'papier', prix: 19.9, devise: 'EUR' }, { type: 'numerique', prix: 9.99, devise: 'EUR' }],
+    prixPapier: 19.9, liensAchat: [{ libelle: 'Amazon', url: 'https://amazon.fr/x' }],
+    commandeDirecte: true, fraisEnvoi: 4.5, extraitUrl: '', publie: true, ordre: 0, ...extra,
+  });
+  const preparer = () => env.withSecurityRulesDisabled(async (ctx) => {
+    await setDoc(doc(ctx.firestore(), 'livres/l1'), livre());
+    await setDoc(doc(ctx.firestore(), 'livres/brouillon'), livre({ publie: false }));
+    await setDoc(doc(ctx.firestore(), 'livres/liens'), livre({ commandeDirecte: false }));
+  });
+  const adresse = { nom: 'Marie', rue: 'Rue de la Paix 1', codePostal: '1000', ville: 'Bruxelles', pays: 'Belgique' };
+  const commande = (extra = {}) => ({
+    uid: 'marie', nom: 'Marie', livreId: 'l1', livreTitre: 'Aimer selon Dieu', quantite: 2,
+    montant: 19.9 * 2 + 4.5, devise: 'EUR', adresse, statut: 'en_attente', createdAt: serverTimestamp(), ...extra,
+  });
+
+  it('livres publiés visibles par tous ; brouillons et écriture : le coach', async () => {
+    await preparer();
+    await assertSucceeds(getDoc(doc(visiteur(), 'livres/l1')));
+    await assertFails(getDoc(doc(visiteur(), 'livres/brouillon')));
+    await assertSucceeds(getDoc(doc(coach(), 'livres/brouillon')));
+    await assertSucceeds(setDoc(doc(coach(), 'livres/l2'), livre()));
+    await assertFails(setDoc(doc(marie(), 'livres/l3'), livre()));
+    await assertFails(setDoc(doc(coach(), 'livres/l4'), livre({ extraitUrl: 'javascript:alert(1)' })));
+    await assertFails(setDoc(doc(coach(), 'livres/l5'), livre({ prixPapier: null })));
+  });
+
+  it('commande : montant du livre, commande directe, livre publié', async () => {
+    await preparer();
+    await assertSucceeds(setDoc(doc(marie(), `commandesLivres/${COMM}`), commande()));
+    await assertFails(setDoc(doc(marie(), 'commandesLivres/200000000068'), commande({ montant: 1 })));
+    await assertFails(setDoc(doc(marie(), 'commandesLivres/200000000068'), commande({ livreId: 'brouillon' })));
+    await assertFails(setDoc(doc(marie(), 'commandesLivres/200000000068'), commande({ livreId: 'liens' })));
+    await assertFails(setDoc(doc(marie(), 'commandesLivres/200000000068'), commande({ quantite: 50, montant: 19.9 * 50 + 4.5 })));
+    await assertFails(setDoc(doc(marie(), 'commandesLivres/200000000068'), commande({ statut: 'payee' })));
+    await assertFails(setDoc(doc(marie(), 'commandesLivres/100000000035'), commande()));
+    await assertFails(setDoc(doc(marie(), 'commandesLivres/200000000068'), commande({ adresse: { nom: 'Marie' } })));
+  });
+
+  it('suivi : le coach passe à payée puis envoyée ; le client renonce seulement en attente', async () => {
+    await preparer();
+    await assertSucceeds(setDoc(doc(marie(), `commandesLivres/${COMM}`), commande()));
+    const ref = (db) => doc(db, `commandesLivres/${COMM}`);
+    await assertFails(getDoc(ref(paul())));
+    await assertFails(updateDoc(ref(marie()), { statut: 'payee' }));
+    await assertFails(updateDoc(ref(coach()), { statut: 'envoyee' }));
+    await assertSucceeds(updateDoc(ref(coach()), { statut: 'payee', payeeLe: serverTimestamp() }));
+    await assertFails(updateDoc(ref(marie()), { statut: 'annulee' }));
+    await assertSucceeds(updateDoc(ref(coach()), { statut: 'envoyee', envoyeeLe: serverTimestamp(), numeroSuivi: 'BPOST123' }));
+    await assertSucceeds(getDoc(ref(marie())));
+  });
+});

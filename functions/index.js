@@ -19,6 +19,9 @@ import {
 import {
   notificationPaiementAnnonce, notificationPaiementRecu, seancesACrediter, vientDEtreRecu,
 } from './paiements.js';
+import {
+  changementCommande, notificationNouvelleCommande, notificationSuiviCommande,
+} from './livres.js';
 import { changementRendezVous, notificationRendezVous, rappelsDus } from './rendezvous.js';
 
 initializeApp();
@@ -200,4 +203,26 @@ export const paiementRecu = onDocumentUpdated('paiements/{paiementId}', async (e
   const { paiementId } = evenement.params;
   await Promise.all([...new Set(destinataires)].map((uid) => envoyerNotification(uid,
     (langue) => notificationPaiementRecu({ paiementId, paiement: apres, langue }))));
+});
+
+/** Commande d'un livre papier : le coach est prévenu. */
+export const notifierCommandeLivre = onDocumentCreated('commandesLivres/{commandeId}', async (evenement) => {
+  const commande = evenement.data?.data();
+  if (!commande) return;
+  const coachUid = (await getFirestore().doc('systeme/coach').get()).data()?.uid;
+  if (!coachUid) return;
+  await envoyerNotification(coachUid, (langue) => notificationNouvelleCommande({
+    commandeId: evenement.params.commandeId, commande, langue,
+  }));
+});
+
+/** Commande payée ou envoyée : le client est prévenu. */
+export const suiviCommandeLivre = onDocumentUpdated('commandesLivres/{commandeId}', async (evenement) => {
+  const avant = evenement.data?.before?.data();
+  const apres = evenement.data?.after?.data();
+  const statut = changementCommande(avant, apres);
+  if (!statut) return;
+  await envoyerNotification(apres.uid, (langue) => notificationSuiviCommande({
+    commandeId: evenement.params.commandeId, commande: apres, statut, langue,
+  }));
 });

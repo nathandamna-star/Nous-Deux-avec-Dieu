@@ -9,6 +9,7 @@ import '../auth/auth_providers.dart';
 import '../contenus/contenus_providers.dart';
 import '../contenus/domain/contenu.dart';
 import '../exercices/exercices_providers.dart';
+import '../livres/livres_providers.dart';
 import '../rendezvous/presentation/carte_rendez_vous.dart';
 import '../rendezvous/rendez_vous_providers.dart';
 
@@ -76,6 +77,19 @@ class AccueilScreen extends ConsumerWidget {
                 subtitle: Text(l10n.exercicesAFaire(aFaire)),
                 trailing: const Icon(Icons.chevron_right),
                 onTap: () => context.push(Routes.exercices),
+              ),
+            ),
+            const SizedBox(height: 12),
+          ],
+          if ((ref.watch(livresPubliesProvider).value ?? const [])
+              .isNotEmpty) ...[
+            Card(
+              child: ListTile(
+                leading: const Icon(Icons.menu_book_outlined),
+                title: Text(l10n.mesLivres),
+                subtitle: Text(l10n.mesLivresAide),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () => context.push(Routes.livresAccueil),
               ),
             ),
             const SizedBox(height: 12),

@@ -302,6 +302,86 @@ service cloud.firestore {
         && langues(request.resource.data.messageDon);
     }
 
+    // ----- Livres du coach -----
+    function lienHttps(v) {
+      return v is string && v.size() <= 1000 && (v == '' || v.matches('https://[^ ]+'));
+    }
+
+    match /livres/{id} {
+      allow read: if resource.data.publie == true || estCoach();
+      allow create, update: if estCoach()
+        && request.resource.data.keys().hasOnly([
+          'titre', 'sousTitre', 'description', 'couvertureUrl', 'langues', 'formats',
+          'prixPapier', 'liensAchat', 'commandeDirecte', 'fraisEnvoi', 'extraitUrl',
+          'publie', 'ordre', 'createdAt', 'updatedAt'])
+        && langues(request.resource.data.titre)
+        && texte(request.resource.data.titre.fr, 200)
+        && langues(request.resource.data.sousTitre)
+        && langues(request.resource.data.description)
+        && lienHttps(request.resource.data.couvertureUrl)
+        && lienHttps(request.resource.data.extraitUrl)
+        && request.resource.data.langues is list
+        && request.resource.data.langues.hasOnly(['fr', 'en', 'pt', 'es', 'nl'])
+        && request.resource.data.formats is list && request.resource.data.formats.size() <= 3
+        && request.resource.data.liensAchat is list && request.resource.data.liensAchat.size() <= 10
+        && (request.resource.data.prixPapier == null
+          || (request.resource.data.prixPapier is number && request.resource.data.prixPapier > 0))
+        && request.resource.data.fraisEnvoi is number
+        && request.resource.data.fraisEnvoi >= 0 && request.resource.data.fraisEnvoi <= 1000
+        && request.resource.data.publie is bool
+        && request.resource.data.commandeDirecte is bool
+        && (!request.resource.data.commandeDirecte || request.resource.data.prixPapier is number);
+      allow delete: if estCoach();
+    }
+
+    // Commande d'un livre papier au coach, payée par virement. L'identifiant est
+    // la communication structurée ; le montant est celui du livre.
+    match /commandesLivres/{id} {
+      function livre() {
+        return get(/databases/$(database)/documents/livres/$(request.resource.data.livreId)).data;
+      }
+      function adresseValide(a) {
+        return a is map && a.keys().hasOnly(['nom', 'rue', 'codePostal', 'ville', 'pays'])
+          && texte(a.nom, 100) && texte(a.rue, 200) && texte(a.codePostal, 20)
+          && texte(a.ville, 100) && texte(a.pays, 100);
+      }
+
+      allow read: if estCoach() || (connecte() && resource.data.uid == moi());
+
+      allow create: if connecte()
+        && communicationValide(id)
+        && request.resource.data.keys().hasOnly([
+          'uid', 'nom', 'livreId', 'livreTitre', 'quantite', 'montant', 'devise',
+          'adresse', 'statut', 'createdAt'])
+        && request.resource.data.uid == moi()
+        && request.resource.data.statut == 'en_attente'
+        && request.resource.data.devise == 'EUR'
+        && request.resource.data.createdAt == request.time
+        && texte(request.resource.data.nom, 100)
+        && texte(request.resource.data.livreTitre, 200)
+        && request.resource.data.quantite is int
+        && request.resource.data.quantite >= 1 && request.resource.data.quantite <= 20
+        && adresseValide(request.resource.data.adresse)
+        && livre().publie == true && livre().commandeDirecte == true
+        && request.resource.data.montant
+          == livre().prixPapier * request.resource.data.quantite + livre().fraisEnvoi;
+
+      // Le client renonce tant que rien n'est payé.
+      allow update: if connecte() && resource.data.uid == moi()
+        && resource.data.statut == 'en_attente'
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['statut'])
+        && request.resource.data.statut == 'annulee';
+
+      // Le coach : payée, puis envoyée (numéro de suivi facultatif), ou annulée.
+      allow update: if estCoach()
+        && request.resource.data.diff(resource.data).affectedKeys()
+             .hasOnly(['statut', 'payeeLe', 'envoyeeLe', 'numeroSuivi'])
+        && request.resource.data.get('numeroSuivi', '') is string
+        && request.resource.data.get('numeroSuivi', '').size() <= 100
+        && ((resource.data.statut == 'en_attente' && request.resource.data.statut in ['payee', 'annulee'])
+          || (resource.data.statut == 'payee' && request.resource.data.statut in ['envoyee', 'annulee']));
+    }
+
     // ----- Contenus du coach -----
     // Publiés : publics pour tous, les autres pour les personnes connectées.
     // Brouillons : le coach seulement. Écriture : le coach seulement.

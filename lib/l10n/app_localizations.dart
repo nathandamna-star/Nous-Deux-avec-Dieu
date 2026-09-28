@@ -1927,6 +1927,324 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Plus'**
   String get plus;
+
+  /// No description provided for @mesLivres.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes livres'**
+  String get mesLivres;
+
+  /// No description provided for @mesLivresAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Les livres de votre coach'**
+  String get mesLivresAide;
+
+  /// No description provided for @aucunLivre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun livre pour le moment.'**
+  String get aucunLivre;
+
+  /// No description provided for @formatPapier.
+  ///
+  /// In fr, this message translates to:
+  /// **'Papier'**
+  String get formatPapier;
+
+  /// No description provided for @formatNumerique.
+  ///
+  /// In fr, this message translates to:
+  /// **'Numérique'**
+  String get formatNumerique;
+
+  /// No description provided for @formatAudio.
+  ///
+  /// In fr, this message translates to:
+  /// **'Livre audio'**
+  String get formatAudio;
+
+  /// No description provided for @disponibleEn.
+  ///
+  /// In fr, this message translates to:
+  /// **'Disponible en : {langues}'**
+  String disponibleEn(String langues);
+
+  /// No description provided for @acheterSur.
+  ///
+  /// In fr, this message translates to:
+  /// **'Acheter sur {boutique}'**
+  String acheterSur(String boutique);
+
+  /// No description provided for @lireExtrait.
+  ///
+  /// In fr, this message translates to:
+  /// **'Lire un extrait'**
+  String get lireExtrait;
+
+  /// No description provided for @commanderAuCoach.
+  ///
+  /// In fr, this message translates to:
+  /// **'Commander au coach'**
+  String get commanderAuCoach;
+
+  /// No description provided for @commanderAuCoachAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Livre papier envoyé par la poste, payé par virement.'**
+  String get commanderAuCoachAide;
+
+  /// No description provided for @quantite.
+  ///
+  /// In fr, this message translates to:
+  /// **'Quantité'**
+  String get quantite;
+
+  /// No description provided for @fraisEnvoi.
+  ///
+  /// In fr, this message translates to:
+  /// **'Frais d\'envoi'**
+  String get fraisEnvoi;
+
+  /// No description provided for @total.
+  ///
+  /// In fr, this message translates to:
+  /// **'Total'**
+  String get total;
+
+  /// No description provided for @adresseLivraison.
+  ///
+  /// In fr, this message translates to:
+  /// **'Adresse de livraison'**
+  String get adresseLivraison;
+
+  /// No description provided for @champRue.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rue et numéro'**
+  String get champRue;
+
+  /// No description provided for @champCodePostal.
+  ///
+  /// In fr, this message translates to:
+  /// **'Code postal'**
+  String get champCodePostal;
+
+  /// No description provided for @champVille.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ville'**
+  String get champVille;
+
+  /// No description provided for @champPays.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pays'**
+  String get champPays;
+
+  /// No description provided for @commander.
+  ///
+  /// In fr, this message translates to:
+  /// **'Commander'**
+  String get commander;
+
+  /// No description provided for @commandeLivre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Commande de livre'**
+  String get commandeLivre;
+
+  /// No description provided for @mesCommandes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes commandes'**
+  String get mesCommandes;
+
+  /// No description provided for @commandeEnAttente.
+  ///
+  /// In fr, this message translates to:
+  /// **'Paiement attendu'**
+  String get commandeEnAttente;
+
+  /// No description provided for @commandePayee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Payée'**
+  String get commandePayee;
+
+  /// No description provided for @commandeEnvoyee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Envoyée'**
+  String get commandeEnvoyee;
+
+  /// No description provided for @commandeAnnulee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Annulée'**
+  String get commandeAnnulee;
+
+  /// No description provided for @commandePayeeAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Paiement reçu : votre livre sera envoyé très bientôt.'**
+  String get commandePayeeAide;
+
+  /// No description provided for @commandeEnvoyeeAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre livre est en route. Bonne lecture !'**
+  String get commandeEnvoyeeAide;
+
+  /// No description provided for @numeroSuivi.
+  ///
+  /// In fr, this message translates to:
+  /// **'Numéro de suivi'**
+  String get numeroSuivi;
+
+  /// No description provided for @renoncerCommande.
+  ///
+  /// In fr, this message translates to:
+  /// **'Annuler la commande'**
+  String get renoncerCommande;
+
+  /// No description provided for @livresCoach.
+  ///
+  /// In fr, this message translates to:
+  /// **'Livres'**
+  String get livresCoach;
+
+  /// No description provided for @commandesLivres.
+  ///
+  /// In fr, this message translates to:
+  /// **'Commandes'**
+  String get commandesLivres;
+
+  /// No description provided for @aucuneCommande.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune commande.'**
+  String get aucuneCommande;
+
+  /// No description provided for @nouveauLivre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouveau livre'**
+  String get nouveauLivre;
+
+  /// No description provided for @modifierLivre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Modifier le livre'**
+  String get modifierLivre;
+
+  /// No description provided for @couverture.
+  ///
+  /// In fr, this message translates to:
+  /// **'Couverture'**
+  String get couverture;
+
+  /// No description provided for @choisirCouverture.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisir une image'**
+  String get choisirCouverture;
+
+  /// No description provided for @champSousTitre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sous-titre'**
+  String get champSousTitre;
+
+  /// No description provided for @languesDuLivre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Langues du livre'**
+  String get languesDuLivre;
+
+  /// No description provided for @formatsEtPrix.
+  ///
+  /// In fr, this message translates to:
+  /// **'Formats et prix (€)'**
+  String get formatsEtPrix;
+
+  /// No description provided for @liensAchat.
+  ///
+  /// In fr, this message translates to:
+  /// **'Liens d\'achat'**
+  String get liensAchat;
+
+  /// No description provided for @nomBoutique.
+  ///
+  /// In fr, this message translates to:
+  /// **'Boutique (ex. Amazon)'**
+  String get nomBoutique;
+
+  /// No description provided for @adresseLien.
+  ///
+  /// In fr, this message translates to:
+  /// **'Adresse (https://…)'**
+  String get adresseLien;
+
+  /// No description provided for @ajouterLien.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter un lien'**
+  String get ajouterLien;
+
+  /// No description provided for @lienInvalide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Adresse invalide : elle doit commencer par https://'**
+  String get lienInvalide;
+
+  /// No description provided for @commandeDirecteOption.
+  ///
+  /// In fr, this message translates to:
+  /// **'Commande directe du livre papier'**
+  String get commandeDirecteOption;
+
+  /// No description provided for @commandeDirecteAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Les lecteurs vous commandent le livre et paient par virement ; vous l\'envoyez par la poste.'**
+  String get commandeDirecteAide;
+
+  /// No description provided for @champExtrait.
+  ///
+  /// In fr, this message translates to:
+  /// **'Lien vers un extrait (facultatif)'**
+  String get champExtrait;
+
+  /// No description provided for @publierLivre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Publié'**
+  String get publierLivre;
+
+  /// No description provided for @prixPapierRequis.
+  ///
+  /// In fr, this message translates to:
+  /// **'Indiquez le prix du livre papier'**
+  String get prixPapierRequis;
+
+  /// No description provided for @marquerPayee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Paiement reçu'**
+  String get marquerPayee;
+
+  /// No description provided for @marquerEnvoyee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Marquer envoyée'**
+  String get marquerEnvoyee;
+
+  /// No description provided for @aTraiter.
+  ///
+  /// In fr, this message translates to:
+  /// **'À traiter'**
+  String get aTraiter;
 }
 
 class _AppLocalizationsDelegate

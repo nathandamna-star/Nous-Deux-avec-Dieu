@@ -7,6 +7,7 @@ import '../../l10n/app_localizations.dart';
 import '../accompagnement/accompagnement_providers.dart';
 import '../accompagnement/domain/accompagnement.dart';
 import '../accompagnement/presentation/libelles.dart';
+import '../livres/livres_providers.dart';
 import '../paiements/paiements_providers.dart';
 
 enum _Filtre { demandes, actifs, termines }
@@ -65,8 +66,17 @@ class _CoachScreenState extends ConsumerState<CoachScreen> {
           ),
           PopupMenuButton<String>(
             tooltip: l10n.plus,
+            icon: Badge(
+              isLabelVisible: ref.watch(nbCommandesATraiterProvider) > 0,
+              label: Text('${ref.watch(nbCommandesATraiterProvider)}'),
+              child: const Icon(Icons.more_vert),
+            ),
             onSelected: context.push,
             itemBuilder: (context) => [
+              PopupMenuItem(
+                value: Routes.livresCoach,
+                child: Text(l10n.mesLivres),
+              ),
               PopupMenuItem(
                 value: Routes.forfaitsCoach,
                 child: Text(l10n.forfaits),

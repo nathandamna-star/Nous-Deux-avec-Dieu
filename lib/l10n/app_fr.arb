@@ -435,5 +435,72 @@
   "ibanInvalide": "IBAN invalide : vérifiez les chiffres",
   "bicInvalide": "BIC invalide (8 ou 11 caractères)",
   "champMessageDon": "Message de remerciement des dons",
-  "plus": "Plus"
+  "plus": "Plus",
+  "mesLivres": "Mes livres",
+  "mesLivresAide": "Les livres de votre coach",
+  "aucunLivre": "Aucun livre pour le moment.",
+  "formatPapier": "Papier",
+  "formatNumerique": "Numérique",
+  "formatAudio": "Livre audio",
+  "disponibleEn": "Disponible en : {langues}",
+  "@disponibleEn": {
+    "placeholders": {
+      "langues": {
+        "type": "String"
+      }
+    }
+  },
+  "acheterSur": "Acheter sur {boutique}",
+  "@acheterSur": {
+    "placeholders": {
+      "boutique": {
+        "type": "String"
+      }
+    }
+  },
+  "lireExtrait": "Lire un extrait",
+  "commanderAuCoach": "Commander au coach",
+  "commanderAuCoachAide": "Livre papier envoyé par la poste, payé par virement.",
+  "quantite": "Quantité",
+  "fraisEnvoi": "Frais d'envoi",
+  "total": "Total",
+  "adresseLivraison": "Adresse de livraison",
+  "champRue": "Rue et numéro",
+  "champCodePostal": "Code postal",
+  "champVille": "Ville",
+  "champPays": "Pays",
+  "commander": "Commander",
+  "commandeLivre": "Commande de livre",
+  "mesCommandes": "Mes commandes",
+  "commandeEnAttente": "Paiement attendu",
+  "commandePayee": "Payée",
+  "commandeEnvoyee": "Envoyée",
+  "commandeAnnulee": "Annulée",
+  "commandePayeeAide": "Paiement reçu : votre livre sera envoyé très bientôt.",
+  "commandeEnvoyeeAide": "Votre livre est en route. Bonne lecture !",
+  "numeroSuivi": "Numéro de suivi",
+  "renoncerCommande": "Annuler la commande",
+  "livresCoach": "Livres",
+  "commandesLivres": "Commandes",
+  "aucuneCommande": "Aucune commande.",
+  "nouveauLivre": "Nouveau livre",
+  "modifierLivre": "Modifier le livre",
+  "couverture": "Couverture",
+  "choisirCouverture": "Choisir une image",
+  "champSousTitre": "Sous-titre",
+  "languesDuLivre": "Langues du livre",
+  "formatsEtPrix": "Formats et prix (€)",
+  "liensAchat": "Liens d'achat",
+  "nomBoutique": "Boutique (ex. Amazon)",
+  "adresseLien": "Adresse (https://…)",
+  "ajouterLien": "Ajouter un lien",
+  "lienInvalide": "Adresse invalide : elle doit commencer par https://",
+  "commandeDirecteOption": "Commande directe du livre papier",
+  "commandeDirecteAide": "Les lecteurs vous commandent le livre et paient par virement ; vous l'envoyez par la poste.",
+  "champExtrait": "Lien vers un extrait (facultatif)",
+  "publierLivre": "Publié",
+  "prixPapierRequis": "Indiquez le prix du livre papier",
+  "marquerPayee": "Paiement reçu",
+  "marquerEnvoyee": "Marquer envoyée",
+  "aTraiter": "À traiter"
 }

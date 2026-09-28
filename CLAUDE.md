@@ -316,3 +316,14 @@ Avant toute décision importante non prévue ici, pose la question au lieu de ch
   communication `+++…+++` placée dans la communication libre — à vérifier avec une vraie app bancaire.
   Don : écran `DonScreen` (Profil), libre, ne débloque rien. Coach : icône Paiements (pastille), menu ⋮ Forfaits /
   Paramètres du coach. Les +/− manuels de séances sur la fiche restent possibles pour le coach.
+- Mes livres (étape 9 bis, `lib/features/livres/`) : `livres/{id}` (titre/sousTitre/description par langue,
+  couvertureUrl dans Storage `livres/{id}/…` lisible par tous, langues, formats [{type, prix}], `prixPapier`
+  recopié du format papier pour les règles, liensAchat [{libelle, url https}], commandeDirecte, fraisEnvoi,
+  extraitUrl, publie, ordre). Aucun livre n'est lu ni vendu dans l'app : liens externes via `Lanceur`.
+  `commandesLivres/{communication}` : les règles imposent montant = prixPapier × quantité + fraisEnvoi, livre
+  publié en commande directe, adresse complète ; client : renoncer tant que « en_attente » ; coach :
+  en_attente → payee → envoyee (numéro de suivi facultatif), ou annulee. Fonctions `notifierCommandeLivre`
+  (coach) et `suiviCommandeLivre` (client). Écrans accessibles depuis l'Accueil (`/accueil/livres`) et les
+  Contenus (`/contenus/livres`, déclaré avant `:id`) via `_routeLivres(base)`. Coach : menu ⋮ → Mes livres
+  (vues Livres / Commandes, pastille des commandes à traiter). Instructions de virement partagées :
+  `InstructionsVirement` (forfaits, dons, livres).

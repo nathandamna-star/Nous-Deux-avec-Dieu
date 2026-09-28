@@ -1039,4 +1039,171 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get plus => 'Plus';
+
+  @override
+  String get mesLivres => 'Mes livres';
+
+  @override
+  String get mesLivresAide => 'Les livres de votre coach';
+
+  @override
+  String get aucunLivre => 'Aucun livre pour le moment.';
+
+  @override
+  String get formatPapier => 'Papier';
+
+  @override
+  String get formatNumerique => 'Numérique';
+
+  @override
+  String get formatAudio => 'Livre audio';
+
+  @override
+  String disponibleEn(String langues) {
+    return 'Disponible en : $langues';
+  }
+
+  @override
+  String acheterSur(String boutique) {
+    return 'Acheter sur $boutique';
+  }
+
+  @override
+  String get lireExtrait => 'Lire un extrait';
+
+  @override
+  String get commanderAuCoach => 'Commander au coach';
+
+  @override
+  String get commanderAuCoachAide =>
+      'Livre papier envoyé par la poste, payé par virement.';
+
+  @override
+  String get quantite => 'Quantité';
+
+  @override
+  String get fraisEnvoi => 'Frais d\'envoi';
+
+  @override
+  String get total => 'Total';
+
+  @override
+  String get adresseLivraison => 'Adresse de livraison';
+
+  @override
+  String get champRue => 'Rue et numéro';
+
+  @override
+  String get champCodePostal => 'Code postal';
+
+  @override
+  String get champVille => 'Ville';
+
+  @override
+  String get champPays => 'Pays';
+
+  @override
+  String get commander => 'Commander';
+
+  @override
+  String get commandeLivre => 'Commande de livre';
+
+  @override
+  String get mesCommandes => 'Mes commandes';
+
+  @override
+  String get commandeEnAttente => 'Paiement attendu';
+
+  @override
+  String get commandePayee => 'Payée';
+
+  @override
+  String get commandeEnvoyee => 'Envoyée';
+
+  @override
+  String get commandeAnnulee => 'Annulée';
+
+  @override
+  String get commandePayeeAide =>
+      'Paiement reçu : votre livre sera envoyé très bientôt.';
+
+  @override
+  String get commandeEnvoyeeAide => 'Votre livre est en route. Bonne lecture !';
+
+  @override
+  String get numeroSuivi => 'Numéro de suivi';
+
+  @override
+  String get renoncerCommande => 'Annuler la commande';
+
+  @override
+  String get livresCoach => 'Livres';
+
+  @override
+  String get commandesLivres => 'Commandes';
+
+  @override
+  String get aucuneCommande => 'Aucune commande.';
+
+  @override
+  String get nouveauLivre => 'Nouveau livre';
+
+  @override
+  String get modifierLivre => 'Modifier le livre';
+
+  @override
+  String get couverture => 'Couverture';
+
+  @override
+  String get choisirCouverture => 'Choisir une image';
+
+  @override
+  String get champSousTitre => 'Sous-titre';
+
+  @override
+  String get languesDuLivre => 'Langues du livre';
+
+  @override
+  String get formatsEtPrix => 'Formats et prix (€)';
+
+  @override
+  String get liensAchat => 'Liens d\'achat';
+
+  @override
+  String get nomBoutique => 'Boutique (ex. Amazon)';
+
+  @override
+  String get adresseLien => 'Adresse (https://…)';
+
+  @override
+  String get ajouterLien => 'Ajouter un lien';
+
+  @override
+  String get lienInvalide =>
+      'Adresse invalide : elle doit commencer par https://';
+
+  @override
+  String get commandeDirecteOption => 'Commande directe du livre papier';
+
+  @override
+  String get commandeDirecteAide =>
+      'Les lecteurs vous commandent le livre et paient par virement ; vous l\'envoyez par la poste.';
+
+  @override
+  String get champExtrait => 'Lien vers un extrait (facultatif)';
+
+  @override
+  String get publierLivre => 'Publié';
+
+  @override
+  String get prixPapierRequis => 'Indiquez le prix du livre papier';
+
+  @override
+  String get marquerPayee => 'Paiement reçu';
+
+  @override
+  String get marquerEnvoyee => 'Marquer envoyée';
+
+  @override
+  String get aTraiter => 'À traiter';
 }

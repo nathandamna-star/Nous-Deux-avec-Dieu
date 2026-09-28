@@ -32,7 +32,16 @@ class _ContenusScreenState extends ConsumerState<ContenusScreen> {
         .toList();
 
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.navContenus)),
+      appBar: AppBar(
+        title: Text(l10n.navContenus),
+        actions: [
+          IconButton(
+            tooltip: l10n.mesLivres,
+            icon: const Icon(Icons.menu_book_outlined),
+            onPressed: () => context.push(Routes.livresContenus),
+          ),
+        ],
+      ),
       body: Column(
         children: [
           SizedBox(

@@ -42,3 +42,11 @@ describe('fichiers des contenus', () => {
     await assertFails(uploadBytes(ref(coach(), 'autre/fr.m4a'), octets, { contentType: 'audio/mp4' }));
   });
 });
+
+describe('couvertures des livres', () => {
+  it('le coach envoie une image ; personne d\'autre', async () => {
+    await assertSucceeds(uploadBytes(ref(coach(), 'livres/l1/couverture.jpg'), octets, { contentType: 'image/jpeg' }));
+    await assertFails(uploadBytes(ref(coach(), 'livres/l1/livre.pdf'), octets, { contentType: 'application/pdf' }));
+    await assertFails(uploadBytes(ref(marie(), 'livres/l1/couverture.jpg'), octets, { contentType: 'image/jpeg' }));
+  });
+});

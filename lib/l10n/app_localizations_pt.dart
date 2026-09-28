@@ -1033,4 +1033,170 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get plus => 'Mais';
+
+  @override
+  String get mesLivres => 'Os meus livros';
+
+  @override
+  String get mesLivresAide => 'Os livros do seu coach';
+
+  @override
+  String get aucunLivre => 'Ainda não há livros.';
+
+  @override
+  String get formatPapier => 'Papel';
+
+  @override
+  String get formatNumerique => 'Digital';
+
+  @override
+  String get formatAudio => 'Audiolivro';
+
+  @override
+  String disponibleEn(String langues) {
+    return 'Disponível em: $langues';
+  }
+
+  @override
+  String acheterSur(String boutique) {
+    return 'Comprar em $boutique';
+  }
+
+  @override
+  String get lireExtrait => 'Ler um excerto';
+
+  @override
+  String get commanderAuCoach => 'Encomendar ao coach';
+
+  @override
+  String get commanderAuCoachAide =>
+      'Livro em papel enviado pelo correio, pago por transferência.';
+
+  @override
+  String get quantite => 'Quantidade';
+
+  @override
+  String get fraisEnvoi => 'Portes de envio';
+
+  @override
+  String get total => 'Total';
+
+  @override
+  String get adresseLivraison => 'Morada de entrega';
+
+  @override
+  String get champRue => 'Rua e número';
+
+  @override
+  String get champCodePostal => 'Código postal';
+
+  @override
+  String get champVille => 'Cidade';
+
+  @override
+  String get champPays => 'País';
+
+  @override
+  String get commander => 'Encomendar';
+
+  @override
+  String get commandeLivre => 'Encomenda de livro';
+
+  @override
+  String get mesCommandes => 'As minhas encomendas';
+
+  @override
+  String get commandeEnAttente => 'A aguardar pagamento';
+
+  @override
+  String get commandePayee => 'Paga';
+
+  @override
+  String get commandeEnvoyee => 'Enviada';
+
+  @override
+  String get commandeAnnulee => 'Cancelada';
+
+  @override
+  String get commandePayeeAide =>
+      'Pagamento recebido: o seu livro será enviado muito em breve.';
+
+  @override
+  String get commandeEnvoyeeAide => 'O seu livro está a caminho. Boa leitura!';
+
+  @override
+  String get numeroSuivi => 'Número de seguimento';
+
+  @override
+  String get renoncerCommande => 'Cancelar a encomenda';
+
+  @override
+  String get livresCoach => 'Livros';
+
+  @override
+  String get commandesLivres => 'Encomendas';
+
+  @override
+  String get aucuneCommande => 'Nenhuma encomenda.';
+
+  @override
+  String get nouveauLivre => 'Novo livro';
+
+  @override
+  String get modifierLivre => 'Alterar o livro';
+
+  @override
+  String get couverture => 'Capa';
+
+  @override
+  String get choisirCouverture => 'Escolher uma imagem';
+
+  @override
+  String get champSousTitre => 'Subtítulo';
+
+  @override
+  String get languesDuLivre => 'Línguas do livro';
+
+  @override
+  String get formatsEtPrix => 'Formatos e preços (€)';
+
+  @override
+  String get liensAchat => 'Links de compra';
+
+  @override
+  String get nomBoutique => 'Loja (ex. Amazon)';
+
+  @override
+  String get adresseLien => 'Endereço (https://…)';
+
+  @override
+  String get ajouterLien => 'Adicionar um link';
+
+  @override
+  String get lienInvalide => 'Endereço inválido: deve começar por https://';
+
+  @override
+  String get commandeDirecteOption => 'Encomenda direta do livro em papel';
+
+  @override
+  String get commandeDirecteAide =>
+      'Os leitores encomendam-lhe o livro e pagam por transferência; envia-o pelo correio.';
+
+  @override
+  String get champExtrait => 'Link para um excerto (opcional)';
+
+  @override
+  String get publierLivre => 'Publicado';
+
+  @override
+  String get prixPapierRequis => 'Indique o preço do livro em papel';
+
+  @override
+  String get marquerPayee => 'Pagamento recebido';
+
+  @override
+  String get marquerEnvoyee => 'Marcar como enviada';
+
+  @override
+  String get aTraiter => 'Por tratar';
 }

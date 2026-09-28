@@ -25,6 +25,12 @@ import '../../features/coach/coach_screen.dart';
 import '../../features/contenus/contenus_screen.dart';
 import '../../features/messages/messages_screen.dart';
 import '../../features/profil/profil_screen.dart';
+import '../../features/livres/presentation/commande_livre_screen.dart';
+import '../../features/livres/presentation/commander_livre_screen.dart';
+import '../../features/livres/presentation/editeur_livre_screen.dart';
+import '../../features/livres/presentation/livre_screen.dart';
+import '../../features/livres/presentation/livres_coach_screen.dart';
+import '../../features/livres/presentation/livres_screen.dart';
 import '../../features/paiements/presentation/don_screen.dart';
 import '../../features/paiements/presentation/editeur_forfait_screen.dart';
 import '../../features/paiements/presentation/forfaits_coach_screen.dart';
@@ -114,6 +120,7 @@ final _sousRoutes = <String, List<RouteBase>>{
     ),
   ],
   Routes.accueil: [
+    _routeLivres(Routes.livresAccueil),
     GoRoute(
       path: 'exercices',
       builder: (context, state) => const ExercicesScreen(),
@@ -132,6 +139,8 @@ final _sousRoutes = <String, List<RouteBase>>{
     ),
   ],
   Routes.contenus: [
+    // Avant « :id » (un contenu), sinon « livres » serait pris pour un contenu.
+    _routeLivres(Routes.livresContenus),
     GoRoute(
       path: 'parcours/:pid',
       builder: (context, state) =>
@@ -266,8 +275,50 @@ final _sousRoutes = <String, List<RouteBase>>{
       path: 'parametres',
       builder: (context, state) => const ParametresCoachScreen(),
     ),
+    GoRoute(
+      path: 'livres',
+      builder: (context, state) => const LivresCoachScreen(),
+      routes: [
+        GoRoute(
+          path: 'nouveau',
+          builder: (context, state) => const EditeurLivreScreen(),
+        ),
+        GoRoute(
+          path: ':id',
+          builder: (context, state) =>
+              EditeurLivreScreen(id: state.pathParameters['id']),
+        ),
+      ],
+    ),
   ],
 };
+
+/// « Mes livres », accessible depuis l'Accueil et les Contenus ([base]).
+GoRoute _routeLivres(String base) => GoRoute(
+  path: 'livres',
+  builder: (context, state) => LivresScreen(base: base),
+  routes: [
+    GoRoute(
+      path: 'commande/:cmdId',
+      builder: (context, state) =>
+          CommandeLivreScreen(id: state.pathParameters['cmdId']!),
+    ),
+    GoRoute(
+      path: ':livreId',
+      builder: (context, state) =>
+          LivreScreen(id: state.pathParameters['livreId']!, base: base),
+      routes: [
+        GoRoute(
+          path: 'commander',
+          builder: (context, state) => CommanderLivreScreen(
+            id: state.pathParameters['livreId']!,
+            base: base,
+          ),
+        ),
+      ],
+    ),
+  ],
+);
 
 /// Barre de navigation du bas ; l'onglet Coach n'apparaît que pour le coach.
 class _Coquille extends ConsumerWidget {

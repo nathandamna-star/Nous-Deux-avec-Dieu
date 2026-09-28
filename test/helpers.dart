@@ -21,6 +21,8 @@ import 'package:nous_deux_avec_dieu/features/notifications/notifications_provide
 import 'package:nous_deux_avec_dieu/features/notifications/notifications_service.dart';
 import 'package:nous_deux_avec_dieu/features/profil/data/photo_profil_service.dart';
 import 'package:nous_deux_avec_dieu/features/profil/profil_providers.dart';
+import 'package:nous_deux_avec_dieu/features/livres/data/couvertures_service.dart';
+import 'package:nous_deux_avec_dieu/features/livres/livres_providers.dart';
 import 'package:nous_deux_avec_dieu/features/rendezvous/rendez_vous_providers.dart';
 import 'package:nous_deux_avec_dieu/shared/services/lanceur.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -37,6 +39,7 @@ class Banc {
   final pieces = FaussesPiecesJointes();
   final notifications = FaussesNotifications();
   final lanceur = FauxLanceur();
+  final couvertures = FaussesCouvertures();
 
   /// Heure « actuelle » vue par l'app (rendez-vous).
   DateTime maintenant = DateTime.now();
@@ -67,6 +70,7 @@ class Banc {
           notificationsServiceProvider.overrideWithValue(notifications),
           fabriqueLecteursProvider.overrideWithValue(const FauxLecteurs()),
           lanceurProvider.overrideWithValue(lanceur),
+          couverturesServiceProvider.overrideWithValue(couvertures),
           horlogeProvider.overrideWithValue(() => maintenant),
         ],
         child: const NousDeuxAvecDieuApp(),
@@ -239,5 +243,15 @@ class FauxLanceur implements Lanceur {
   Future<bool> ouvrir(Uri url) async {
     ouverts.add(url);
     return true;
+  }
+}
+
+class FaussesCouvertures implements CouverturesService {
+  final envois = <String>[];
+
+  @override
+  Future<String?> choisirEtEnvoyer(String livreId) async {
+    envois.add(livreId);
+    return 'https://stockage.test/livres/$livreId/couverture.jpg';
   }
 }
