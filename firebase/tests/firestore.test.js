@@ -200,3 +200,52 @@ describe('contenus', () => {
     await assertSucceeds(deleteDoc(doc(coach(), 'contenus/c1')));
   });
 });
+
+describe('exercices', () => {
+  const exercice = (mode) => ({
+    titre: 'Trois qualités', consignes: 'Écrivez trois qualités de votre conjoint.',
+    mode, repondu: [], statut: 'a_faire', createdAt: serverTimestamp(),
+  });
+  const couple = async () => env.withSecurityRulesDisabled(async (ctx) => {
+    await setDoc(doc(ctx.firestore(), 'accompagnements/a1'), {
+      type: 'couple', nom: 'Paul & Marie', membres: ['marie', 'paul'], statut: 'actif',
+    });
+  });
+  const reponse = (db, cle, uid) => setDoc(doc(db, `accompagnements/a1/exercices/e1/reponses/${cle}`), {
+    texte: 'Doux, fidèle, drôle.', auteur: uid, updatedAt: serverTimestamp(),
+  });
+
+  it('seul le coach envoie et supprime un exercice ; les membres le lisent', async () => {
+    await couple();
+    await assertSucceeds(setDoc(doc(coach(), 'accompagnements/a1/exercices/e1'), exercice('seul')));
+    await assertFails(setDoc(doc(marie(), 'accompagnements/a1/exercices/e2'), exercice('seul')));
+    await assertSucceeds(getDoc(doc(marie(), 'accompagnements/a1/exercices/e1')));
+    const lucie = env.authenticatedContext('lucie').firestore();
+    await assertFails(getDoc(doc(lucie, 'accompagnements/a1/exercices/e1')));
+    await assertFails(deleteDoc(doc(marie(), 'accompagnements/a1/exercices/e1')));
+  });
+
+  it('chacun de son côté : réponse privée (soi et le coach)', async () => {
+    await couple();
+    await setDoc(doc(coach(), 'accompagnements/a1/exercices/e1'), exercice('seul'));
+    await assertSucceeds(reponse(marie(), 'marie', 'marie'));
+    await assertFails(reponse(marie(), 'paul', 'marie'));
+    await assertFails(reponse(marie(), 'couple', 'marie'));
+    await assertSucceeds(getDoc(doc(marie(), 'accompagnements/a1/exercices/e1/reponses/marie')));
+    await assertFails(getDoc(doc(paul(), 'accompagnements/a1/exercices/e1/reponses/marie')));
+    await assertSucceeds(getDoc(doc(coach(), 'accompagnements/a1/exercices/e1/reponses/marie')));
+    // Marquer sa réponse, pas celle de l'autre.
+    await assertSucceeds(updateDoc(doc(marie(), 'accompagnements/a1/exercices/e1'), { repondu: ['marie'] }));
+    await assertFails(updateDoc(doc(marie(), 'accompagnements/a1/exercices/e1'), { repondu: ['marie', 'paul'] }));
+    await assertFails(updateDoc(doc(marie(), 'accompagnements/a1/exercices/e1'), { titre: 'Autre' }));
+  });
+
+  it('à deux : une réponse commune lisible par les deux', async () => {
+    await couple();
+    await setDoc(doc(coach(), 'accompagnements/a1/exercices/e1'), exercice('a_deux'));
+    await assertSucceeds(reponse(paul(), 'couple', 'paul'));
+    await assertFails(reponse(paul(), 'paul', 'paul'));
+    await assertSucceeds(getDoc(doc(marie(), 'accompagnements/a1/exercices/e1/reponses/couple')));
+    await assertFails(reponse(paul(), 'couple', 'marie'));
+  });
+});

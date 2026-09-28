@@ -272,3 +272,10 @@ Avant toute décision importante non prévue ici, pose la question au lieu de ch
   `users/{uid}/profil.jpg` (image < 5 Mo, chacun la sienne), prise ou choisie avec image_picker (800 px,
   qualité 80) via `PhotoProfilService`. Widget `Avatar` (photo ou initiales) : Profil (toucher pour changer ou
   supprimer) et fiche coach (photo des membres).
+- Exercices (étape 5a, `lib/features/exercices/`) : `accompagnements/{id}/exercices/{exId}` (titre, consignes,
+  `contenuId` facultatif, `mode` seul | a_deux, `echeance`, `repondu` = membres ayant répondu, `statut`
+  a_faire | fait). Réponses dans `…/reponses/{uid}` (mode seul : lisible par l'auteur et le coach seulement,
+  pas par le conjoint) ou `…/reponses/couple` (mode à deux : réponse commune des deux). Le client met à jour
+  `repondu` (lui seul) et `statut` (`Exercice.estFait`). Coach : fiche d'accompagnement → Envoyer un exercice
+  (éventuellement à partir d'une question ou d'un exercice de la bibliothèque, texte français pré-rempli) ;
+  lecture des réponses. Client : carte « Mes exercices » sur l'Accueil.

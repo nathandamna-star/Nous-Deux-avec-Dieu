@@ -6,6 +6,10 @@ import '../../features/accompagnement/presentation/demande_screen.dart';
 import '../../features/accompagnement/presentation/rejoindre_screen.dart';
 import '../../features/accueil/accueil_screen.dart';
 import '../../features/coach/contenus_coach_screen.dart';
+import '../../features/coach/envoi_exercice_screen.dart';
+import '../../features/coach/exercice_coach_screen.dart';
+import '../../features/exercices/presentation/exercice_screen.dart';
+import '../../features/exercices/presentation/exercices_screen.dart';
 import '../../features/coach/editeur_contenu_screen.dart';
 import '../../features/coach/fiche_accompagnement_screen.dart';
 import '../../features/contenus/presentation/contenu_screen.dart';
@@ -91,6 +95,17 @@ final routerProvider = Provider<GoRouter>((ref) {
 final _sousRoutes = <String, List<RouteBase>>{
   Routes.accueil: [
     GoRoute(
+      path: 'exercices',
+      builder: (context, state) => const ExercicesScreen(),
+      routes: [
+        GoRoute(
+          path: ':id',
+          builder: (context, state) =>
+              ExerciceScreen(id: state.pathParameters['id']!),
+        ),
+      ],
+    ),
+    GoRoute(
       path: 'contenu/:id',
       builder: (context, state) =>
           ContenuScreen(id: state.pathParameters['id']!),
@@ -133,6 +148,22 @@ final _sousRoutes = <String, List<RouteBase>>{
       path: 'accompagnement/:id',
       builder: (context, state) =>
           FicheAccompagnementScreen(id: state.pathParameters['id']!),
+      routes: [
+        GoRoute(
+          path: 'exercice',
+          builder: (context, state) =>
+              EnvoiExerciceScreen(accId: state.pathParameters['id']!),
+          routes: [
+            GoRoute(
+              path: ':exId',
+              builder: (context, state) => ExerciceCoachScreen(
+                accId: state.pathParameters['id']!,
+                id: state.pathParameters['exId']!,
+              ),
+            ),
+          ],
+        ),
+      ],
     ),
   ],
 };

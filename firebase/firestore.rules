@@ -98,6 +98,54 @@ service cloud.firestore {
 
       allow delete: if estCoach();
 
+      // ----- Exercices -----
+      function membre() {
+        return connecte()
+          && moi() in get(/databases/$(database)/documents/accompagnements/$(id)).data.membres;
+      }
+
+      match /exercices/{exerciceId} {
+        allow read: if estCoach() || membre();
+
+        allow create, update: if estCoach()
+          && request.resource.data.keys().hasOnly([
+            'titre', 'consignes', 'contenuId', 'mode', 'echeance', 'repondu',
+            'statut', 'createdAt'])
+          && texte(request.resource.data.titre, 150)
+          && request.resource.data.consignes is string
+          && request.resource.data.consignes.size() <= 10000
+          && request.resource.data.mode in ['seul', 'a_deux'];
+
+        // Un membre signale qu'il a répondu (seulement lui) et l'état qui en découle.
+        allow update: if membre()
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['repondu', 'statut'])
+          && request.resource.data.repondu.toSet().difference(resource.data.repondu.toSet()).hasOnly([moi()])
+          && resource.data.repondu.toSet().difference(request.resource.data.repondu.toSet()).size() == 0
+          && request.resource.data.statut in ['a_faire', 'fait'];
+
+        allow delete: if estCoach();
+
+        // Réponses : chacun la sienne ; la réponse commune pour les deux.
+        // Le coach lit tout.
+        match /reponses/{cle} {
+          function exercice() {
+            return get(/databases/$(database)/documents/accompagnements/$(id)/exercices/$(exerciceId)).data;
+          }
+
+          allow read: if estCoach()
+            || (connecte() && cle == moi())
+            || (cle == 'couple' && membre());
+
+          allow create, update: if membre()
+            && ((exercice().mode == 'seul' && cle == moi())
+              || (exercice().mode == 'a_deux' && cle == 'couple'))
+            && request.resource.data.keys().hasOnly(['texte', 'auteur', 'updatedAt'])
+            && request.resource.data.auteur == moi()
+            && request.resource.data.texte is string
+            && request.resource.data.texte.size() <= 10000;
+        }
+      }
+
       // Notes privées : le coach seulement.
       match /notes/{noteId} {
         allow read, delete: if estCoach();

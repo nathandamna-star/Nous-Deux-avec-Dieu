@@ -546,4 +546,111 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get photoEnvoiEchoue =>
       'De foto kon niet worden opgeslagen. Probeer opnieuw.';
+
+  @override
+  String get mesExercices => 'Mijn oefeningen';
+
+  @override
+  String exercicesAFaire(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n oefeningen te doen',
+      one: '1 oefening te doen',
+      zero: 'Geen oefeningen te doen',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get aucunExercice => 'Je coach heeft je nog geen oefeningen gestuurd.';
+
+  @override
+  String get exerciceFait => 'Klaar';
+
+  @override
+  String get exerciceAFaire => 'Te doen';
+
+  @override
+  String get modeSeul => 'Ieder apart';
+
+  @override
+  String get modeADeux => 'Samen te doen';
+
+  @override
+  String get modeSeulAide =>
+      'Je antwoord is alleen zichtbaar voor jou en je coach.';
+
+  @override
+  String get modeADeuxAide =>
+      'Eén gezamenlijk antwoord, samen geschreven, zichtbaar voor jullie beiden en je coach.';
+
+  @override
+  String aFaireAvant(String date) {
+    return 'Te doen vóór $date';
+  }
+
+  @override
+  String get lireAvant => 'Eerst lezen';
+
+  @override
+  String get maReponse => 'Mijn antwoord';
+
+  @override
+  String get notreReponse => 'Ons antwoord';
+
+  @override
+  String get enregistrerReponse => 'Mijn antwoord opslaan';
+
+  @override
+  String get reponseEnregistree =>
+      'Antwoord opgeslagen. Je coach kan het lezen.';
+
+  @override
+  String get exercices => 'Oefeningen';
+
+  @override
+  String get envoyerExercice => 'Oefening sturen';
+
+  @override
+  String get apartirContenu => 'Vanuit een inhoud (optioneel)';
+
+  @override
+  String get aucunContenuLie => 'Geen';
+
+  @override
+  String get champConsignes => 'Instructies';
+
+  @override
+  String get echeance => 'Deadline (optioneel)';
+
+  @override
+  String get choisirDate => 'Datum kiezen';
+
+  @override
+  String get envoyer => 'Versturen';
+
+  @override
+  String get exerciceEnvoye => 'Oefening verstuurd.';
+
+  @override
+  String reponses(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n antwoorden',
+      one: '1 antwoord',
+      zero: 'Geen antwoorden',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get pasEncoreRepondu => 'Nog niet geantwoord.';
+
+  @override
+  String get reponseCommune => 'Gezamenlijk antwoord';
+
+  @override
+  String get supprimerExerciceTitre => 'Deze oefening verwijderen?';
 }

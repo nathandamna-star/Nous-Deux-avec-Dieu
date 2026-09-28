@@ -207,5 +207,54 @@
   "prendrePhoto": "Prendre une photo",
   "choisirGalerie": "Choisir dans la galerie",
   "supprimerPhoto": "Supprimer la photo",
-  "photoEnvoiEchoue": "La photo n'a pas pu être enregistrée. Réessayez."
+  "photoEnvoiEchoue": "La photo n'a pas pu être enregistrée. Réessayez.",
+  "mesExercices": "Mes exercices",
+  "exercicesAFaire": "{n, plural, =0{Aucun exercice à faire} =1{1 exercice à faire} other{{n} exercices à faire}}",
+  "@exercicesAFaire": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "aucunExercice": "Votre coach ne vous a pas encore envoyé d'exercice.",
+  "exerciceFait": "Fait",
+  "exerciceAFaire": "À faire",
+  "modeSeul": "Chacun de votre côté",
+  "modeADeux": "À faire à deux",
+  "modeSeulAide": "Votre réponse est vue seulement par vous et votre coach.",
+  "modeADeuxAide": "Une réponse commune, écrite ensemble, visible par vous deux et votre coach.",
+  "aFaireAvant": "À faire avant le {date}",
+  "@aFaireAvant": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "lireAvant": "À lire avant",
+  "maReponse": "Ma réponse",
+  "notreReponse": "Notre réponse",
+  "enregistrerReponse": "Enregistrer ma réponse",
+  "reponseEnregistree": "Réponse enregistrée. Votre coach pourra la lire.",
+  "exercices": "Exercices",
+  "envoyerExercice": "Envoyer un exercice",
+  "apartirContenu": "À partir d'un contenu (facultatif)",
+  "aucunContenuLie": "Aucun",
+  "champConsignes": "Consignes",
+  "echeance": "Date limite (facultatif)",
+  "choisirDate": "Choisir une date",
+  "envoyer": "Envoyer",
+  "exerciceEnvoye": "Exercice envoyé.",
+  "reponses": "{n, plural, =0{Aucune réponse} =1{1 réponse} other{{n} réponses}}",
+  "@reponses": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "pasEncoreRepondu": "Pas encore répondu.",
+  "reponseCommune": "Réponse commune",
+  "supprimerExerciceTitre": "Supprimer cet exercice ?"
 }

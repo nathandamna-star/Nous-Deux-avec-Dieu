@@ -1099,6 +1099,174 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'La photo n\'a pas pu être enregistrée. Réessayez.'**
   String get photoEnvoiEchoue;
+
+  /// No description provided for @mesExercices.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes exercices'**
+  String get mesExercices;
+
+  /// No description provided for @exercicesAFaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'{n, plural, =0{Aucun exercice à faire} =1{1 exercice à faire} other{{n} exercices à faire}}'**
+  String exercicesAFaire(int n);
+
+  /// No description provided for @aucunExercice.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre coach ne vous a pas encore envoyé d\'exercice.'**
+  String get aucunExercice;
+
+  /// No description provided for @exerciceFait.
+  ///
+  /// In fr, this message translates to:
+  /// **'Fait'**
+  String get exerciceFait;
+
+  /// No description provided for @exerciceAFaire.
+  ///
+  /// In fr, this message translates to:
+  /// **'À faire'**
+  String get exerciceAFaire;
+
+  /// No description provided for @modeSeul.
+  ///
+  /// In fr, this message translates to:
+  /// **'Chacun de votre côté'**
+  String get modeSeul;
+
+  /// No description provided for @modeADeux.
+  ///
+  /// In fr, this message translates to:
+  /// **'À faire à deux'**
+  String get modeADeux;
+
+  /// No description provided for @modeSeulAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre réponse est vue seulement par vous et votre coach.'**
+  String get modeSeulAide;
+
+  /// No description provided for @modeADeuxAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Une réponse commune, écrite ensemble, visible par vous deux et votre coach.'**
+  String get modeADeuxAide;
+
+  /// No description provided for @aFaireAvant.
+  ///
+  /// In fr, this message translates to:
+  /// **'À faire avant le {date}'**
+  String aFaireAvant(String date);
+
+  /// No description provided for @lireAvant.
+  ///
+  /// In fr, this message translates to:
+  /// **'À lire avant'**
+  String get lireAvant;
+
+  /// No description provided for @maReponse.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ma réponse'**
+  String get maReponse;
+
+  /// No description provided for @notreReponse.
+  ///
+  /// In fr, this message translates to:
+  /// **'Notre réponse'**
+  String get notreReponse;
+
+  /// No description provided for @enregistrerReponse.
+  ///
+  /// In fr, this message translates to:
+  /// **'Enregistrer ma réponse'**
+  String get enregistrerReponse;
+
+  /// No description provided for @reponseEnregistree.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réponse enregistrée. Votre coach pourra la lire.'**
+  String get reponseEnregistree;
+
+  /// No description provided for @exercices.
+  ///
+  /// In fr, this message translates to:
+  /// **'Exercices'**
+  String get exercices;
+
+  /// No description provided for @envoyerExercice.
+  ///
+  /// In fr, this message translates to:
+  /// **'Envoyer un exercice'**
+  String get envoyerExercice;
+
+  /// No description provided for @apartirContenu.
+  ///
+  /// In fr, this message translates to:
+  /// **'À partir d\'un contenu (facultatif)'**
+  String get apartirContenu;
+
+  /// No description provided for @aucunContenuLie.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun'**
+  String get aucunContenuLie;
+
+  /// No description provided for @champConsignes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Consignes'**
+  String get champConsignes;
+
+  /// No description provided for @echeance.
+  ///
+  /// In fr, this message translates to:
+  /// **'Date limite (facultatif)'**
+  String get echeance;
+
+  /// No description provided for @choisirDate.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisir une date'**
+  String get choisirDate;
+
+  /// No description provided for @envoyer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Envoyer'**
+  String get envoyer;
+
+  /// No description provided for @exerciceEnvoye.
+  ///
+  /// In fr, this message translates to:
+  /// **'Exercice envoyé.'**
+  String get exerciceEnvoye;
+
+  /// No description provided for @reponses.
+  ///
+  /// In fr, this message translates to:
+  /// **'{n, plural, =0{Aucune réponse} =1{1 réponse} other{{n} réponses}}'**
+  String reponses(int n);
+
+  /// No description provided for @pasEncoreRepondu.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pas encore répondu.'**
+  String get pasEncoreRepondu;
+
+  /// No description provided for @reponseCommune.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réponse commune'**
+  String get reponseCommune;
+
+  /// No description provided for @supprimerExerciceTitre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer cet exercice ?'**
+  String get supprimerExerciceTitre;
 }
 
 class _AppLocalizationsDelegate

@@ -546,4 +546,109 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get photoEnvoiEchoue =>
       'No se ha podido guardar la foto. Inténtalo de nuevo.';
+
+  @override
+  String get mesExercices => 'Mis ejercicios';
+
+  @override
+  String exercicesAFaire(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n ejercicios pendientes',
+      one: '1 ejercicio pendiente',
+      zero: 'Ningún ejercicio pendiente',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get aucunExercice => 'Tu coach aún no te ha enviado ejercicios.';
+
+  @override
+  String get exerciceFait => 'Hecho';
+
+  @override
+  String get exerciceAFaire => 'Pendiente';
+
+  @override
+  String get modeSeul => 'Cada uno por su lado';
+
+  @override
+  String get modeADeux => 'Para hacer juntos';
+
+  @override
+  String get modeSeulAide => 'Tu respuesta solo la ves tú y tu coach.';
+
+  @override
+  String get modeADeuxAide =>
+      'Una respuesta común, escrita juntos, visible para los dos y vuestro coach.';
+
+  @override
+  String aFaireAvant(String date) {
+    return 'Para antes del $date';
+  }
+
+  @override
+  String get lireAvant => 'Leer antes';
+
+  @override
+  String get maReponse => 'Mi respuesta';
+
+  @override
+  String get notreReponse => 'Nuestra respuesta';
+
+  @override
+  String get enregistrerReponse => 'Guardar mi respuesta';
+
+  @override
+  String get reponseEnregistree => 'Respuesta guardada. Tu coach podrá leerla.';
+
+  @override
+  String get exercices => 'Ejercicios';
+
+  @override
+  String get envoyerExercice => 'Enviar un ejercicio';
+
+  @override
+  String get apartirContenu => 'A partir de un contenido (opcional)';
+
+  @override
+  String get aucunContenuLie => 'Ninguno';
+
+  @override
+  String get champConsignes => 'Instrucciones';
+
+  @override
+  String get echeance => 'Fecha límite (opcional)';
+
+  @override
+  String get choisirDate => 'Elegir una fecha';
+
+  @override
+  String get envoyer => 'Enviar';
+
+  @override
+  String get exerciceEnvoye => 'Ejercicio enviado.';
+
+  @override
+  String reponses(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n respuestas',
+      one: '1 respuesta',
+      zero: 'Ninguna respuesta',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get pasEncoreRepondu => 'Aún no ha respondido.';
+
+  @override
+  String get reponseCommune => 'Respuesta común';
+
+  @override
+  String get supprimerExerciceTitre => '¿Eliminar este ejercicio?';
 }

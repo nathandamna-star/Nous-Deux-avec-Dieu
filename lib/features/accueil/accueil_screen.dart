@@ -4,9 +4,11 @@ import 'package:go_router/go_router.dart';
 
 import '../../core/router/routes.dart';
 import '../../l10n/app_localizations.dart';
+import '../accompagnement/accompagnement_providers.dart';
 import '../auth/auth_providers.dart';
 import '../contenus/contenus_providers.dart';
 import '../contenus/domain/contenu.dart';
+import '../exercices/exercices_providers.dart';
 
 /// Accueil : salutation et méditation du jour.
 class AccueilScreen extends ConsumerWidget {
@@ -24,6 +26,13 @@ class AccueilScreen extends ConsumerWidget {
     final contenus = ref.watch(contenusPubliesProvider).value ?? const [];
     final meditation = meditationDuJour(contenus, aujourdhui ?? DateTime.now());
 
+    final acc = ref.watch(monAccompagnementProvider).value;
+    final aFaire = acc == null
+        ? 0
+        : (ref.watch(exercicesProvider(acc.id)).value ?? const [])
+              .where((e) => !e.fait)
+              .length;
+
     return Scaffold(
       appBar: AppBar(title: Text(l10n.appTitle)),
       body: ListView(
@@ -38,6 +47,22 @@ class AccueilScreen extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 20),
+          if (acc != null) ...[
+            Card(
+              child: ListTile(
+                leading: Badge(
+                  isLabelVisible: aFaire > 0,
+                  label: Text('$aFaire'),
+                  child: const Icon(Icons.edit_note),
+                ),
+                title: Text(l10n.mesExercices),
+                subtitle: Text(l10n.exercicesAFaire(aFaire)),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () => context.push(Routes.exercices),
+              ),
+            ),
+            const SizedBox(height: 12),
+          ],
           if (meditation != null)
             Card(
               clipBehavior: Clip.antiAlias,

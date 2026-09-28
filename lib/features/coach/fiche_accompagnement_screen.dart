@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+
+import '../../core/router/routes.dart';
 
 import '../../l10n/app_localizations.dart';
 import '../accompagnement/accompagnement_providers.dart';
@@ -8,6 +11,7 @@ import '../accompagnement/domain/accompagnement.dart';
 import '../../shared/widgets/avatar.dart';
 import '../accompagnement/presentation/libelles.dart';
 import '../auth/auth_providers.dart';
+import '../exercices/exercices_providers.dart';
 
 /// Fiche d'un accompagnement (coach) : membres, statut, séances, notes privées.
 class FicheAccompagnementScreen extends ConsumerStatefulWidget {
@@ -154,6 +158,32 @@ class _FicheAccompagnementScreenState
               ),
             ],
           ),
+          const Divider(height: 32),
+          Row(
+            children: [
+              Expanded(
+                child: Text(l10n.exercices, style: theme.textTheme.titleMedium),
+              ),
+              TextButton.icon(
+                onPressed: () => context.push(Routes.envoiExercice(a.id)),
+                icon: const Icon(Icons.add),
+                label: Text(l10n.envoyerExercice),
+              ),
+            ],
+          ),
+          for (final e in ref.watch(exercicesProvider(a.id)).value ?? const [])
+            Card(
+              child: ListTile(
+                leading: Icon(
+                  e.fait ? Icons.check_circle : Icons.edit_note,
+                  color: e.fait ? theme.colorScheme.primary : null,
+                ),
+                title: Text(e.titre),
+                subtitle: Text(l10n.reponses(e.repondu.length)),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () => context.push(Routes.exerciceCoach(a.id, e.id)),
+              ),
+            ),
           const Divider(height: 32),
           Text(l10n.notesPrivees, style: theme.textTheme.titleMedium),
           Text(l10n.notesPriveesAide, style: theme.textTheme.bodySmall),
