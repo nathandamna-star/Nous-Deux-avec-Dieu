@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../l10n/app_localizations.dart';
 import '../../shared/widgets/connexion_requise.dart';
+import '../accompagnement/accompagnement_providers.dart';
+import '../accompagnement/presentation/carte_mon_accompagnement.dart';
 import '../auth/auth_providers.dart';
 
 class ProfilScreen extends ConsumerWidget {
@@ -23,30 +25,42 @@ class ProfilScreen extends ConsumerWidget {
         padding: const EdgeInsets.all(16),
         children: [
           Card(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    l10n.bonjourNom(nom),
-                    style: theme.textTheme.headlineSmall,
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    user.email ?? '',
-                    style: theme.textTheme.bodyMedium?.copyWith(
-                      color: theme.colorScheme.onSurfaceVariant,
+            clipBehavior: Clip.antiAlias,
+            child: InkWell(
+              // Appui long : activation de l'espace coach (voir
+              // functions/index.js, revendiquerCoach).
+              onLongPress: ref.watch(estCoachProvider)
+                  ? null
+                  : () => _activerCoach(context, ref),
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      l10n.bonjourNom(nom),
+                      style: theme.textTheme.headlineSmall,
                     ),
-                  ),
-                  if (ref.watch(estCoachProvider)) ...[
-                    const SizedBox(height: 12),
-                    Chip(label: Text(l10n.roleCoach)),
+                    const SizedBox(height: 4),
+                    Text(
+                      user.email ?? '',
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: theme.colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+                    if (ref.watch(estCoachProvider)) ...[
+                      const SizedBox(height: 12),
+                      Chip(label: Text(l10n.roleCoach)),
+                    ],
                   ],
-                ],
+                ),
               ),
             ),
           ),
+          if (!ref.watch(estCoachProvider)) ...[
+            const SizedBox(height: 12),
+            const CarteMonAccompagnement(),
+          ],
           const SizedBox(height: 24),
           OutlinedButton.icon(
             onPressed: () => ref.read(authRepositoryProvider).deconnexion(),
@@ -56,5 +70,35 @@ class ProfilScreen extends ConsumerWidget {
         ],
       ),
     );
+  }
+
+  Future<void> _activerCoach(BuildContext context, WidgetRef ref) async {
+    final l10n = AppLocalizations.of(context);
+    final ok = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(l10n.activerCoachTitre),
+        content: Text(l10n.activerCoachTexte),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: Text(l10n.annuler),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: Text(l10n.valider),
+          ),
+        ],
+      ),
+    );
+    if (ok != true || !context.mounted) return;
+    final messager = ScaffoldMessenger.of(context);
+    try {
+      await ref.read(fonctionsCoachProvider).revendiquerCoach();
+      await ref.read(authRepositoryProvider).rafraichirJeton();
+      messager.showSnackBar(SnackBar(content: Text(l10n.coachActive)));
+    } catch (_) {
+      messager.showSnackBar(SnackBar(content: Text(l10n.coachRefuse)));
+    }
   }
 }

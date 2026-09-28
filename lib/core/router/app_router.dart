@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../features/accompagnement/presentation/demande_screen.dart';
+import '../../features/accompagnement/presentation/rejoindre_screen.dart';
 import '../../features/accueil/accueil_screen.dart';
+import '../../features/coach/fiche_accompagnement_screen.dart';
 import '../../features/auth/auth_providers.dart';
 import '../../features/auth/presentation/bienvenue_screen.dart';
 import '../../features/auth/presentation/connexion_email_screen.dart';
@@ -69,7 +72,11 @@ final routerProvider = Provider<GoRouter>((ref) {
           ])
             StatefulShellBranch(
               routes: [
-                GoRoute(path: chemin, builder: (context, state) => ecran),
+                GoRoute(
+                  path: chemin,
+                  builder: (context, state) => ecran,
+                  routes: _sousRoutes[chemin] ?? const [],
+                ),
               ],
             ),
         ],
@@ -77,6 +84,26 @@ final routerProvider = Provider<GoRouter>((ref) {
     ],
   );
 });
+
+final _sousRoutes = <String, List<RouteBase>>{
+  Routes.profil: [
+    GoRoute(
+      path: 'demande',
+      builder: (context, state) => const DemandeScreen(),
+    ),
+    GoRoute(
+      path: 'rejoindre',
+      builder: (context, state) => const RejoindreScreen(),
+    ),
+  ],
+  Routes.coach: [
+    GoRoute(
+      path: 'accompagnement/:id',
+      builder: (context, state) =>
+          FicheAccompagnementScreen(id: state.pathParameters['id']!),
+    ),
+  ],
+};
 
 /// Barre de navigation du bas ; l'onglet Coach n'apparaît que pour le coach.
 class _Coquille extends ConsumerWidget {

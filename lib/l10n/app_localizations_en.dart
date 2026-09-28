@@ -56,10 +56,6 @@ class AppLocalizationsEn extends AppLocalizations {
       'Here: your language, your spouse, donations and your data.';
 
   @override
-  String get coachAVenir =>
-      'Here: the couples you accompany, your calendar, your content and payments.';
-
-  @override
   String get bienvenueQuestion => 'What brings you here?';
 
   @override
@@ -179,4 +175,180 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get roleCoach => 'Coach';
+
+  @override
+  String get monAccompagnement => 'My coaching';
+
+  @override
+  String get demanderAccompagnement => 'Request coaching';
+
+  @override
+  String get demanderAccompagnementAide =>
+      'Your coach will reply to arrange a first appointment.';
+
+  @override
+  String get jAiUnCode => 'I have a code from my spouse';
+
+  @override
+  String get typeCouple => 'As a couple';
+
+  @override
+  String get typeIndividuel => 'Alone';
+
+  @override
+  String get champNomAccompagnement => 'Display name';
+
+  @override
+  String get champNomAccompagnementAide => 'For example “Paul & Marie”';
+
+  @override
+  String get champMessage => 'Your message to the coach (optional)';
+
+  @override
+  String get champMessageAide =>
+      'What you are going through, what you hope for…';
+
+  @override
+  String get envoyerDemande => 'Send my request';
+
+  @override
+  String get demandeEnvoyee => 'Request sent. Your coach will reply soon.';
+
+  @override
+  String get champObligatoire => 'This field is required.';
+
+  @override
+  String get rejoindreTitre => 'Join my spouse';
+
+  @override
+  String get rejoindreAide =>
+      'Enter the 6-character code your spouse sees in their profile.';
+
+  @override
+  String get champCode => 'Invitation code';
+
+  @override
+  String get rejoindre => 'Join';
+
+  @override
+  String get codeInvalide =>
+      'This code is not valid, or the couple is already complete.';
+
+  @override
+  String codePourConjoint(String code) {
+    return 'Code for your spouse: $code';
+  }
+
+  @override
+  String get codePourConjointAide =>
+      'Your spouse creates an account, then chooses “I have a code from my spouse”.';
+
+  @override
+  String get copier => 'Copy';
+
+  @override
+  String get copie => 'Copied';
+
+  @override
+  String get statutDemande => 'Request pending';
+
+  @override
+  String get statutActif => 'Coaching in progress';
+
+  @override
+  String get statutEnPause => 'Paused';
+
+  @override
+  String get statutTermine => 'Completed';
+
+  @override
+  String seancesRestantes(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n sessions left',
+      one: '1 session left',
+      zero: 'No sessions left',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get attendConjoint => 'Waiting for spouse';
+
+  @override
+  String get filtreDemandes => 'Requests';
+
+  @override
+  String get filtreActifs => 'Active';
+
+  @override
+  String get filtreTermines => 'Completed';
+
+  @override
+  String get aucunAccompagnement => 'No coaching here yet.';
+
+  @override
+  String get membres => 'Members';
+
+  @override
+  String get messageDemande => 'Request message';
+
+  @override
+  String get accepter => 'Accept';
+
+  @override
+  String get mettreEnPause => 'Pause';
+
+  @override
+  String get reprendre => 'Resume';
+
+  @override
+  String get terminer => 'Complete';
+
+  @override
+  String get seances => 'Sessions';
+
+  @override
+  String get retirerSeance => 'Remove a session';
+
+  @override
+  String get ajouterSeance => 'Add a session';
+
+  @override
+  String get notesPrivees => 'Private notes';
+
+  @override
+  String get notesPriveesAide => 'Visible only to you.';
+
+  @override
+  String get nouvelleNote => 'New note';
+
+  @override
+  String get ajouter => 'Add';
+
+  @override
+  String get supprimer => 'Delete';
+
+  @override
+  String get aucuneNote => 'No notes yet.';
+
+  @override
+  String get activerCoachTitre => 'Activate the coach space?';
+
+  @override
+  String get activerCoachTexte =>
+      'Reserved for the coach: only the account set up at launch can activate it.';
+
+  @override
+  String get coachActive => 'Coach space activated.';
+
+  @override
+  String get coachRefuse => 'This account cannot become the coach.';
+
+  @override
+  String get annuler => 'Cancel';
+
+  @override
+  String get valider => 'Confirm';
 }

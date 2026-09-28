@@ -188,12 +188,6 @@ abstract class AppLocalizations {
   /// **'Ici : votre langue, votre conjoint, les dons et vos données.'**
   String get profilAVenir;
 
-  /// No description provided for @coachAVenir.
-  ///
-  /// In fr, this message translates to:
-  /// **'Ici : vos accompagnements, votre agenda, vos contenus et les paiements.'**
-  String get coachAVenir;
-
   /// No description provided for @bienvenueQuestion.
   ///
   /// In fr, this message translates to:
@@ -409,6 +403,324 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Coach'**
   String get roleCoach;
+
+  /// No description provided for @monAccompagnement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mon accompagnement'**
+  String get monAccompagnement;
+
+  /// No description provided for @demanderAccompagnement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Demander un accompagnement'**
+  String get demanderAccompagnement;
+
+  /// No description provided for @demanderAccompagnementAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre coach vous répondra pour convenir d\'un premier rendez-vous.'**
+  String get demanderAccompagnementAide;
+
+  /// No description provided for @jAiUnCode.
+  ///
+  /// In fr, this message translates to:
+  /// **'J\'ai un code de mon conjoint'**
+  String get jAiUnCode;
+
+  /// No description provided for @typeCouple.
+  ///
+  /// In fr, this message translates to:
+  /// **'En couple'**
+  String get typeCouple;
+
+  /// No description provided for @typeIndividuel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Seul(e)'**
+  String get typeIndividuel;
+
+  /// No description provided for @champNomAccompagnement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nom affiché'**
+  String get champNomAccompagnement;
+
+  /// No description provided for @champNomAccompagnementAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Par exemple « Paul & Marie »'**
+  String get champNomAccompagnementAide;
+
+  /// No description provided for @champMessage.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre message au coach (facultatif)'**
+  String get champMessage;
+
+  /// No description provided for @champMessageAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce que vous vivez, ce que vous espérez…'**
+  String get champMessageAide;
+
+  /// No description provided for @envoyerDemande.
+  ///
+  /// In fr, this message translates to:
+  /// **'Envoyer ma demande'**
+  String get envoyerDemande;
+
+  /// No description provided for @demandeEnvoyee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Demande envoyée. Votre coach vous répondra bientôt.'**
+  String get demandeEnvoyee;
+
+  /// No description provided for @champObligatoire.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce champ est obligatoire.'**
+  String get champObligatoire;
+
+  /// No description provided for @rejoindreTitre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rejoindre mon conjoint'**
+  String get rejoindreTitre;
+
+  /// No description provided for @rejoindreAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Saisissez le code à 6 caractères que votre conjoint voit dans son profil.'**
+  String get rejoindreAide;
+
+  /// No description provided for @champCode.
+  ///
+  /// In fr, this message translates to:
+  /// **'Code d\'invitation'**
+  String get champCode;
+
+  /// No description provided for @rejoindre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rejoindre'**
+  String get rejoindre;
+
+  /// No description provided for @codeInvalide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce code n\'est pas valable, ou le couple est déjà complet.'**
+  String get codeInvalide;
+
+  /// No description provided for @codePourConjoint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Code pour votre conjoint : {code}'**
+  String codePourConjoint(String code);
+
+  /// No description provided for @codePourConjointAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre conjoint crée son compte, puis choisit « J\'ai un code de mon conjoint ».'**
+  String get codePourConjointAide;
+
+  /// No description provided for @copier.
+  ///
+  /// In fr, this message translates to:
+  /// **'Copier'**
+  String get copier;
+
+  /// No description provided for @copie.
+  ///
+  /// In fr, this message translates to:
+  /// **'Copié'**
+  String get copie;
+
+  /// No description provided for @statutDemande.
+  ///
+  /// In fr, this message translates to:
+  /// **'Demande en attente'**
+  String get statutDemande;
+
+  /// No description provided for @statutActif.
+  ///
+  /// In fr, this message translates to:
+  /// **'Accompagnement en cours'**
+  String get statutActif;
+
+  /// No description provided for @statutEnPause.
+  ///
+  /// In fr, this message translates to:
+  /// **'En pause'**
+  String get statutEnPause;
+
+  /// No description provided for @statutTermine.
+  ///
+  /// In fr, this message translates to:
+  /// **'Terminé'**
+  String get statutTermine;
+
+  /// No description provided for @seancesRestantes.
+  ///
+  /// In fr, this message translates to:
+  /// **'{n, plural, =0{Aucune séance restante} =1{1 séance restante} other{{n} séances restantes}}'**
+  String seancesRestantes(int n);
+
+  /// No description provided for @attendConjoint.
+  ///
+  /// In fr, this message translates to:
+  /// **'En attente du conjoint'**
+  String get attendConjoint;
+
+  /// No description provided for @filtreDemandes.
+  ///
+  /// In fr, this message translates to:
+  /// **'Demandes'**
+  String get filtreDemandes;
+
+  /// No description provided for @filtreActifs.
+  ///
+  /// In fr, this message translates to:
+  /// **'En cours'**
+  String get filtreActifs;
+
+  /// No description provided for @filtreTermines.
+  ///
+  /// In fr, this message translates to:
+  /// **'Terminés'**
+  String get filtreTermines;
+
+  /// No description provided for @aucunAccompagnement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun accompagnement ici pour l\'instant.'**
+  String get aucunAccompagnement;
+
+  /// No description provided for @membres.
+  ///
+  /// In fr, this message translates to:
+  /// **'Membres'**
+  String get membres;
+
+  /// No description provided for @messageDemande.
+  ///
+  /// In fr, this message translates to:
+  /// **'Message de la demande'**
+  String get messageDemande;
+
+  /// No description provided for @accepter.
+  ///
+  /// In fr, this message translates to:
+  /// **'Accepter'**
+  String get accepter;
+
+  /// No description provided for @mettreEnPause.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mettre en pause'**
+  String get mettreEnPause;
+
+  /// No description provided for @reprendre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Reprendre'**
+  String get reprendre;
+
+  /// No description provided for @terminer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Terminer'**
+  String get terminer;
+
+  /// No description provided for @seances.
+  ///
+  /// In fr, this message translates to:
+  /// **'Séances'**
+  String get seances;
+
+  /// No description provided for @retirerSeance.
+  ///
+  /// In fr, this message translates to:
+  /// **'Retirer une séance'**
+  String get retirerSeance;
+
+  /// No description provided for @ajouterSeance.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter une séance'**
+  String get ajouterSeance;
+
+  /// No description provided for @notesPrivees.
+  ///
+  /// In fr, this message translates to:
+  /// **'Notes privées'**
+  String get notesPrivees;
+
+  /// No description provided for @notesPriveesAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Visibles par vous seul.'**
+  String get notesPriveesAide;
+
+  /// No description provided for @nouvelleNote.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouvelle note'**
+  String get nouvelleNote;
+
+  /// No description provided for @ajouter.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter'**
+  String get ajouter;
+
+  /// No description provided for @supprimer.
+  ///
+  /// In fr, this message translates to:
+  /// **'Supprimer'**
+  String get supprimer;
+
+  /// No description provided for @aucuneNote.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune note pour l\'instant.'**
+  String get aucuneNote;
+
+  /// No description provided for @activerCoachTitre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Activer l\'espace coach ?'**
+  String get activerCoachTitre;
+
+  /// No description provided for @activerCoachTexte.
+  ///
+  /// In fr, this message translates to:
+  /// **'Réservé au coach : seul le compte désigné lors de la mise en service peut l\'activer.'**
+  String get activerCoachTexte;
+
+  /// No description provided for @coachActive.
+  ///
+  /// In fr, this message translates to:
+  /// **'Espace coach activé.'**
+  String get coachActive;
+
+  /// No description provided for @coachRefuse.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce compte ne peut pas devenir coach.'**
+  String get coachRefuse;
+
+  /// No description provided for @annuler.
+  ///
+  /// In fr, this message translates to:
+  /// **'Annuler'**
+  String get annuler;
+
+  /// No description provided for @valider.
+  ///
+  /// In fr, this message translates to:
+  /// **'Valider'**
+  String get valider;
 }
 
 class _AppLocalizationsDelegate

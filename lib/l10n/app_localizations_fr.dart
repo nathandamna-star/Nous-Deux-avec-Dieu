@@ -56,10 +56,6 @@ class AppLocalizationsFr extends AppLocalizations {
       'Ici : votre langue, votre conjoint, les dons et vos données.';
 
   @override
-  String get coachAVenir =>
-      'Ici : vos accompagnements, votre agenda, vos contenus et les paiements.';
-
-  @override
   String get bienvenueQuestion => 'Qu\'est-ce qui vous amène ?';
 
   @override
@@ -179,4 +175,180 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get roleCoach => 'Coach';
+
+  @override
+  String get monAccompagnement => 'Mon accompagnement';
+
+  @override
+  String get demanderAccompagnement => 'Demander un accompagnement';
+
+  @override
+  String get demanderAccompagnementAide =>
+      'Votre coach vous répondra pour convenir d\'un premier rendez-vous.';
+
+  @override
+  String get jAiUnCode => 'J\'ai un code de mon conjoint';
+
+  @override
+  String get typeCouple => 'En couple';
+
+  @override
+  String get typeIndividuel => 'Seul(e)';
+
+  @override
+  String get champNomAccompagnement => 'Nom affiché';
+
+  @override
+  String get champNomAccompagnementAide => 'Par exemple « Paul & Marie »';
+
+  @override
+  String get champMessage => 'Votre message au coach (facultatif)';
+
+  @override
+  String get champMessageAide => 'Ce que vous vivez, ce que vous espérez…';
+
+  @override
+  String get envoyerDemande => 'Envoyer ma demande';
+
+  @override
+  String get demandeEnvoyee =>
+      'Demande envoyée. Votre coach vous répondra bientôt.';
+
+  @override
+  String get champObligatoire => 'Ce champ est obligatoire.';
+
+  @override
+  String get rejoindreTitre => 'Rejoindre mon conjoint';
+
+  @override
+  String get rejoindreAide =>
+      'Saisissez le code à 6 caractères que votre conjoint voit dans son profil.';
+
+  @override
+  String get champCode => 'Code d\'invitation';
+
+  @override
+  String get rejoindre => 'Rejoindre';
+
+  @override
+  String get codeInvalide =>
+      'Ce code n\'est pas valable, ou le couple est déjà complet.';
+
+  @override
+  String codePourConjoint(String code) {
+    return 'Code pour votre conjoint : $code';
+  }
+
+  @override
+  String get codePourConjointAide =>
+      'Votre conjoint crée son compte, puis choisit « J\'ai un code de mon conjoint ».';
+
+  @override
+  String get copier => 'Copier';
+
+  @override
+  String get copie => 'Copié';
+
+  @override
+  String get statutDemande => 'Demande en attente';
+
+  @override
+  String get statutActif => 'Accompagnement en cours';
+
+  @override
+  String get statutEnPause => 'En pause';
+
+  @override
+  String get statutTermine => 'Terminé';
+
+  @override
+  String seancesRestantes(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n séances restantes',
+      one: '1 séance restante',
+      zero: 'Aucune séance restante',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get attendConjoint => 'En attente du conjoint';
+
+  @override
+  String get filtreDemandes => 'Demandes';
+
+  @override
+  String get filtreActifs => 'En cours';
+
+  @override
+  String get filtreTermines => 'Terminés';
+
+  @override
+  String get aucunAccompagnement => 'Aucun accompagnement ici pour l\'instant.';
+
+  @override
+  String get membres => 'Membres';
+
+  @override
+  String get messageDemande => 'Message de la demande';
+
+  @override
+  String get accepter => 'Accepter';
+
+  @override
+  String get mettreEnPause => 'Mettre en pause';
+
+  @override
+  String get reprendre => 'Reprendre';
+
+  @override
+  String get terminer => 'Terminer';
+
+  @override
+  String get seances => 'Séances';
+
+  @override
+  String get retirerSeance => 'Retirer une séance';
+
+  @override
+  String get ajouterSeance => 'Ajouter une séance';
+
+  @override
+  String get notesPrivees => 'Notes privées';
+
+  @override
+  String get notesPriveesAide => 'Visibles par vous seul.';
+
+  @override
+  String get nouvelleNote => 'Nouvelle note';
+
+  @override
+  String get ajouter => 'Ajouter';
+
+  @override
+  String get supprimer => 'Supprimer';
+
+  @override
+  String get aucuneNote => 'Aucune note pour l\'instant.';
+
+  @override
+  String get activerCoachTitre => 'Activer l\'espace coach ?';
+
+  @override
+  String get activerCoachTexte =>
+      'Réservé au coach : seul le compte désigné lors de la mise en service peut l\'activer.';
+
+  @override
+  String get coachActive => 'Espace coach activé.';
+
+  @override
+  String get coachRefuse => 'Ce compte ne peut pas devenir coach.';
+
+  @override
+  String get annuler => 'Annuler';
+
+  @override
+  String get valider => 'Valider';
 }

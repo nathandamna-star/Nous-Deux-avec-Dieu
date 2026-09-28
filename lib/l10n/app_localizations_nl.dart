@@ -56,10 +56,6 @@ class AppLocalizationsNl extends AppLocalizations {
       'Hier: je taal, je partner, giften en je gegevens.';
 
   @override
-  String get coachAVenir =>
-      'Hier: je begeleidingen, je agenda, je inhoud en de betalingen.';
-
-  @override
   String get bienvenueQuestion => 'Wat brengt je hier?';
 
   @override
@@ -180,4 +176,179 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get roleCoach => 'Coach';
+
+  @override
+  String get monAccompagnement => 'Mijn begeleiding';
+
+  @override
+  String get demanderAccompagnement => 'Begeleiding aanvragen';
+
+  @override
+  String get demanderAccompagnementAide =>
+      'Je coach antwoordt om een eerste afspraak te maken.';
+
+  @override
+  String get jAiUnCode => 'Ik heb een code van mijn partner';
+
+  @override
+  String get typeCouple => 'Als koppel';
+
+  @override
+  String get typeIndividuel => 'Alleen';
+
+  @override
+  String get champNomAccompagnement => 'Weergavenaam';
+
+  @override
+  String get champNomAccompagnementAide => 'Bijvoorbeeld „Paul & Marie”';
+
+  @override
+  String get champMessage => 'Je bericht aan de coach (optioneel)';
+
+  @override
+  String get champMessageAide => 'Wat jullie meemaken, waar jullie op hopen…';
+
+  @override
+  String get envoyerDemande => 'Aanvraag versturen';
+
+  @override
+  String get demandeEnvoyee => 'Aanvraag verzonden. Je coach antwoordt snel.';
+
+  @override
+  String get champObligatoire => 'Dit veld is verplicht.';
+
+  @override
+  String get rejoindreTitre => 'Mijn partner vervoegen';
+
+  @override
+  String get rejoindreAide =>
+      'Voer de code van 6 tekens in die je partner in het profiel ziet.';
+
+  @override
+  String get champCode => 'Uitnodigingscode';
+
+  @override
+  String get rejoindre => 'Vervoegen';
+
+  @override
+  String get codeInvalide =>
+      'Deze code is ongeldig of het koppel is al volledig.';
+
+  @override
+  String codePourConjoint(String code) {
+    return 'Code voor je partner: $code';
+  }
+
+  @override
+  String get codePourConjointAide =>
+      'Je partner maakt een account aan en kiest „Ik heb een code van mijn partner”.';
+
+  @override
+  String get copier => 'Kopiëren';
+
+  @override
+  String get copie => 'Gekopieerd';
+
+  @override
+  String get statutDemande => 'Aanvraag in behandeling';
+
+  @override
+  String get statutActif => 'Begeleiding lopend';
+
+  @override
+  String get statutEnPause => 'Gepauzeerd';
+
+  @override
+  String get statutTermine => 'Afgerond';
+
+  @override
+  String seancesRestantes(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: 'Nog $n sessies',
+      one: 'Nog 1 sessie',
+      zero: 'Geen sessies meer',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get attendConjoint => 'Wacht op partner';
+
+  @override
+  String get filtreDemandes => 'Aanvragen';
+
+  @override
+  String get filtreActifs => 'Lopend';
+
+  @override
+  String get filtreTermines => 'Afgerond';
+
+  @override
+  String get aucunAccompagnement => 'Hier nog geen begeleidingen.';
+
+  @override
+  String get membres => 'Leden';
+
+  @override
+  String get messageDemande => 'Bericht bij de aanvraag';
+
+  @override
+  String get accepter => 'Aanvaarden';
+
+  @override
+  String get mettreEnPause => 'Pauzeren';
+
+  @override
+  String get reprendre => 'Hervatten';
+
+  @override
+  String get terminer => 'Afronden';
+
+  @override
+  String get seances => 'Sessies';
+
+  @override
+  String get retirerSeance => 'Sessie verwijderen';
+
+  @override
+  String get ajouterSeance => 'Sessie toevoegen';
+
+  @override
+  String get notesPrivees => 'Privénotities';
+
+  @override
+  String get notesPriveesAide => 'Alleen zichtbaar voor jou.';
+
+  @override
+  String get nouvelleNote => 'Nieuwe notitie';
+
+  @override
+  String get ajouter => 'Toevoegen';
+
+  @override
+  String get supprimer => 'Verwijderen';
+
+  @override
+  String get aucuneNote => 'Nog geen notities.';
+
+  @override
+  String get activerCoachTitre => 'Coachruimte activeren?';
+
+  @override
+  String get activerCoachTexte =>
+      'Voorbehouden aan de coach: alleen het account dat bij de installatie is ingesteld, kan dit activeren.';
+
+  @override
+  String get coachActive => 'Coachruimte geactiveerd.';
+
+  @override
+  String get coachRefuse => 'Dit account kan geen coach worden.';
+
+  @override
+  String get annuler => 'Annuleren';
+
+  @override
+  String get valider => 'Bevestigen';
 }

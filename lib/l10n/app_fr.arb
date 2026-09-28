@@ -14,7 +14,6 @@
   "messagesAVenir": "Ici : votre conversation avec votre coach.",
   "seancesAVenir": "Ici : vos rendez-vous, vos séances restantes et les forfaits.",
   "profilAVenir": "Ici : votre langue, votre conjoint, les dons et vos données.",
-  "coachAVenir": "Ici : vos accompagnements, votre agenda, vos contenus et les paiements.",
   "bienvenueQuestion": "Qu'est-ce qui vous amène ?",
   "parcoursCouple": "Nous venons en couple",
   "parcoursCoupleAide": "Mariés, fiancés ou en couple",
@@ -64,5 +63,72 @@
       }
     }
   },
-  "roleCoach": "Coach"
+  "roleCoach": "Coach",
+  "monAccompagnement": "Mon accompagnement",
+  "demanderAccompagnement": "Demander un accompagnement",
+  "demanderAccompagnementAide": "Votre coach vous répondra pour convenir d'un premier rendez-vous.",
+  "jAiUnCode": "J'ai un code de mon conjoint",
+  "typeCouple": "En couple",
+  "typeIndividuel": "Seul(e)",
+  "champNomAccompagnement": "Nom affiché",
+  "champNomAccompagnementAide": "Par exemple « Paul & Marie »",
+  "champMessage": "Votre message au coach (facultatif)",
+  "champMessageAide": "Ce que vous vivez, ce que vous espérez…",
+  "envoyerDemande": "Envoyer ma demande",
+  "demandeEnvoyee": "Demande envoyée. Votre coach vous répondra bientôt.",
+  "champObligatoire": "Ce champ est obligatoire.",
+  "rejoindreTitre": "Rejoindre mon conjoint",
+  "rejoindreAide": "Saisissez le code à 6 caractères que votre conjoint voit dans son profil.",
+  "champCode": "Code d'invitation",
+  "rejoindre": "Rejoindre",
+  "codeInvalide": "Ce code n'est pas valable, ou le couple est déjà complet.",
+  "codePourConjoint": "Code pour votre conjoint : {code}",
+  "@codePourConjoint": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "codePourConjointAide": "Votre conjoint crée son compte, puis choisit « J'ai un code de mon conjoint ».",
+  "copier": "Copier",
+  "copie": "Copié",
+  "statutDemande": "Demande en attente",
+  "statutActif": "Accompagnement en cours",
+  "statutEnPause": "En pause",
+  "statutTermine": "Terminé",
+  "seancesRestantes": "{n, plural, =0{Aucune séance restante} =1{1 séance restante} other{{n} séances restantes}}",
+  "@seancesRestantes": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "attendConjoint": "En attente du conjoint",
+  "filtreDemandes": "Demandes",
+  "filtreActifs": "En cours",
+  "filtreTermines": "Terminés",
+  "aucunAccompagnement": "Aucun accompagnement ici pour l'instant.",
+  "membres": "Membres",
+  "messageDemande": "Message de la demande",
+  "accepter": "Accepter",
+  "mettreEnPause": "Mettre en pause",
+  "reprendre": "Reprendre",
+  "terminer": "Terminer",
+  "seances": "Séances",
+  "retirerSeance": "Retirer une séance",
+  "ajouterSeance": "Ajouter une séance",
+  "notesPrivees": "Notes privées",
+  "notesPriveesAide": "Visibles par vous seul.",
+  "nouvelleNote": "Nouvelle note",
+  "ajouter": "Ajouter",
+  "supprimer": "Supprimer",
+  "aucuneNote": "Aucune note pour l'instant.",
+  "activerCoachTitre": "Activer l'espace coach ?",
+  "activerCoachTexte": "Réservé au coach : seul le compte désigné lors de la mise en service peut l'activer.",
+  "coachActive": "Espace coach activé.",
+  "coachRefuse": "Ce compte ne peut pas devenir coach.",
+  "annuler": "Annuler",
+  "valider": "Valider"
 }

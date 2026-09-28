@@ -45,5 +45,73 @@ service cloud.firestore {
 
       allow delete: if connecte() && uid == moi();
     }
+
+    // ----- Accompagnements -----
+    function champs() {
+      return request.resource.data.diff(resource.data).affectedKeys();
+    }
+
+    match /accompagnements/{id} {
+      allow read: if estCoach()
+        || (connecte() && moi() in resource.data.membres);
+
+      // Demande : seul membre = soi ; un couple crée son code d'invitation
+      // dans le même envoi. Séances et statut : réservés au coach.
+      allow create: if connecte()
+        && request.resource.data.keys().hasOnly([
+          'type', 'nom', 'membres', 'noms', 'codeInvitation', 'statut',
+          'message', 'createdAt', 'updatedAt'])
+        && request.resource.data.membres == [moi()]
+        && request.resource.data.noms.keys().hasOnly([moi()])
+        && request.resource.data.statut == 'demande'
+        && texte(request.resource.data.nom, 80)
+        && request.resource.data.get('message', '').size() <= 2000
+        && (
+          (request.resource.data.type == 'individuel'
+            && !('codeInvitation' in request.resource.data))
+          || (request.resource.data.type == 'couple'
+            && request.resource.data.codeInvitation is string
+            && getAfter(/databases/$(database)/documents/invitations/$(request.resource.data.codeInvitation))
+                 .data.accompagnementId == id)
+        );
+
+      // Le conjoint rejoint un couple incomplet en donnant le bon code.
+      allow update: if connecte()
+        && resource.data.type == 'couple'
+        && resource.data.membres.size() == 1
+        && !(moi() in resource.data.membres)
+        && request.resource.data.codeUtilise == resource.data.codeInvitation
+        && request.resource.data.membres == resource.data.membres.concat([moi()])
+        && request.resource.data.noms.diff(resource.data.noms).affectedKeys().hasOnly([moi()])
+        && champs().hasOnly(['membres', 'noms', 'codeUtilise', 'updatedAt']);
+
+      // Le coach gère le statut et les séances restantes.
+      allow update: if estCoach()
+        && champs().hasOnly(['statut', 'seancesRestantes', 'updatedAt'])
+        && request.resource.data.statut in ['demande', 'actif', 'en_pause', 'termine']
+        && request.resource.data.get('seancesRestantes', 0) is int
+        && request.resource.data.get('seancesRestantes', 0) >= 0;
+
+      allow delete: if estCoach();
+
+      // Notes privées : le coach seulement.
+      match /notes/{noteId} {
+        allow read, delete: if estCoach();
+        allow create, update: if estCoach()
+          && request.resource.data.keys().hasOnly(['texte', 'createdAt', 'updatedAt'])
+          && texte(request.resource.data.texte, 10000);
+      }
+    }
+
+    // Codes d'invitation : lisibles un par un (jamais listés) par qui connaît
+    // le code ; créés avec leur accompagnement.
+    match /invitations/{code} {
+      allow get: if connecte();
+      allow create: if connecte()
+        && request.resource.data.keys().hasOnly(['accompagnementId', 'createdAt'])
+        && getAfter(/databases/$(database)/documents/accompagnements/$(request.resource.data.accompagnementId))
+             .data.membres == [moi()];
+      allow delete: if estCoach();
+    }
   }
 }

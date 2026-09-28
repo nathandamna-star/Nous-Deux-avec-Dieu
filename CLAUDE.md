@@ -245,3 +245,12 @@ Avant toute décision importante non prévue ici, pose la question au lieu de ch
   (`estCoachProvider`) ; la Cloud Function qui l'attribue viendra avec le forfait Blaze.
   Messages, Séances et Profil demandent une connexion (`ConnexionRequise`).
 - Règles : `firebase/firestore.rules`, tests `cd firebase && npm install && npm test` (Java 21 requis).
+- Accompagnements (étape 3, `lib/features/accompagnement/`) : demande depuis le Profil (couple ou individuel,
+  nom affiché, message) ; couple = code d'invitation à 6 caractères (`invitations/{code}` → accompagnementId,
+  créé dans le même envoi) ; le conjoint rejoint en saisissant le code (règle : `codeUtilise` doit égaler
+  `codeInvitation`, un seul conjoint). Pas de champ `accompagnementId` dans le profil : on cherche
+  `membres array-contains uid`. Coach (`lib/features/coach/`) : liste Demandes / En cours / Terminés, fiche
+  (accepter, pause, terminer, reprendre ; séances +/− à la main en attendant les paiements ; notes privées).
+- Cloud Functions (`functions/`, Node 22, europe-west1) : `revendiquerCoach` (compte dont l'e-mail est le
+  paramètre `EMAIL_COACH`, une seule fois ; dans l'app : appui long sur la carte « Bonjour … » du Profil).
+  Tests : `cd functions && npm install && npm test`. Déploiement : forfait Blaze requis.

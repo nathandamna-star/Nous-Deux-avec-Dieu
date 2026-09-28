@@ -3,7 +3,10 @@ import { after, afterEach, before, describe, it } from 'node:test';
 import {
   assertFails, assertSucceeds, initializeTestEnvironment,
 } from '@firebase/rules-unit-testing';
-import { deleteDoc, doc, getDoc, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore';
+import {
+  addDoc, arrayUnion, collection, deleteDoc, doc, getDoc, getDocs, query, serverTimestamp, setDoc,
+  updateDoc, where, writeBatch,
+} from 'firebase/firestore';
 
 let env;
 const marie = () => env.authenticatedContext('marie').firestore();
@@ -68,7 +71,82 @@ describe('profils', () => {
   });
 
   it('toute autre collection est fermée', async () => {
-    await assertFails(getDoc(doc(marie(), 'accompagnements/x')));
     await assertFails(setDoc(doc(coach(), 'divers/x'), { a: 1 }));
+  });
+});
+
+const demandeCouple = (db, uid = 'marie', code = 'ABC234') => {
+  const b = writeBatch(db);
+  b.set(doc(db, `invitations/${code}`), { accompagnementId: 'a1', createdAt: serverTimestamp() });
+  b.set(doc(db, 'accompagnements/a1'), {
+    type: 'couple', nom: 'Paul & Marie', membres: [uid], noms: { [uid]: 'Marie' },
+    codeInvitation: code, statut: 'demande', message: 'Bonjour',
+    createdAt: serverTimestamp(), updatedAt: serverTimestamp(),
+  });
+  return b.commit();
+};
+
+const rejoindre = (db, uid, code) => updateDoc(doc(db, 'accompagnements/a1'), {
+  membres: arrayUnion(uid), [`noms.${uid}`]: 'Paul', codeUtilise: code, updatedAt: serverTimestamp(),
+});
+
+describe('accompagnements', () => {
+  it('une demande de couple avec son code d\'invitation', async () => {
+    await assertSucceeds(demandeCouple(marie()));
+  });
+
+  it('demande individuelle ; refus si statut, séances ou membres forcés', async () => {
+    const base = {
+      type: 'individuel', nom: 'Marie', membres: ['marie'], noms: { marie: 'Marie' },
+      statut: 'demande', createdAt: serverTimestamp(), updatedAt: serverTimestamp(),
+    };
+    await assertSucceeds(setDoc(doc(marie(), 'accompagnements/i1'), base));
+    await assertFails(setDoc(doc(marie(), 'accompagnements/i2'), { ...base, statut: 'actif' }));
+    await assertFails(setDoc(doc(marie(), 'accompagnements/i3'), { ...base, seancesRestantes: 10 }));
+    await assertFails(setDoc(doc(marie(), 'accompagnements/i4'), { ...base, membres: ['marie', 'paul'] }));
+    // Couple sans document d'invitation : refusé.
+    await assertFails(setDoc(doc(marie(), 'accompagnements/i5'), {
+      ...base, type: 'couple', codeInvitation: 'ZZZ999',
+    }));
+  });
+
+  it('le conjoint rejoint avec le bon code, une seule fois', async () => {
+    await demandeCouple(marie());
+    const lucie = () => env.authenticatedContext('lucie').firestore();
+    await assertSucceeds(getDoc(doc(paul(), 'invitations/ABC234')));
+    await assertFails(getDocs(collection(paul(), 'invitations')));
+    await assertFails(getDoc(doc(paul(), 'accompagnements/a1')));
+    await assertFails(rejoindre(paul(), 'paul', 'MAUVAIS'));
+    await assertSucceeds(rejoindre(paul(), 'paul', 'ABC234'));
+    await assertSucceeds(getDoc(doc(paul(), 'accompagnements/a1')));
+    await assertFails(rejoindre(lucie(), 'lucie', 'ABC234'));
+  });
+
+  it('un membre ne change ni le statut ni les séances', async () => {
+    await demandeCouple(marie());
+    await assertFails(updateDoc(doc(marie(), 'accompagnements/a1'), { statut: 'actif' }));
+    await assertFails(updateDoc(doc(marie(), 'accompagnements/a1'), { seancesRestantes: 5 }));
+  });
+
+  it('chacun ne liste que son accompagnement ; le coach voit tout', async () => {
+    await demandeCouple(marie());
+    await assertSucceeds(getDocs(query(collection(marie(), 'accompagnements'), where('membres', 'array-contains', 'marie'))));
+    await assertFails(getDocs(collection(marie(), 'accompagnements')));
+    await assertSucceeds(getDocs(collection(coach(), 'accompagnements')));
+  });
+
+  it('le coach accepte, crédite des séances, prend des notes privées', async () => {
+    await demandeCouple(marie());
+    const ref = doc(coach(), 'accompagnements/a1');
+    await assertSucceeds(updateDoc(ref, { statut: 'actif', seancesRestantes: 5, updatedAt: serverTimestamp() }));
+    await assertFails(updateDoc(ref, { statut: 'inconnu' }));
+    await assertFails(updateDoc(ref, { seancesRestantes: -1 }));
+    await assertFails(updateDoc(ref, { membres: ['coach1'] }));
+    await assertSucceeds(addDoc(collection(coach(), 'accompagnements/a1/notes'), {
+      texte: 'Première séance : communication.', createdAt: serverTimestamp(),
+    }));
+    await assertSucceeds(getDocs(collection(coach(), 'accompagnements/a1/notes')));
+    await assertFails(getDocs(collection(marie(), 'accompagnements/a1/notes')));
+    await assertFails(addDoc(collection(marie(), 'accompagnements/a1/notes'), { texte: 'x' }));
   });
 });

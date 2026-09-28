@@ -7,4 +7,7 @@ abstract final class Routes {
   static const seances = '/seances';
   static const profil = '/profil';
   static const coach = '/coach';
+  static const demande = '/profil/demande';
+  static const rejoindre = '/profil/rejoindre';
+  static String ficheAccompagnement(String id) => '/coach/accompagnement/$id';
 }

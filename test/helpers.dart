@@ -5,6 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:nous_deux_avec_dieu/app.dart';
 import 'package:nous_deux_avec_dieu/core/preferences/preferences.dart';
+import 'package:nous_deux_avec_dieu/features/accompagnement/accompagnement_providers.dart';
+import 'package:nous_deux_avec_dieu/features/accompagnement/data/fonctions_coach.dart';
 import 'package:nous_deux_avec_dieu/features/auth/auth_providers.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -14,6 +16,7 @@ class Banc {
 
   final MockFirebaseAuth auth;
   final firestore = FakeFirebaseFirestore();
+  final fonctions = FaussesFonctionsCoach();
 
   Future<void> lancer(
     WidgetTester tester, {
@@ -33,6 +36,7 @@ class Banc {
           sharedPreferencesProvider.overrideWithValue(prefs),
           firebaseAuthProvider.overrideWithValue(auth),
           firestoreProvider.overrideWithValue(firestore),
+          fonctionsCoachProvider.overrideWithValue(fonctions),
         ],
         child: const NousDeuxAvecDieuApp(),
       ),
@@ -58,5 +62,48 @@ Future<void> toucher(WidgetTester tester, Finder cible) async {
   await tester.ensureVisible(cible);
   await tester.pumpAndSettle();
   await tester.tap(cible);
+  await tester.pumpAndSettle();
+}
+
+class FaussesFonctionsCoach implements FonctionsCoach {
+  var appels = 0;
+  var refuser = false;
+
+  @override
+  Future<void> revendiquerCoach() async {
+    appels++;
+    if (refuser) throw Exception('refusé');
+  }
+}
+
+/// Utilisateur connecté avec son profil déjà créé.
+Future<Banc> bancAvecProfil({
+  String uid = 'u1',
+  String nom = 'Marie',
+  String parcours = 'couple',
+  bool coach = false,
+}) async {
+  final banc = Banc(
+    auth: MockFirebaseAuth(
+      signedIn: true,
+      mockUser: MockUser(
+        uid: uid,
+        email: '$uid@exemple.com',
+        displayName: nom,
+        customClaim: coach ? {'coach': true} : {},
+      ),
+    ),
+  );
+  await banc.firestore.doc('users/$uid').set({
+    'nom': nom,
+    'email': '$uid@exemple.com',
+    'langue': 'fr',
+    'parcours': parcours,
+  });
+  return banc;
+}
+
+Future<void> ouvrirProfil(WidgetTester tester) async {
+  await tester.tap(find.text('Profil'));
   await tester.pumpAndSettle();
 }

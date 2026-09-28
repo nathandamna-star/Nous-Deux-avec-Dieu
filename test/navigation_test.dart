@@ -27,7 +27,7 @@ void main() {
     expect(find.byType(NavigationDestination), findsNWidgets(6));
     await tester.tap(find.text('Coach'));
     await tester.pumpAndSettle();
-    expect(find.textContaining('vos accompagnements'), findsOneWidget);
+    expect(find.text('Demandes'), findsOneWidget);
   });
 
   for (final (langue, accueil, bientot) in [
