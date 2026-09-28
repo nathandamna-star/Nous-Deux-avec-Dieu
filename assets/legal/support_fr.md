@@ -3,7 +3,7 @@
 Une question sur l'application, votre accompagnement, un paiement ou une commande de livre ?
 
 - Depuis l'application : onglet Messages, pour écrire directement à votre coach.
-- Par e-mail : [ADRESSE E-MAIL DE CONTACT].
+- Par e-mail : nathansallinone@gmail.com.
 
 ## Questions fréquentes
 

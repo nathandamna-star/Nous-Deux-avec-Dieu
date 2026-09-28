@@ -1,16 +1,14 @@
 # Politique de confidentialité
 
-> MODÈLE À COMPLÉTER — Les passages entre crochets [ ] sont à remplir. Ce texte doit être relu par un juriste avant la publication de l'application.
-
-Dernière mise à jour : [DATE]
+Dernière mise à jour : 28 septembre 2026
 
 ## 1. Qui sommes-nous ?
 
-« Nous deux avec Dieu » est l'application de [NOM DU COACH], coach de couple chrétien. Elle permet d'être accompagné (en couple ou seul), d'échanger avec le coach, de faire des exercices, de suivre des séances par Zoom et de découvrir des contenus gratuits.
+« Nous deux avec Dieu » est l'application de coaching de couple chrétien proposée par Nathan's all in one. Elle permet d'être accompagné (en couple ou seul), d'échanger avec le coach, de faire des exercices, de suivre des séances par Zoom et de découvrir des contenus gratuits.
 
-Le responsable du traitement de vos données est [NOM ET PRÉNOM / NOM DE LA SOCIÉTÉ], [ADRESSE], [NUMÉRO D'ENTREPRISE BCE s'il y a lieu].
+Le responsable du traitement de vos données est Nathan's all in one, Rue de la Fraternité 16, 1030 Schaerbeek (Belgique).
 
-Pour toute question sur vos données : [ADRESSE E-MAIL DE CONTACT].
+Pour toute question sur vos données : nathansallinone@gmail.com.
 
 ## 2. Quelles données collectons-nous ?
 
@@ -47,7 +45,7 @@ Nous n'utilisons aucun traceur publicitaire, ne faisons aucun profilage et ne ve
 ## 6. Combien de temps ?
 
 - Vos données de compte et d'accompagnement : tant que votre compte existe. Elles sont supprimées quand vous supprimez votre compte.
-- Les paiements et commandes : conservés [7] ans pour nos obligations comptables, sans votre nom ni votre adresse une fois votre compte supprimé.
+- Les paiements et commandes : conservés 7 ans pour nos obligations comptables, sans votre nom ni votre adresse une fois votre compte supprimé.
 
 ## 7. Vos droits
 
@@ -55,5 +53,5 @@ Vous pouvez à tout moment :
 
 - télécharger toutes vos données depuis l'application (Profil → Télécharger mes données) ;
 - supprimer votre compte et vos données depuis l'application (Profil → Supprimer mon compte) ;
-- demander la rectification de vos données, ou vous opposer à un traitement, en écrivant à [ADRESSE E-MAIL DE CONTACT] ;
+- demander la rectification de vos données, ou vous opposer à un traitement, en écrivant à nathansallinone@gmail.com ;
 - introduire une plainte auprès de l'Autorité de protection des données (www.autoriteprotectiondonnees.be).
