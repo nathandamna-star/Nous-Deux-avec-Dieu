@@ -2383,6 +2383,60 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'{n, plural, =0{Tout était déjà là : rien à ajouter.} =1{1 contenu ajouté.} other{{n} contenus ajoutés.}}'**
   String contenusDepartAjoutes(int n);
+
+  /// No description provided for @boutique.
+  ///
+  /// In fr, this message translates to:
+  /// **'Boutique'**
+  String get boutique;
+
+  /// No description provided for @ajouterArticle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter un article'**
+  String get ajouterArticle;
+
+  /// No description provided for @nouvelArticle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouvel article'**
+  String get nouvelArticle;
+
+  /// No description provided for @categorieLivre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Livre'**
+  String get categorieLivre;
+
+  /// No description provided for @categorieAutre.
+  ///
+  /// In fr, this message translates to:
+  /// **'Autre article'**
+  String get categorieAutre;
+
+  /// No description provided for @categorieLivres.
+  ///
+  /// In fr, this message translates to:
+  /// **'Livres'**
+  String get categorieLivres;
+
+  /// No description provided for @categorieAutres.
+  ///
+  /// In fr, this message translates to:
+  /// **'Autres articles'**
+  String get categorieAutres;
+
+  /// No description provided for @articleAutreAide.
+  ///
+  /// In fr, this message translates to:
+  /// **'Objet physique (CD, agenda, carte, vêtement…). Un article numérique se vend uniquement par un lien vers une boutique extérieure.'**
+  String get articleAutreAide;
+
+  /// No description provided for @ajouterAudioVideo.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajouter un audio ou une vidéo'**
+  String get ajouterAudioVideo;
 }
 
 class _AppLocalizationsDelegate

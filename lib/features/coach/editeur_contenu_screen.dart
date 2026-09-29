@@ -9,13 +9,18 @@ import '../contenus/presentation/libelles.dart';
 
 /// Création ou modification d'un contenu, avec une version par langue.
 class EditeurContenuScreen extends ConsumerWidget {
-  const EditeurContenuScreen({super.key, this.id});
+  const EditeurContenuScreen({super.key, this.id, this.typeInitial});
 
   final String? id;
 
+  /// Type proposé pour un nouveau contenu (audio, vidéo…).
+  final TypeContenu? typeInitial;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    if (id == null) return const _Formulaire(existant: null);
+    if (id == null) {
+      return _Formulaire(existant: null, typeInitial: typeInitial);
+    }
     final c = ref.watch(contenuProvider(id!));
     return switch (c) {
       AsyncData(:final value) => _Formulaire(existant: value),
@@ -28,7 +33,9 @@ class EditeurContenuScreen extends ConsumerWidget {
 }
 
 class _Formulaire extends ConsumerStatefulWidget {
-  const _Formulaire({required this.existant});
+  const _Formulaire({required this.existant, this.typeInitial});
+
+  final TypeContenu? typeInitial;
 
   final Contenu? existant;
 
@@ -38,7 +45,8 @@ class _Formulaire extends ConsumerStatefulWidget {
 
 class _FormulaireState extends ConsumerState<_Formulaire> {
   final _formulaire = GlobalKey<FormState>();
-  late var _type = widget.existant?.type ?? TypeContenu.meditation;
+  late var _type =
+      widget.existant?.type ?? widget.typeInitial ?? TypeContenu.meditation;
   late var _theme = widget.existant?.theme ?? ThemeContenu.communication;
   late var _public =
       (widget.existant?.visibilite ?? Visibilite.public) == Visibilite.public;

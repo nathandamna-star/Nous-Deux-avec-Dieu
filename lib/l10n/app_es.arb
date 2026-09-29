@@ -379,5 +379,14 @@
   "contenusDepart": "Contenidos iniciales",
   "contenusDepartAide": "Añade 30 meditaciones, 60 preguntas para hablar en pareja y 4 itinerarios, en los 5 idiomas, ya publicados. Podrás modificarlo, despublicarlo o eliminarlo todo. Tus contenidos existentes nunca se reemplazan.",
   "charger": "Cargar",
-  "contenusDepartAjoutes": "{n, plural, =0{Ya estaba todo: nada que añadir.} =1{1 contenido añadido.} other{{n} contenidos añadidos.}}"
+  "contenusDepartAjoutes": "{n, plural, =0{Ya estaba todo: nada que añadir.} =1{1 contenido añadido.} other{{n} contenidos añadidos.}}",
+  "boutique": "Tienda",
+  "ajouterArticle": "Añadir un artículo",
+  "nouvelArticle": "Nuevo artículo",
+  "categorieLivre": "Libro",
+  "categorieAutre": "Otro artículo",
+  "categorieLivres": "Libros",
+  "categorieAutres": "Otros artículos",
+  "articleAutreAide": "Objeto físico (CD, agenda, tarjeta, ropa…). Un artículo digital solo se vende mediante un enlace a una tienda externa.",
+  "ajouterAudioVideo": "Añadir audio o vídeo"
 }

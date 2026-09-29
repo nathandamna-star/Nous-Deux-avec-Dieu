@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../core/router/routes.dart';
 import '../../l10n/app_localizations.dart';
+import '../auth/auth_providers.dart';
 import 'contenus_providers.dart';
 import 'domain/contenu.dart';
 import 'presentation/libelles.dart';
@@ -31,7 +32,19 @@ class _ContenusScreenState extends ConsumerState<ContenusScreen> {
         .where((c) => _type == null || c.type == _type)
         .toList();
 
+    final coach = ref.watch(estCoachProvider);
     return Scaffold(
+      // Coach : ajouter un audio ou une vidéo directement ici.
+      floatingActionButton: coach
+          ? FloatingActionButton.extended(
+              onPressed: () => context.push(
+                '${Routes.nouveauContenu}?type='
+                '${_type == TypeContenu.video ? 'video' : 'audio'}',
+              ),
+              icon: const Icon(Icons.add),
+              label: Text(l10n.ajouterAudioVideo),
+            )
+          : null,
       appBar: AppBar(
         title: Text(l10n.navContenus),
         actions: [

@@ -44,6 +44,7 @@ class LivresRepository {
       'extraitUrl': l.extraitUrl,
       'publie': l.publie,
       'ordre': l.ordre,
+      'categorie': l.categorie.name,
       'updatedAt': FieldValue.serverTimestamp(),
     };
     if (nouveau) {

@@ -379,5 +379,14 @@
   "contenusDepart": "Starter content",
   "contenusDepartAide": "Adds 30 meditations, 60 questions to discuss as a couple and 4 paths, in all 5 languages, already published. You can edit, unpublish or delete everything. Your existing content is never replaced.",
   "charger": "Load",
-  "contenusDepartAjoutes": "{n, plural, =0{Everything was already there: nothing to add.} =1{1 item added.} other{{n} items added.}}"
+  "contenusDepartAjoutes": "{n, plural, =0{Everything was already there: nothing to add.} =1{1 item added.} other{{n} items added.}}",
+  "boutique": "Shop",
+  "ajouterArticle": "Add an item",
+  "nouvelArticle": "New item",
+  "categorieLivre": "Book",
+  "categorieAutre": "Other item",
+  "categorieLivres": "Books",
+  "categorieAutres": "Other items",
+  "articleAutreAide": "Physical item (CD, planner, card, clothing…). A digital item can only be sold through a link to an outside shop.",
+  "ajouterAudioVideo": "Add audio or video"
 }

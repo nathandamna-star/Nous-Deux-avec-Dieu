@@ -1286,4 +1286,32 @@ class AppLocalizationsNl extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get boutique => 'Winkel';
+
+  @override
+  String get ajouterArticle => 'Artikel toevoegen';
+
+  @override
+  String get nouvelArticle => 'Nieuw artikel';
+
+  @override
+  String get categorieLivre => 'Boek';
+
+  @override
+  String get categorieAutre => 'Ander artikel';
+
+  @override
+  String get categorieLivres => 'Boeken';
+
+  @override
+  String get categorieAutres => 'Andere artikelen';
+
+  @override
+  String get articleAutreAide =>
+      'Fysiek voorwerp (cd, agenda, kaart, kleding…). Een digitaal artikel wordt alleen verkocht via een link naar een externe winkel.';
+
+  @override
+  String get ajouterAudioVideo => 'Audio of video toevoegen';
 }

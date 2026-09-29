@@ -468,6 +468,9 @@ describe('livres et commandes', () => {
     await assertFails(getDoc(doc(visiteur(), 'livres/brouillon')));
     await assertSucceeds(getDoc(doc(coach(), 'livres/brouillon')));
     await assertSucceeds(setDoc(doc(coach(), 'livres/l2'), livre()));
+    // Boutique : un livre ou un autre article, rien d'autre.
+    await assertSucceeds(setDoc(doc(coach(), 'livres/a1'), livre({ categorie: 'autre' })));
+    await assertFails(setDoc(doc(coach(), 'livres/a2'), livre({ categorie: 'numerique' })));
     await assertFails(setDoc(doc(marie(), 'livres/l3'), livre()));
     await assertFails(setDoc(doc(coach(), 'livres/l4'), livre({ extraitUrl: 'javascript:alert(1)' })));
     await assertFails(setDoc(doc(coach(), 'livres/l5'), livre({ prixPapier: null })));

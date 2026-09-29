@@ -346,3 +346,11 @@ Avant toute décision importante non prévue ici, pose la question au lieu de ch
   et public), déclenchée depuis Coach → Mes contenus (menu ⋮ ou bouton quand la liste est vide).
 - Publication : textes des stores dans `docs/fiches-stores.md` (5 langues, limites vérifiées), démarche et points
   d'attention (dons, liens d'achat de livres numériques) dans `docs/publication.md`.
+
+## Ajouts (demande du porteur)
+- Onglet **Boutique** (`/boutique`, entre Contenus et Messages ; 6 onglets, 7 pour le coach) : même écran que « Mes
+  livres » (`LivresScreen`), filtre Tout / Livres / Autres articles. `livres.categorie` : `livre` | `autre` (objet
+  physique : CD, agenda, carte… ; un article numérique se vend seulement par lien externe). Coach : bouton « Ajouter un
+  article » → `/coach/livres/nouveau?categorie=…`.
+- Onglet Contenus : le coach a un bouton « Ajouter un audio ou une vidéo » → `/coach/contenus/nouveau?type=audio|video`
+  (type déjà choisi dans l'éditeur).

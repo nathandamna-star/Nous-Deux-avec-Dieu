@@ -7,9 +7,9 @@ import 'helpers.dart';
 void main() {
   setUpAll(() => GoogleFonts.config.allowRuntimeFetching = false);
 
-  testWidgets('cinq onglets, navigation entre les écrans', (tester) async {
+  testWidgets('six onglets, navigation entre les écrans', (tester) async {
     await bancConnecte().lancer(tester);
-    expect(find.byType(NavigationDestination), findsNWidgets(5));
+    expect(find.byType(NavigationDestination), findsNWidgets(6));
     expect(find.text('Coach'), findsNothing);
     expect(find.text('Découvrir tous les contenus'), findsOneWidget);
 
@@ -23,11 +23,18 @@ void main() {
     await tester.tap(find.text('Contenus'));
     await tester.pumpAndSettle();
     expect(find.textContaining('Aucun contenu'), findsOneWidget);
+    // Pas de bouton d'ajout pour les couples.
+    expect(find.text('Ajouter un audio ou une vidéo'), findsNothing);
+
+    await tester.tap(find.text('Boutique'));
+    await tester.pumpAndSettle();
+    expect(find.text('Autres articles'), findsOneWidget);
+    expect(find.text('Ajouter un article'), findsNothing);
   });
 
   testWidgets('onglet Coach pour le coach seulement', (tester) async {
     await bancConnecte(coach: true).lancer(tester);
-    expect(find.byType(NavigationDestination), findsNWidgets(6));
+    expect(find.byType(NavigationDestination), findsNWidgets(7));
     await tester.tap(find.text('Coach'));
     await tester.pumpAndSettle();
     expect(find.text('Demandes'), findsOneWidget);

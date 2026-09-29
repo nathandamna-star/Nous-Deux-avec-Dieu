@@ -4,6 +4,11 @@ import '../../contenus/domain/contenu.dart';
 
 enum TypeFormat { papier, numerique, audio }
 
+/// Article de la boutique : un livre, ou un autre article (objet physique :
+/// CD, agenda, carte, vêtement…). Un article numérique n'est jamais vendu dans
+/// l'app (règles des stores) : on renvoie vers la boutique qui le vend.
+enum CategorieArticle { livre, autre }
+
 class FormatLivre {
   const FormatLivre({required this.type, required this.prix});
 
@@ -49,6 +54,7 @@ class Livre {
     this.extraitUrl = '',
     this.publie = false,
     this.ordre = 0,
+    this.categorie = CategorieArticle.livre,
   });
 
   final String id;
@@ -68,6 +74,7 @@ class Livre {
   final String extraitUrl;
   final bool publie;
   final int ordre;
+  final CategorieArticle categorie;
 
   String titre(String langue) => Contenu.traduire(titres, langue);
   String sousTitre(String langue) => Contenu.traduire(sousTitres, langue);
@@ -114,6 +121,9 @@ class Livre {
       extraitUrl: d['extraitUrl'] as String? ?? '',
       publie: d['publie'] as bool? ?? false,
       ordre: (d['ordre'] as num? ?? 0).toInt(),
+      categorie: d['categorie'] == 'autre'
+          ? CategorieArticle.autre
+          : CategorieArticle.livre,
     );
   }
 }

@@ -323,7 +323,8 @@ service cloud.firestore {
         && request.resource.data.keys().hasOnly([
           'titre', 'sousTitre', 'description', 'couvertureUrl', 'langues', 'formats',
           'prixPapier', 'liensAchat', 'commandeDirecte', 'fraisEnvoi', 'extraitUrl',
-          'publie', 'ordre', 'createdAt', 'updatedAt'])
+          'publie', 'ordre', 'categorie', 'createdAt', 'updatedAt'])
+        && request.resource.data.get('categorie', 'livre') in ['livre', 'autre']
         && langues(request.resource.data.titre)
         && texte(request.resource.data.titre.fr, 200)
         && langues(request.resource.data.sousTitre)

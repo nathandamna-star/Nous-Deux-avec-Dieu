@@ -532,5 +532,14 @@
         "type": "int"
       }
     }
-  }
+  },
+  "boutique": "Boutique",
+  "ajouterArticle": "Ajouter un article",
+  "nouvelArticle": "Nouvel article",
+  "categorieLivre": "Livre",
+  "categorieAutre": "Autre article",
+  "categorieLivres": "Livres",
+  "categorieAutres": "Autres articles",
+  "articleAutreAide": "Objet physique (CD, agenda, carte, vêtement…). Un article numérique se vend uniquement par un lien vers une boutique extérieure.",
+  "ajouterAudioVideo": "Ajouter un audio ou une vidéo"
 }

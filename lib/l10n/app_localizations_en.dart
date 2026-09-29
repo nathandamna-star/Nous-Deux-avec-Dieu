@@ -1283,4 +1283,32 @@ class AppLocalizationsEn extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get boutique => 'Shop';
+
+  @override
+  String get ajouterArticle => 'Add an item';
+
+  @override
+  String get nouvelArticle => 'New item';
+
+  @override
+  String get categorieLivre => 'Book';
+
+  @override
+  String get categorieAutre => 'Other item';
+
+  @override
+  String get categorieLivres => 'Books';
+
+  @override
+  String get categorieAutres => 'Other items';
+
+  @override
+  String get articleAutreAide =>
+      'Physical item (CD, planner, card, clothing…). A digital item can only be sold through a link to an outside shop.';
+
+  @override
+  String get ajouterAudioVideo => 'Add audio or video';
 }

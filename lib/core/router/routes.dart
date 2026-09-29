@@ -3,6 +3,7 @@ abstract final class Routes {
   static const connexionEmail = '/bienvenue/email';
   static const accueil = '/accueil';
   static const contenus = '/contenus';
+  static const boutique = '/boutique';
   static const messages = '/messages';
   static const seances = '/seances';
   static const profil = '/profil';

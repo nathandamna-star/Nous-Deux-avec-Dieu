@@ -27,6 +27,8 @@ import '../../features/messages/messages_screen.dart';
 import '../../features/profil/profil_screen.dart';
 import '../../features/coach/presentation_coach_screen.dart';
 import '../../features/legal/legal_screen.dart';
+import '../../features/contenus/domain/contenu.dart';
+import '../../features/livres/domain/livre.dart';
 import '../../features/livres/presentation/commande_livre_screen.dart';
 import '../../features/livres/presentation/commander_livre_screen.dart';
 import '../../features/livres/presentation/editeur_livre_screen.dart';
@@ -104,6 +106,7 @@ final routerProvider = Provider<GoRouter>((ref) {
           for (final (chemin, ecran) in [
             (Routes.accueil, const AccueilScreen()),
             (Routes.contenus, const ContenusScreen()),
+            (Routes.boutique, const LivresScreen(base: Routes.boutique)),
             (Routes.messages, const MessagesScreen()),
             (Routes.seances, const SeancesScreen()),
             (Routes.profil, const ProfilScreen()),
@@ -125,6 +128,7 @@ final routerProvider = Provider<GoRouter>((ref) {
 });
 
 final _sousRoutes = <String, List<RouteBase>>{
+  Routes.boutique: _pagesBoutique(Routes.boutique),
   Routes.messages: [
     GoRoute(
       path: ':id',
@@ -223,7 +227,11 @@ final _sousRoutes = <String, List<RouteBase>>{
       routes: [
         GoRoute(
           path: 'nouveau',
-          builder: (context, state) => const EditeurContenuScreen(),
+          builder: (context, state) => EditeurContenuScreen(
+            typeInitial: TypeContenu.values
+                .where((t) => t.name == state.uri.queryParameters['type'])
+                .firstOrNull,
+          ),
         ),
         GoRoute(
           path: ':id',
@@ -298,7 +306,11 @@ final _sousRoutes = <String, List<RouteBase>>{
       routes: [
         GoRoute(
           path: 'nouveau',
-          builder: (context, state) => const EditeurLivreScreen(),
+          builder: (context, state) => EditeurLivreScreen(
+            categorie: CategorieArticle.values
+                .where((c) => c.name == state.uri.queryParameters['categorie'])
+                .firstOrNull,
+          ),
         ),
         GoRoute(
           path: ':id',
@@ -310,32 +322,35 @@ final _sousRoutes = <String, List<RouteBase>>{
   ],
 };
 
-/// « Mes livres », accessible depuis l'Accueil et les Contenus ([base]).
+/// La boutique, aussi accessible depuis l'Accueil et les Contenus ([base]).
 GoRoute _routeLivres(String base) => GoRoute(
   path: 'livres',
   builder: (context, state) => LivresScreen(base: base),
-  routes: [
-    GoRoute(
-      path: 'commande/:cmdId',
-      builder: (context, state) =>
-          CommandeLivreScreen(id: state.pathParameters['cmdId']!),
-    ),
-    GoRoute(
-      path: ':livreId',
-      builder: (context, state) =>
-          LivreScreen(id: state.pathParameters['livreId']!, base: base),
-      routes: [
-        GoRoute(
-          path: 'commander',
-          builder: (context, state) => CommanderLivreScreen(
-            id: state.pathParameters['livreId']!,
-            base: base,
-          ),
-        ),
-      ],
-    ),
-  ],
+  routes: _pagesBoutique(base),
 );
+
+/// Fiche d'un article, commande, suivi d'une commande.
+List<RouteBase> _pagesBoutique(String base) => [
+  GoRoute(
+    path: 'commande/:cmdId',
+    builder: (context, state) =>
+        CommandeLivreScreen(id: state.pathParameters['cmdId']!),
+  ),
+  GoRoute(
+    path: ':livreId',
+    builder: (context, state) =>
+        LivreScreen(id: state.pathParameters['livreId']!, base: base),
+    routes: [
+      GoRoute(
+        path: 'commander',
+        builder: (context, state) => CommanderLivreScreen(
+          id: state.pathParameters['livreId']!,
+          base: base,
+        ),
+      ),
+    ],
+  ),
+];
 
 /// Barre de navigation du bas ; l'onglet Coach n'apparaît que pour le coach.
 class _Coquille extends ConsumerWidget {
@@ -358,6 +373,11 @@ class _Coquille extends ConsumerWidget {
         const Icon(Icons.auto_stories_outlined),
         const Icon(Icons.auto_stories),
         l10n.navContenus,
+      ),
+      (
+        const Icon(Icons.storefront_outlined),
+        const Icon(Icons.storefront),
+        l10n.boutique,
       ),
       (
         Badge(

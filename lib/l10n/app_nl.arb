@@ -379,5 +379,14 @@
   "contenusDepart": "Startinhoud",
   "contenusDepartAide": "Voegt 30 meditaties, 60 vragen om samen te bespreken en 4 trajecten toe, in de 5 talen, al gepubliceerd. Je kunt alles wijzigen, depubliceren of verwijderen. Je bestaande inhoud wordt nooit vervangen.",
   "charger": "Laden",
-  "contenusDepartAjoutes": "{n, plural, =0{Alles was er al: niets toe te voegen.} =1{1 item toegevoegd.} other{{n} items toegevoegd.}}"
+  "contenusDepartAjoutes": "{n, plural, =0{Alles was er al: niets toe te voegen.} =1{1 item toegevoegd.} other{{n} items toegevoegd.}}",
+  "boutique": "Winkel",
+  "ajouterArticle": "Artikel toevoegen",
+  "nouvelArticle": "Nieuw artikel",
+  "categorieLivre": "Boek",
+  "categorieAutre": "Ander artikel",
+  "categorieLivres": "Boeken",
+  "categorieAutres": "Andere artikelen",
+  "articleAutreAide": "Fysiek voorwerp (cd, agenda, kaart, kleding…). Een digitaal artikel wordt alleen verkocht via een link naar een externe winkel.",
+  "ajouterAudioVideo": "Audio of video toevoegen"
 }

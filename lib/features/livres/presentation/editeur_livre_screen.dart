@@ -9,12 +9,16 @@ import '../domain/livre.dart';
 import '../livres_providers.dart';
 import 'libelles_livres.dart';
 
-/// Coach : créer ou modifier un livre (textes par langue, couverture,
-/// formats et prix, liens d'achat, commande directe, publication).
+/// Coach : créer ou modifier un article de la boutique, livre ou autre
+/// (textes par langue, photo, formats et prix, liens d'achat, commande
+/// directe, publication).
 class EditeurLivreScreen extends ConsumerStatefulWidget {
-  const EditeurLivreScreen({super.key, this.id});
+  const EditeurLivreScreen({super.key, this.id, this.categorie});
 
   final String? id;
+
+  /// Catégorie proposée pour un nouvel article.
+  final CategorieArticle? categorie;
 
   @override
   ConsumerState<EditeurLivreScreen> createState() => _EditeurLivreScreenState();
@@ -54,6 +58,7 @@ class _EditeurLivreScreenState extends ConsumerState<EditeurLivreScreen> {
   var _publie = false;
   var _ordre = 0;
   var _envoiCouverture = false;
+  late var _categorie = widget.categorie ?? CategorieArticle.livre;
 
   @override
   void dispose() {
@@ -104,6 +109,7 @@ class _EditeurLivreScreenState extends ConsumerState<EditeurLivreScreen> {
     _commandeDirecte = l.commandeDirecte;
     _publie = l.publie;
     _ordre = l.ordre;
+    _categorie = l.categorie;
   }
 
   Map<String, String> _carte(Map<String, TextEditingController> c) => {
@@ -166,6 +172,7 @@ class _EditeurLivreScreenState extends ConsumerState<EditeurLivreScreen> {
             extraitUrl: _extrait.text.trim(),
             publie: _publie,
             ordre: widget.id == null ? nb : _ordre,
+            categorie: _categorie,
           ),
           nouveau: widget.id == null,
         );
@@ -208,7 +215,13 @@ class _EditeurLivreScreenState extends ConsumerState<EditeurLivreScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.id == null ? l10n.nouveauLivre : l10n.modifierLivre),
+        title: Text(
+          widget.id != null
+              ? l10n.modifierLivre
+              : _categorie == CategorieArticle.autre
+              ? l10n.nouvelArticle
+              : l10n.nouveauLivre,
+        ),
         actions: [
           if (widget.id != null)
             IconButton(
@@ -223,6 +236,27 @@ class _EditeurLivreScreenState extends ConsumerState<EditeurLivreScreen> {
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
+            SegmentedButton<CategorieArticle>(
+              segments: [
+                ButtonSegment(
+                  value: CategorieArticle.livre,
+                  icon: const Icon(Icons.menu_book_outlined),
+                  label: Text(l10n.categorieLivre),
+                ),
+                ButtonSegment(
+                  value: CategorieArticle.autre,
+                  icon: const Icon(Icons.shopping_bag_outlined),
+                  label: Text(l10n.categorieAutre),
+                ),
+              ],
+              selected: {_categorie},
+              onSelectionChanged: (s) => setState(() => _categorie = s.first),
+            ),
+            if (_categorie == CategorieArticle.autre) ...[
+              const SizedBox(height: 8),
+              Text(l10n.articleAutreAide, style: theme.textTheme.bodySmall),
+            ],
+            const SizedBox(height: 16),
             Row(
               children: [
                 Couverture(url: _couverture, largeur: 72),
