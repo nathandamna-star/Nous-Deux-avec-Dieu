@@ -1,6 +1,6 @@
 # Conditions d'utilisation
 
-Dernière mise à jour : 28 septembre 2026
+Dernière mise à jour : 30 septembre 2026
 
 ## 1. Objet
 
@@ -30,9 +30,9 @@ Les méditations, questions, parcours, audios et vidéos sont gratuits. Ils rest
 
 Les dons sont libres et volontaires. Ils ne donnent accès à aucun contenu ni service supplémentaire. Ils ne donnent pas droit à une attestation fiscale.
 
-## 7. Livres
+## 7. Boutique : livres et autres articles
 
-Les livres numériques et audio s'achètent auprès des boutiques indiquées (Amazon, Fnac…), selon leurs propres conditions. Le livre papier peut aussi être commandé directement au coach : il est envoyé après réception du virement, au prix affiché, frais d'envoi compris. Il est expédié en général sous 5 jours ouvrables. Vous disposez de 14 jours après sa réception pour le renvoyer en bon état, à vos frais ; le prix vous est alors remboursé dans les 14 jours.
+Les livres numériques et audio, et tout article numérique, s'achètent auprès des boutiques indiquées (Amazon, Fnac…), selon leurs propres conditions. Le livre papier et les autres articles physiques (agenda, carte, CD…) peuvent aussi être commandés directement au coach : ils sont envoyés après réception du virement, au prix affiché, frais d'envoi compris. L'envoi se fait en général sous 5 jours ouvrables. Vous disposez de 14 jours après la réception pour renvoyer l'article en bon état, à vos frais ; le prix vous est alors remboursé dans les 14 jours.
 
 ## 8. Respect et confidentialité
 
