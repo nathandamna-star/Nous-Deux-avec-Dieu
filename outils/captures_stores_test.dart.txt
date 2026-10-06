@@ -87,6 +87,7 @@ void main() {
     'iphone-6.9': (Size(1320, 2868), 3.0),
     'iphone-6.5': (Size(1284, 2778), 3.0),
     'android': (Size(1080, 2160), 2.625),
+    'ipad-13': (Size(2048, 2732), 2.0),
   };
   for (final e in tailles.entries) {
     testWidgets('captures ${e.key}', (tester) async {
