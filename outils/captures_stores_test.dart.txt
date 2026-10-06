@@ -1,0 +1,122 @@
+import 'dart:convert';
+import 'dart:io';
+import 'dart:typed_data';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import 'helpers.dart';
+
+Future<void> police(String famille, List<String> fichiers) async {
+  final l = FontLoader(famille);
+  for (final f in fichiers) {
+    l.addFont(File(f).readAsBytes().then((b) => ByteData.view(b.buffer)));
+  }
+  await l.load();
+}
+
+Future<void> remplir(Banc banc) async {
+  final now = Timestamp.now();
+  for (final c in jsonDecode(File('functions/depart/contenus.json').readAsStringSync()) as List) {
+    await banc.firestore.doc('contenus/${c['id']}').set({
+      'type': c['type'], 'theme': c['theme'], 'titre': c['titre'],
+      'texte': c['texte'] ?? {}, 'reference': c['reference'] ?? '',
+      'visibilite': 'public', 'publie': true, 'ordre': c['ordre'],
+      'createdAt': now, 'updatedAt': now,
+    });
+  }
+  for (final p in jsonDecode(File('functions/depart/parcours.json').readAsStringSync()) as List) {
+    await banc.firestore.doc('parcours/${p['id']}').set({
+      'titre': p['titre'], 'description': p['description'], 'etapes': p['etapes'],
+      'visibilite': 'public', 'publie': true, 'ordre': p['ordre'],
+      'createdAt': now, 'updatedAt': now,
+    });
+  }
+  await banc.firestore.doc('accompagnements/a1').set({
+    'type': 'couple', 'nom': 'Paul & Marie', 'membres': ['u1', 'paul'],
+    'noms': {'u1': 'Marie', 'paul': 'Paul'}, 'statut': 'actif',
+    'seancesRestantes': 3, 'nonLus': {}, 'nonLusCoach': 0, 'createdAt': now,
+  });
+  await banc.firestore.doc('users/u1').update({'accompagnementId': 'a1'});
+  final base = DateTime(2030, 1, 10, 8);
+  final msgs = [
+    ('coach', 'Bonjour Marie et Paul ! Merci pour notre première séance. Je vous ai envoyé un petit exercice pour cette semaine.'),
+    ('u1', 'Merci beaucoup ! On l\'a commencé hier soir, ça nous a fait du bien de parler.'),
+    ('paul', 'Oui, merci. On a hâte d\'être à lundi.'),
+    ('coach', 'Je suis heureuse de l\'entendre. Prenez le temps de prier ensemble avant la prochaine séance.'),
+  ];
+  for (final (i, (a, t)) in msgs.indexed) {
+    await banc.firestore.doc('accompagnements/a1/messages/m$i').set({
+      'auteur': a, 'texte': t,
+      'createdAt': Timestamp.fromDate(base.subtract(Duration(hours: 10 - i))),
+    });
+  }
+  await banc.firestore.doc('accompagnements/a1/rendezVous/r1').set({
+    'nom': 'Paul & Marie', 'debut': Timestamp.fromDate(DateTime(2030, 1, 14, 19)),
+    'dureeMin': 60, 'lienZoom': 'https://zoom.us/j/123', 'statut': 'prevu',
+    'rappelVeille': false, 'rappelHeure': false,
+  });
+  await banc.firestore.doc('accompagnements/a1/rendezVous/r0').set({
+    'nom': 'Paul & Marie', 'debut': Timestamp.fromDate(DateTime(2030, 1, 7, 19)),
+    'dureeMin': 60, 'lienZoom': 'https://zoom.us/j/123', 'statut': 'fait',
+    'rappelVeille': false, 'rappelHeure': false,
+  });
+}
+
+void main() {
+  setUpAll(() async {
+    GoogleFonts.config.allowRuntimeFetching = false;
+    const g = 'assets/google_fonts';
+    await police('CormorantGaramond', [
+      '$g/CormorantGaramond-Medium.ttf',
+      '$g/CormorantGaramond-SemiBold.ttf',
+      '$g/CormorantGaramond-Bold.ttf',
+    ]);
+    await police('NunitoSans', [
+      '$g/NunitoSans-Regular.ttf',
+      '$g/NunitoSans-SemiBold.ttf',
+      '$g/NunitoSans-Bold.ttf',
+    ]);
+    await police('MaterialIcons', ['/opt/flutter/bin/cache/artifacts/material_fonts/MaterialIcons-Regular.otf']);
+  });
+
+  const tailles = {
+    'iphone-6.9': (Size(1320, 2868), 3.0),
+    'iphone-6.5': (Size(1284, 2778), 3.0),
+    'android': (Size(1080, 2160), 2.625),
+  };
+  for (final e in tailles.entries) {
+    testWidgets('captures ${e.key}', (tester) async {
+      final banc = await bancAvecProfil()..maintenant = DateTime(2030, 1, 10, 8);
+      await remplir(banc);
+      await banc.lancer(tester);
+      tester.view.physicalSize = e.value.$1;
+      tester.view.devicePixelRatio = e.value.$2;
+      await tester.pumpAndSettle();
+      await tester.runAsync(() => GoogleFonts.pendingFonts());
+      await tester.pumpAndSettle();
+      Future<void> cap(String n) => expectLater(find.byType(MaterialApp),
+          matchesGoldenFile('/tmp/claude-0/nd/captures/${e.key}/$n.png'));
+      await cap('1-accueil');
+      await toucher(tester, find.text('Lire').first);
+      await cap('3-meditation');
+      await tester.binding.handlePopRoute();
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Contenus').last);
+      await tester.pumpAndSettle();
+      await cap('2-contenus');
+      await toucher(tester, find.text('Parcours').first);
+      await toucher(tester, find.text('Mieux communiquer').first);
+      await cap('4-parcours');
+      await tester.tap(find.text('Messages').last);
+      await tester.pumpAndSettle();
+      await cap('5-messages');
+      await tester.tap(find.text('Séances').last);
+      await tester.pumpAndSettle();
+      await cap('6-seances');
+    });
+  }
+}

@@ -357,3 +357,8 @@ Avant toute décision importante non prévue ici, pose la question au lieu de ch
   article » → `/coach/livres/nouveau?categorie=…`.
 - Onglet Contenus : le coach a un bouton « Ajouter un audio ou une vidéo » → `/coach/contenus/nouveau?type=audio|video`
   (type déjà choisi dans l'éditeur).
+- **Captures des stores** : `outils/captures_stores_test.dart.txt` (voir `outils/LISEZMOI-captures.md`) : Accueil,
+  Contenus, Méditation, Parcours, Messages, Séances en 3 tailles.
+- Titres en Cormorant Garamond : la graisse est donnée à `GoogleFonts.cormorantGaramond(fontWeight:)` (un `copyWith`
+  garderait la famille « Regular », non incluse, et le titre partirait en police système).
+

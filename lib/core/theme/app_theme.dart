@@ -52,8 +52,14 @@ abstract final class AppTheme {
   static ThemeData _construire(ColorScheme couleurs) {
     final base = ThemeData(colorScheme: couleurs, useMaterial3: true);
     final texte = GoogleFonts.nunitoSansTextTheme(base.textTheme);
-    final titres = GoogleFonts.cormorantGaramondTextTheme(base.textTheme);
-    TextStyle? titre(TextStyle? s) => s?.copyWith(fontWeight: FontWeight.w600);
+    // Graisse choisie par GoogleFonts (et pas copyWith) : la famille nommée
+    // doit correspondre à un fichier inclus (SemiBold, Bold), sinon le titre
+    // s'affiche dans la police du système.
+    final titres = base.textTheme;
+    TextStyle? titre(TextStyle? s, [FontWeight w = FontWeight.w600]) =>
+        s == null
+        ? null
+        : GoogleFonts.cormorantGaramond(textStyle: s, fontWeight: w);
     final textTheme = texte
         .copyWith(
           displayLarge: titre(titres.displayLarge),
@@ -62,9 +68,9 @@ abstract final class AppTheme {
           headlineLarge: titre(titres.headlineLarge),
           headlineMedium: titre(titres.headlineMedium),
           headlineSmall: titre(titres.headlineSmall),
-          titleLarge: titres.titleLarge?.copyWith(
-            fontWeight: FontWeight.w700,
-            fontSize: 24,
+          titleLarge: titre(
+            titres.titleLarge?.copyWith(fontSize: 24),
+            FontWeight.w700,
           ),
         )
         .apply(bodyColor: couleurs.onSurface, displayColor: couleurs.onSurface);
