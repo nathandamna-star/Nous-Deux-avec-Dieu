@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -112,12 +113,17 @@ class ProfilScreen extends ConsumerWidget {
             const CarteMonAccompagnement(),
             const SizedBox(height: 12),
             Card(
-              child: ListTile(
-                leading: const Icon(Icons.volunteer_activism_outlined),
-                title: Text(l10n.faireUnDon),
-                trailing: const Icon(Icons.chevron_right),
-                onTap: () => context.push(Routes.don),
-              ),
+              child: ref.watch(donsDansAppProvider)
+                  ? ListTile(
+                      leading: const Icon(Icons.volunteer_activism_outlined),
+                      title: Text(l10n.faireUnDon),
+                      trailing: const Icon(Icons.chevron_right),
+                      onTap: () => context.push(Routes.don),
+                    )
+                  : ListTile(
+                      leading: const Icon(Icons.volunteer_activism_outlined),
+                      title: Text(l10n.donAilleurs),
+                    ),
             ),
           ],
           const SizedBox(height: 12),
@@ -223,3 +229,12 @@ class ProfilScreen extends ConsumerWidget {
     }
   }
 }
+
+/// Dons dans l'app : pas sur iPhone / iPad (règle 3.2.2 de l'App Store :
+/// collecte réservée aux organismes caritatifs reconnus).
+final donsDansAppProvider = Provider<bool>(
+  (ref) =>
+      kIsWeb ||
+      (defaultTargetPlatform != TargetPlatform.iOS &&
+          defaultTargetPlatform != TargetPlatform.macOS),
+);

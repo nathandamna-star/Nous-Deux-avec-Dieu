@@ -947,6 +947,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get faireUnDon => 'Fazer um donativo';
 
   @override
+  String get donAilleurs =>
+      'Deseja apoiar este ministério? Fale com o seu coach.';
+
+  @override
   String get donAide =>
       'O seu donativo é livre e apoia este ministério. Não dá acesso a nada extra: todos os conteúdos continuam gratuitos para todos.';
 

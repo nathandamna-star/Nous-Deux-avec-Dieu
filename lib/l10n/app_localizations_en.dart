@@ -946,6 +946,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get faireUnDon => 'Make a gift';
 
   @override
+  String get donAilleurs =>
+      'Would you like to support this ministry? Talk to your coach about it.';
+
+  @override
   String get donAide =>
       'Your gift is free and supports this ministry. It does not unlock anything: all content stays free for everyone.';
 

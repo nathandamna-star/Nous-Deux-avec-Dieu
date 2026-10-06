@@ -48,9 +48,8 @@ quelques messages, un rendez-vous et un forfait. Donner l'e-mail et le mot de pa
 
 ## 6. Points d'attention (règles des stores)
 
-- **Bouton « Faire un don »** : Apple n'autorise la collecte de dons dans une app que pour les
-  organismes caritatifs reconnus (règle 3.2.2). Si la revue le refuse, deux solutions : créer une
-  ASBL reconnue, ou masquer le bouton sur iPhone et renvoyer vers une page web de dons.
+- **Bouton « Faire un don »** : masqué sur iPhone / iPad (`donsDansAppProvider`, règle 3.2.2 : dons
+  réservés aux organismes caritatifs reconnus) ; à la place, « Parlez-en à votre coach ». Gardé sur Android.
 - **Liens « Acheter sur… »** : un lien vers l'achat d'un livre **numérique ou audio** peut être
   refusé par Apple (règle 3.1.1). Les liens vers le livre papier ne posent pas de problème. En cas de
   refus : ne mettre que des liens vers le format papier, ou masquer les liens sur iPhone.

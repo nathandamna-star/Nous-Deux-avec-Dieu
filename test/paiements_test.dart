@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -119,6 +120,22 @@ void main() {
     expect(p['montant'], 35.5);
     expect(p.containsKey('nbSeances'), isFalse);
     expect(find.byType(QrImageView), findsOneWidget);
+  });
+
+  testWidgets('sur iPhone : pas de don dans l\'app (règle 3.2.2)', (
+    tester,
+  ) async {
+    debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
+    try {
+      final banc = await bancAvecProfil();
+      await donnees(banc);
+      await banc.lancer(tester, grand: true);
+      await ouvrirProfil(tester);
+      expect(find.text('Faire un don'), findsNothing);
+      expect(find.textContaining('soutenir ce ministère'), findsOneWidget);
+    } finally {
+      debugDefaultTargetPlatformOverride = null;
+    }
   });
 
   testWidgets('le coach confirme un paiement reçu', (tester) async {

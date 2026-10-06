@@ -361,4 +361,5 @@ Avant toute décision importante non prévue ici, pose la question au lieu de ch
   Contenus, Méditation, Parcours, Messages, Séances en 3 tailles.
 - Titres en Cormorant Garamond : la graisse est donnée à `GoogleFonts.cormorantGaramond(fontWeight:)` (un `copyWith`
   garderait la famille « Regular », non incluse, et le titre partirait en police système).
-
+- **Dons et App Store** (choix A du porteur, 6/10/2026) : pas de bouton « Faire un don » sur iPhone / iPad
+  (`donsDansAppProvider` dans profil_screen.dart ; texte `donAilleurs`), gardé sur Android.

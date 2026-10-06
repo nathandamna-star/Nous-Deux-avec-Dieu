@@ -1766,6 +1766,12 @@ abstract class AppLocalizations {
   /// **'Faire un don'**
   String get faireUnDon;
 
+  /// No description provided for @donAilleurs.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vous souhaitez soutenir ce ministère ? Parlez-en à votre coach.'**
+  String get donAilleurs;
+
   /// No description provided for @donAide.
   ///
   /// In fr, this message translates to:

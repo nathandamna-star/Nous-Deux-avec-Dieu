@@ -953,6 +953,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get faireUnDon => 'Faire un don';
 
   @override
+  String get donAilleurs =>
+      'Vous souhaitez soutenir ce ministère ? Parlez-en à votre coach.';
+
+  @override
   String get donAide =>
       'Votre don est libre et soutient ce ministère. Il ne donne accès à rien de plus : tous les contenus restent gratuits pour tous.';
 

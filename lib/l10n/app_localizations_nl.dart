@@ -948,6 +948,10 @@ class AppLocalizationsNl extends AppLocalizations {
   String get faireUnDon => 'Een gift doen';
 
   @override
+  String get donAilleurs =>
+      'Wilt u deze bediening steunen? Spreek erover met uw coach.';
+
+  @override
   String get donAide =>
       'Je gift is vrij en steunt deze bediening. Er wordt niets mee ontgrendeld: alle inhoud blijft gratis voor iedereen.';
 
