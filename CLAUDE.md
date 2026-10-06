@@ -44,6 +44,9 @@ N'ajoute pas d'autre service payant sans le demander. Même compte Apple Develop
 
 - Couleurs : principale `#7A2E3A` (bordeaux), secondaire `#C8963E` (or doux), fond `#FBF6F1`
   (ivoire), cartes `#FFFFFF`, texte `#2A1F1D`, texte secondaire `#6B5E58`, bordures `#E8DDD4`.
+- **Logo** (fourni par le porteur, 6/10/2026) : mains dorées en cœur autour de deux anneaux, fond prune `#542F37`,
+  « NOUS DEUX AVEC DIEU · COACH DE COUPLE ». `assets/logo/logo.png` (logo complet, écran de bienvenue) et
+  `assets/logo/icone.png` (mains + anneaux, 1024 px) d'où sont tirées les icônes iOS et Android.
 - Polices : **Cormorant Garamond** (titres) et **Nunito Sans** (texte), incluses dans l'app.
 - Ton : chaleureux, bienveillant, jamais culpabilisant. Coins arrondis 12–20 px, zones tactiles
   ≥ 44 px, contraste AA, mode sombre.

@@ -57,11 +57,12 @@ class BienvenueScreen extends ConsumerWidget {
               padding: const EdgeInsets.all(24),
               children: [
                 const SizedBox(height: 24),
-                Text(
-                  l10n.appTitle,
-                  textAlign: TextAlign.center,
-                  style: theme.textTheme.displaySmall?.copyWith(
-                    color: theme.colorScheme.primary,
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: Image.asset(
+                    'assets/logo/logo.png',
+                    semanticLabel: l10n.appTitle,
+                    fit: BoxFit.contain,
                   ),
                 ),
                 const SizedBox(height: 8),
